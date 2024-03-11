@@ -1,7 +1,20 @@
-.ant-layout {
+.box {
   height: 100%;
-}
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to bottom right,
+          #f0f5ff, #d6e4ff, #adc6ff, #85a5ff, #597ef7, #2f54eb, #1d39c4, #10239e, #061178, #030852);
 
-.header {
-  padding: 0;
+  .appContainer {
+    display: flex;
+    height: 750px;
+    width: 1220px;
+    padding: 8px;
+    background-image: linear-gradient(to bottom right,
+            #f6ffed, #d9f7be, #b7eb8f, #95de64, #73d13d, #52c41a, #389e0d, #237804, #135200, #092b00);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
 }
