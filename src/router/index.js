@@ -1,17 +1,43 @@
 import {createBrowserRouter} from 'react-router-dom'
 
-import Login from '@/pages/Login'
-import Browse from "@/pages/Browse";
+import Login from 'src/pages/User/Login'
+import Browse from "src/pages/Discover/Browse";
 import Layout from "@/pages/Layout";
+import Account from "@/pages/User/Account";
+import Setting from "@/pages/User/Setting";
+import Recent from "@/pages/Library/Recent";
+import Favourite from "@/pages/Library/Favourite";
+import Playlist from "@/pages/Library/Playlist";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout/>,
-        children: [{
-            path: '/Browse',
-            element: <Browse></Browse>
-        }]
+        children: [
+            {
+                path: '/home',
+                element: <Browse></Browse> //This is Home!
+            },
+            {
+                path: '/account',
+                element: <Account></Account> //This is Home!
+            },
+            {
+                path: '/setting',
+                element: <Setting></Setting>
+            },
+            {
+                path: '/recent',
+                element: <Recent></Recent>
+            },
+            {
+                path: '/favourite',
+                element: <Favourite></Favourite>
+            },
+            {
+                path: '/playlist',
+                element: <Playlist></Playlist>
+            }]
     },
     {
         path: '/login',

@@ -1,0 +1,97 @@
+.playBar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .songDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px;
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .avatar {
+      animation: rotate 4s linear infinite; /* 指定动画名称、时长、速度曲线和重复次数 */
+
+    }
+
+    .singerDetails {
+      line-height: 32px;
+      margin: 24px;
+      display: flex;
+      font-size: 24px;
+      flex-direction: column;
+    }
+  }
+
+  .musicControlBar {
+    width: 400px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .icons {
+      font-size: 22px;
+      width: 400px;
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+
+      > *:not(:last-child) {
+        margin-right: 16px;
+      }
+    }
+
+    .progressBar {
+      font-size: 14px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      div {
+        width: 100%;
+      }
+
+      > *:not(:last-child) {
+        margin-right: 12px;
+      }
+    }
+  }
+
+  .extendControlBar {
+    height: 100%;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .icons {
+      font-size: 24px;
+      width: 400px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      align-items: center;
+
+      div {
+        width: 100%;
+        cursor: pointer;
+      }
+
+      > *:not(:last-child) {
+        margin-right: 12px;
+      }
+    }
+  }
+}

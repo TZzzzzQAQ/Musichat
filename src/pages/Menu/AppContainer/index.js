@@ -6,10 +6,12 @@ import {
     UserOutlined,
     VideoCameraOutlined,
 } from '@ant-design/icons';
-import {Layout, Menu, Button, theme} from 'antd';
+
+import {Layout, Menu, Button, theme, Avatar} from 'antd';
 import './index.scss'
-import ContentCarousel from "@/components/Carousel";
 import {Outlet, useNavigate} from "react-router-dom";
+import SearchBar from "@/components/SearchBar/SearchBar";
+import PlayBar from "src/pages/PlayBar";
 
 const {
     Header,
@@ -25,16 +27,12 @@ const item = [
         label: 'User',
         children: [
             {
-                key: '4',
+                key: '/account',
                 icon: <UserOutlined/>,
                 label: 'Account',
             },
             {
-                key: '5',
-                icon: <UserOutlined/>,
-                label: 'Logout'
-            }, {
-                key: '6',
+                key: '/setting',
                 icon: <UserOutlined/>,
                 label: 'Setting'
             }
@@ -46,28 +44,28 @@ const item = [
         label: 'Library',
         children: [
             {
-                key: '7',
+                key: '/recent',
                 icon: <VideoCameraOutlined/>,
                 label: 'Recent'
             },
             {
-                key: '8',
+                key: '/favourite',
                 icon: <VideoCameraOutlined/>,
                 label: 'Favourite'
             }, {
-                key: '9',
+                key: '/playlist',
                 icon: <VideoCameraOutlined/>,
                 label: 'Playlist'
             }
         ]
     },
     {
-        key: '/browse',
+        key: '3',
         icon: <UploadOutlined/>,
         label: 'Discovery',
         children: [
             {
-                key: '12',
+                key: '/home',
                 icon: <VideoCameraOutlined/>,
                 label: 'Home'
             }
@@ -81,7 +79,7 @@ const AppContainer = () => {
         token: {colorBgContainer, borderRadiusLG},
     } = theme.useToken();
     const clickHandler = (e) => {
-        // navigate(e.key, {replace: true})
+        navigate(e.key, {replace: true})
     }
     return (
         <Layout>
@@ -91,8 +89,10 @@ const AppContainer = () => {
                 collapsed={collapsed}
                 style={{
                     background: colorBgContainer,
-                    height: '100 %'
-                }}>
+                    height: '100 %',
+                    borderRadius: '10px',
+                }}
+                className="custom-sider">
                 <div className="demo-logo-vertical"/>
                 <Menu
                     mode="inline"
@@ -105,8 +105,12 @@ const AppContainer = () => {
                 <Header
                     style={{
                         background: colorBgContainer,
-                        margin: '24px 16px',
-                        padding: '0px 10px'
+                        margin: '16px',
+                        padding: '0px 12px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: borderRadiusLG,
                     }}
                 >
                     <Button
@@ -119,10 +123,17 @@ const AppContainer = () => {
                             height: 32,
                         }}
                     />
+                    <SearchBar/>
+                    <Avatar
+                        style={{
+                            backgroundColor: '#87d068',
+                        }}
+                        icon={<UserOutlined/>}
+                    />
                 </Header>
                 <Content
                     style={{
-                        margin: '24px 16px',
+                        margin: '16px',
                         padding: 24,
                         minHeight: 280,
                         background: colorBgContainer,
@@ -133,11 +144,12 @@ const AppContainer = () => {
                 </Content>
                 <Footer style={{
                     background: colorBgContainer,
-                    margin: '24px 16px',
+                    margin: '16px',
                     padding: '0px 10px',
-                    height: '80px'
+                    height: '80px',
+                    borderRadius: borderRadiusLG,
                 }}>
-                    《夜曲-周杰伦》
+                    <PlayBar/>
                 </Footer>
             </Layout>
         </Layout>
