@@ -2,16 +2,20 @@ import React, {useState} from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    UploadOutlined,
     UserOutlined,
-    VideoCameraOutlined,
 } from '@ant-design/icons';
-
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faList, fas} from '@fortawesome/free-solid-svg-icons';
+import {far} from '@fortawesome/free-regular-svg-icons';
+import {fab} from '@fortawesome/free-brands-svg-icons';
 import {Layout, Menu, Button, theme, Avatar} from 'antd';
 import './index.scss'
 import {Outlet, useNavigate} from "react-router-dom";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import PlayBar from "src/pages/PlayBar";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
+library.add(fas, far, fab);
 
 const {
     Header,
@@ -19,55 +23,63 @@ const {
     Content,
     Footer
 } = Layout;
-
+const iconColor = {color: "#74C0FC",};
 const item = [
     {
         key: '1',
-        icon: <UserOutlined/>,
+        icon: <FontAwesomeIcon icon="fa-solid fa-user" style={iconColor}/>,
         label: 'User',
         children: [
             {
                 key: '/account',
-                icon: <UserOutlined/>,
+                icon: <FontAwesomeIcon icon="fa-solid fa-user" style={iconColor}/>,
                 label: 'Account',
             },
             {
                 key: '/setting',
-                icon: <UserOutlined/>,
+                icon: <FontAwesomeIcon icon="fa-solid fa-gear" style={iconColor}/>,
                 label: 'Setting'
             }
         ]
     },
     {
         key: '2',
-        icon: <VideoCameraOutlined/>,
+        icon: <FontAwesomeIcon icon="fa-solid fa-record-vinyl" style={iconColor}/>,
         label: 'Library',
         children: [
             {
                 key: '/recent',
-                icon: <VideoCameraOutlined/>,
+                icon: <FontAwesomeIcon icon="fa-solid fa-clock" style={iconColor}/>,
                 label: 'Recent'
             },
             {
                 key: '/favourite',
-                icon: <VideoCameraOutlined/>,
+                icon: <FontAwesomeIcon icon="fa-solid fa-heart" style={iconColor}/>,
                 label: 'Favourite'
             }, {
                 key: '/playlist',
-                icon: <VideoCameraOutlined/>,
+                icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
                 label: 'Playlist'
             }
         ]
     },
     {
         key: '3',
-        icon: <UploadOutlined/>,
+        icon: <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" style={iconColor}/>,
         label: 'Discovery',
         children: [
             {
                 key: '/home',
-                icon: <VideoCameraOutlined/>,
+                icon: <FontAwesomeIcon icon="fa-solid fa-house" style={iconColor}/>,
                 label: 'Home'
+            }, {
+                key: '/artist',
+                icon: <FontAwesomeIcon icon="fa-solid fa-microphone-lines" style={iconColor}/>,
+                label: 'Artist'
+            }, {
+                key: '/album',
+                icon: <FontAwesomeIcon icon="fa-solid fa-compact-disc" style={iconColor}/>,
+                label: 'Album'
             }
         ]
     },
@@ -80,6 +92,9 @@ const AppContainer = () => {
     } = theme.useToken();
     const clickHandler = (e) => {
         navigate(e.key, {replace: true})
+    }
+    const avatarClickHandler = () => {
+        navigate('/account', {replace: true})
     }
     return (
         <Layout>
@@ -118,6 +133,7 @@ const AppContainer = () => {
                         icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                         onClick={() => setCollapsed(!collapsed)}
                         style={{
+                            ...iconColor,
                             fontSize: '16px',
                             width: 32,
                             height: 32,
@@ -126,9 +142,13 @@ const AppContainer = () => {
                     <SearchBar/>
                     <Avatar
                         style={{
-                            backgroundColor: '#87d068',
+                            ...iconColor,
+                            cursor: 'pointer',
+                            width: '50px',
+                            height: '50px'
                         }}
                         icon={<UserOutlined/>}
+                        onClick={avatarClickHandler}
                     />
                 </Header>
                 <Content

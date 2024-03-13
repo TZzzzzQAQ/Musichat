@@ -21,9 +21,11 @@ import {far} from '@fortawesome/free-regular-svg-icons';
 import {fab} from '@fortawesome/free-brands-svg-icons';
 import {debounce} from "lodash/function";
 import src from '@/assets/stay with me.mp3'
+import {formatTime} from "@/utils";
 
 library.add(fas, far, fab);
 
+const iconColor = {color: "#74C0FC"};
 const twoColors = {
     '0%': '#108ee9',
     '100%': '#87d068',
@@ -32,10 +34,11 @@ const PlayBar = () => {
     const [percent, setPercent] = useState(0); // 初始进度为0
     const [volumePercent, setVolumePercent] = useState(40)
     const [isPlaying, setIsPlaying] = useState(false);
-
+    const [currentMusicTime, setCurrentMusicTime] = useState(0)
+    const [durationMusicTime, setDurationMusicTime] = useState(0)
     const progressRef = useRef(null);
     const volumeProgressBar = useRef(null);
-
+    const [rotation, setRotation] = useState(0);
     // 定义状态来存储宽度和左边距
     const [dimensions, setDimensions] = useState({width: 0, left: 0});
     const [dimensionsVolume, setDimensionsVolume] = useState({width: 0, left: 0})
@@ -51,8 +54,22 @@ const PlayBar = () => {
             // 更新状态
             setDimensionsVolume({width, left});
         }
-
     }, []); // 空依赖数组意味着这个 effect 只在组件挂载时执行 空依赖数组意味着这个 effect 只在组件挂载时执行
+
+    useEffect(() => {
+        let intervalId;
+        if (isPlaying) {
+            // 当音乐播放时，每隔一段时间更新旋转角度
+            intervalId = setInterval(() => {
+                setRotation((prevRotation) => (prevRotation + 1) % 360);
+            }, 20); // 每20ms旋转1度
+        } else if (!isPlaying && intervalId) {
+            // 当音乐暂停时，清除定时器停止旋转
+            clearInterval(intervalId);
+        }
+
+        return () => clearInterval(intervalId); // 清理函数
+    }, [isPlaying]);
 
     useEffect(() => {
         changeVolume(volumePercent / 100)
@@ -91,6 +108,8 @@ const PlayBar = () => {
             const audio = audioRef.current;
             const value = (audio.currentTime / audio.duration) * 100;
             setPercent(value);
+            setCurrentMusicTime(audio.currentTime)
+            setDurationMusicTime(audio.duration)
         }
     };
 
@@ -113,30 +132,31 @@ const PlayBar = () => {
                 <Avatar
                     style={{
                         width: '60px',
-                        height: '60px'
+                        height: '60px',
+                        transform: `rotate(${rotation}deg)`, // 应用旋转角度
+                        transition: 'transform 0.2s linear', // 平滑旋转效果
                     }}
-                    className={'avatar'}
                     icon={<UserOutlined/>}
                 />
                 <div className={'singerDetails'}>
-                    <span>Love Story</span>
+                    <span>Stay with me</span>
                     <span>Jack</span>
                 </div>
             </div>
             <div className={'musicControlBar'}>
                 <div className={'icons'}>
-                    <FontAwesomeIcon icon={faShuffle} style={{color: "#74C0FC", cursor: 'pointer'}}/>
-                    <FontAwesomeIcon icon={faBackward} style={{color: "#74C0FC", cursor: 'pointer'}}/>
+                    <FontAwesomeIcon icon={faShuffle} style={{...iconColor, cursor: 'pointer'}}/>
+                    <FontAwesomeIcon icon={faBackward} style={{...iconColor, cursor: 'pointer'}}/>
                     {isPlaying &&
-                        <FontAwesomeIcon icon={faPause} style={{color: "#74C0FC", cursor: 'pointer'}} onClick={pause}/>}
+                        <FontAwesomeIcon icon={faPause} style={{...iconColor, cursor: 'pointer'}} onClick={pause}/>}
                     {!isPlaying &&
-                        <FontAwesomeIcon icon={faPlay} style={{color: "#74C0FC", cursor: 'pointer'}} onClick={play}/>}
-                    <FontAwesomeIcon icon={faForward} style={{color: "#74C0FC", cursor: 'pointer'}}/>
-                    <FontAwesomeIcon icon={faArrowsRotate} style={{color: "#74C0FC", cursor: 'pointer'}}/>
+                        <FontAwesomeIcon icon={faPlay} style={{...iconColor, cursor: 'pointer'}} onClick={play}/>}
+                    <FontAwesomeIcon icon={faForward} style={{...iconColor, cursor: 'pointer'}}/>
+                    <FontAwesomeIcon icon={faArrowsRotate} style={{...iconColor, cursor: 'pointer'}}/>
                 </div>
                 <div className={'progressBar'}>
                     <p>
-                        1:20
+                        {formatTime(currentMusicTime)}
                     </p>
                     <div
                         onClick={musicClickHandler}
@@ -146,14 +166,14 @@ const PlayBar = () => {
                         <Progress percent={Math.round(percent)} strokeColor={twoColors} showInfo={false}/>
                     </div>
                     <p>
-                        5:20
+                        {formatTime(durationMusicTime)}
                     </p>
                 </div>
             </div>
             <div className={'extendControlBar'}>
                 <div className={'icons'}>
-                    <FontAwesomeIcon icon="fa-regular fa-heart" style={{color: "#74C0FC",}}/>
-                    <FontAwesomeIcon icon={faVolumeOff} style={{color: "#74C0FC",}}/>
+                    <FontAwesomeIcon icon="fa-regular fa-heart" style={iconColor}/>
+                    <FontAwesomeIcon icon={faVolumeOff} style={iconColor}/>
                     <div
                         onClick={volumeClickHandler}
                         ref={volumeProgressBar}>
@@ -162,7 +182,7 @@ const PlayBar = () => {
                             strokeColor={twoColors}
                             showInfo={false}/>
                     </div>
-                    <FontAwesomeIcon icon={faList} style={{color: "#74C0FC",}}/>
+                    <FontAwesomeIcon icon={faList} style={iconColor}/>
                 </div>
             </div>
         </div>

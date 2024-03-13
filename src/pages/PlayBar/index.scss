@@ -11,20 +11,6 @@
     align-items: center;
     margin: 24px;
 
-    @keyframes rotate {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .avatar {
-      animation: rotate 4s linear infinite; /* 指定动画名称、时长、速度曲线和重复次数 */
-
-    }
-
     .singerDetails {
       line-height: 32px;
       margin: 24px;
@@ -87,6 +73,8 @@
       div {
         width: 100%;
         cursor: pointer;
+        display: flex;
+        align-items: center;
       }
 
       > *:not(:last-child) {

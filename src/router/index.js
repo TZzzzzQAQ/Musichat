@@ -8,6 +8,8 @@ import Setting from "@/pages/User/Setting";
 import Recent from "@/pages/Library/Recent";
 import Favourite from "@/pages/Library/Favourite";
 import Playlist from "@/pages/Library/Playlist";
+import Artist from "@/pages/Discover/Artist";
+import Album from "@/pages/Discover/Album";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
             {
                 path: '/playlist',
                 element: <Playlist></Playlist>
+            },
+            {
+                path: '/album',
+                element: <Album></Album>
+            },
+            {
+                path: '/artist',
+                element: <Artist></Artist>
             }]
     },
     {

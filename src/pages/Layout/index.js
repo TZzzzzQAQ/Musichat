@@ -2,7 +2,13 @@ import React, {useState} from 'react';
 import './index.scss'
 import AppContainer from "src/pages/Menu/AppContainer";
 import {ConfigProvider, theme, Select} from "antd";
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {fas} from '@fortawesome/free-solid-svg-icons';
+import {far} from '@fortawesome/free-regular-svg-icons';
+import {fab} from '@fortawesome/free-brands-svg-icons';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
+library.add(fas, far, fab);
 const options = [
     {
         value: 'Dust_Red',
@@ -23,15 +29,40 @@ const options = [
     {
         value: 'Sunrise_Yellow',
         label: 'Sunrise Yellow',
+    },
+    {
+        value: 'Polar_Green',
+        label: 'Polar Green'
+    },
+    {
+        value: 'Cyan',
+        label: 'Cyan'
+    },
+    {
+        value: 'Daybreak_Blue',
+        label: 'Daybreak Blue'
+    },
+    {
+        value: 'Geek_Blue',
+        label: 'Geek Blue'
+    }, {
+        value: 'Golden_Purple',
+        label: 'Golden Purple'
+    }, {
+        value: 'Magenta',
+        label: 'Magenta'
     }
-
 ]
 const Layout = () => {
     const [className, setClassName] = useState('box');
-    // const [primary, setPrimary] = React.useState('#1677ff');
+    // const [primary, setPrimary] = React.useState('greenYellow');
+    const [isDaylight, setIsDaylight] = useState(true);
     const handleChange = (value) => {
         setClassName(() => `box ${value}`)
     };
+    const lightHandler = () => {
+        setIsDaylight(prevState => !prevState)
+    }
     return (
         <div className={className}>
             <Select
@@ -45,11 +76,22 @@ const Layout = () => {
                 onChange={handleChange}
                 options={options}
             />
+            <div className={'switch'}>
+                {!isDaylight ?
+                    <FontAwesomeIcon
+                        icon="fa-solid fa-lightbulb"
+                        style={{color: "#74C0FC", cursor: "pointer"}}
+                        onClick={lightHandler}/> :
+                    <FontAwesomeIcon
+                        icon="fa-regular fa-lightbulb"
+                        style={{color: "#74C0FC", cursor: "pointer"}}
+                        onClick={lightHandler}/>
+                }
+            </div>
             <div className={'appContainer'}>
                 <ConfigProvider
                     theme={{
-                        // algorithm: theme.darkAlgorithm,
-                        algorithm: theme.defaultAlgorithm,
+                        algorithm: isDaylight ? theme.defaultAlgorithm : theme.darkAlgorithm,
                         token: {
                             // colorPrimary: primary,
                         },
