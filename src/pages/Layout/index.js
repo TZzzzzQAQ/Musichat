@@ -64,7 +64,7 @@ const Layout = () => {
         setIsDaylight(prevState => !prevState)
     }
     return (
-        <div className={className}>
+        <div className={`${className} dynamic-gradient`}>
             <Select
                 defaultValue=""
                 style={{

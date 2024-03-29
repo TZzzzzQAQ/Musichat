@@ -55,21 +55,45 @@
 }
 
 .Cyan {
-  background-image: linear-gradient(to bottom right, #e6fffb, #b5f5ec, #87e8de, #5cdbd3, #36cfc9, #13c2c2, #08979c, #006d75, #00474f, #002329);
+  background-image: linear-gradient(to bottom right,
+          #e6fffb, #b5f5ec, #87e8de, #5cdbd3, #36cfc9, #13c2c2, #08979c, #006d75, #00474f, #002329);
 }
 
 .Daybreak_Blue {
-  background-image: linear-gradient(to bottom right, #e6f4ff, #bae0ff, #91caff, #69b1ff, #4096ff, #1677ff, #0958d9, #003eb3, #002c8c, #001d66);
+  background-image: linear-gradient(to bottom right,
+          #e6f4ff, #bae0ff, #91caff, #69b1ff, #4096ff, #1677ff, #0958d9, #003eb3, #002c8c, #001d66);
 }
 
 .Geek_Blue {
-  background-image: linear-gradient(to bottom right, #f0f5ff, #d6e4ff, #adc6ff, #85a5ff, #597ef7, #2f54eb, #1d39c4, #10239e, #061178, #030852);
+  background-image: linear-gradient(to bottom right,
+          #f0f5ff, #d6e4ff, #adc6ff, #85a5ff, #597ef7, #2f54eb, #1d39c4, #10239e, #061178, #030852);
 }
 
 .Golden_Purple {
-  background-image: linear-gradient(to bottom right, #f9f0ff, #efdbff, #d3adf7, #b37feb, #9254de, #722ed1, #531dab, #391085, #22075e, #120338);
+  background-image: linear-gradient(to bottom right,
+          #f9f0ff, #efdbff, #d3adf7, #b37feb, #9254de, #722ed1, #531dab, #391085, #22075e, #120338);
 }
 
 .Magenta {
-  background-image: linear-gradient(to bottom right, #fff0f6, #ffd6e7, #ffadd2, #ff85c0, #f759ab, #eb2f96, #c41d7f, #9e1068, #780650, #520339);
+  background-image: linear-gradient(to bottom right,
+          #fff0f6, #ffd6e7, #ffadd2, #ff85c0, #f759ab, #eb2f96, #c41d7f, #9e1068, #780650, #520339);
+}
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.dynamic-gradient {
+  height: 100vh;
+  width: 100vw;
+  background-size: 200% 200%;
+  animation: gradientBackground 10s ease infinite;
 }
