@@ -3,7 +3,9 @@
 In the project directory, you can run:
 ### `npm install`
 Use this command to install libraries.
-### `npm start`
+### `npm install -g @craco/craco`
+Use this command to install craco 
+### `craco start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
