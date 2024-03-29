@@ -61,7 +61,7 @@ const PlayBar = () => {
         if (isPlaying) {
             // 当音乐播放时，每隔一段时间更新旋转角度
             intervalId = setInterval(() => {
-                setRotation((prevRotation) => (prevRotation + 1) % 360);
+                setRotation((prevRotation) => (prevRotation + 1));
             }, 20); // 每20ms旋转1度
         } else if (!isPlaying && intervalId) {
             // 当音乐暂停时，清除定时器停止旋转
