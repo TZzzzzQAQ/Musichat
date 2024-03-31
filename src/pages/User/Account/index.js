@@ -21,6 +21,10 @@ const tailLayout = {
 };
 const Account = () => {
     const [form] = Form.useForm();
+    const [icon, setIcon] = useState(false);
+
+    const handleMouseLeave = () => setIcon(false);
+    const handleMouseEnter = () => setIcon(true);
     const [isLogin, setIsLogin] = useState(true);
     const onFinish = (values) => {
         console.log(values);
@@ -105,7 +109,18 @@ const Account = () => {
                             <Button htmlType="button" onClick={toggleLogin}>
                                 {isLogin ? 'Register' : 'Login'}
                             </Button>
-                            <FontAwesomeIcon icon="fa-brands fa-google" style={{color: "#74C0FC",}}/>
+                            <div
+                                onMouseEnter={handleMouseEnter}
+                                onMouseLeave={handleMouseLeave}
+                                style={{cursor: 'pointer'}}
+                            >
+                                {
+                                    icon ?
+                                        <FontAwesomeIcon icon="fa-brands fa-google" size='xl' beat
+                                                         style={{color: "#74C0FC",}}/> :
+                                        <FontAwesomeIcon icon="fa-brands fa-google" size='xl'
+                                                         style={{color: "#74C0FC"}}/>}
+                            </div>
                         </Space>
                     </Form.Item>
                 </Form>
