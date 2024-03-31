@@ -1,6 +1,5 @@
 import {createBrowserRouter} from 'react-router-dom'
 
-import Login from 'src/pages/User/Login'
 import Browse from "src/pages/Discover/Browse";
 import Layout from "@/pages/Layout";
 import Account from "@/pages/User/Account";
@@ -48,11 +47,7 @@ const router = createBrowserRouter([
                 path: '/artist',
                 element: <Artist></Artist>
             }]
-    },
-    {
-        path: '/login',
-        element: <Login/>,
-    },
+    }
 ])
 
 export default router;

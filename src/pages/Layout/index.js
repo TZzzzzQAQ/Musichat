@@ -54,29 +54,18 @@ const options = [
     }
 ]
 const Layout = () => {
-    const [className, setClassName] = useState('box');
-    // const [primary, setPrimary] = React.useState('greenYellow');
+    const [className, setClassName] = useState('box Dust_Red');
+    const [primary, setPrimary] = React.useState('#a0d911');
     const [isDaylight, setIsDaylight] = useState(true);
     const handleChange = (value) => {
-        setClassName(() => `box ${value}`)
+        setClassName(() => `${value}`)
     };
     const lightHandler = () => {
         setIsDaylight(prevState => !prevState)
     }
     return (
-        <div className={`${className} dynamic-gradient`}>
-            <Select
-                defaultValue=""
-                style={{
-                    width: 120,
-                    position: "absolute",
-                    top: 0,
-                    left: 0
-                }}
-                onChange={handleChange}
-                options={options}
-            />
-            <div className={'switch'}>
+        <div className={`box ${className} dynamic-gradient`}>
+            <div className={`switch ${isDaylight ? 'white' : 'black'}`}>
                 {!isDaylight ?
                     <FontAwesomeIcon
                         icon="fa-solid fa-lightbulb"
@@ -88,12 +77,23 @@ const Layout = () => {
                         onClick={lightHandler}/>
                 }
             </div>
+            <Select
+                defaultValue="Dust Red"
+                style={{
+                    width: 120,
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0
+                }}
+                onChange={handleChange}
+                options={options}
+            />
             <div className={'appContainer'}>
                 <ConfigProvider
                     theme={{
                         algorithm: isDaylight ? theme.defaultAlgorithm : theme.darkAlgorithm,
                         token: {
-                            // colorPrimary: primary,
+                            colorPrimary: primary,
                         },
                     }}
                 >

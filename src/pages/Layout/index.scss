@@ -1,23 +1,34 @@
 .box {
   height: 100%;
   width: 100%;
+  min-width: 1200px;
+  min-height: 750px;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to bottom right,
-          #f0f5ff, #d6e4ff, #adc6ff, #85a5ff, #597ef7, #2f54eb, #1d39c4, #10239e, #061178, #030852);
+  font-family: 'Poppins', sans-serif;
 
   .switch {
-    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.4);
+    font-size: 32px;
     position: absolute;
-    top: 10%;
-    left: 0;
+    bottom: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    z-index: 9;
   }
 
   .appContainer {
     display: flex;
-    height: 750px;
-    width: 1220px;
+    height: 700px;
+    width: 1100px;
     padding: 8px;
     border-radius: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.4);
@@ -25,58 +36,58 @@
 }
 
 .Dust_Red {
-  background-image: linear-gradient(to bottom right,
-          #fff1f0, #ffccc7, #ffa39e, #ff7875, #ff4d4f, #f5222d, #cf1322, #a8071a, #820014, #5c0011);
+  background-image: linear-gradient(45deg,
+          #fff1f0, #ffccc7, #ffa39e, #ff7875, #ff4d4f, #f5222d, #cf1322, #a8071a);
 }
 
 .Volcano {
-  background-image: linear-gradient(to bottom right,
-          #fff2e8, #ffd8bf, #ffbb96, #ff9c6e, #ff7a45, #fa541c, #d4380d, #ad2102, #871400, #610b00);
+  background-image: linear-gradient(90deg,
+          #fff2e8, #ffd8bf, #ffbb96, #ff9c6e, #ff7a45, #fa541c, #d4380d, #ad2102);
 }
 
 .Sunset_Orange {
-  background-image: linear-gradient(to bottom right,
-          #fff7e6, #ffe7ba, #ffd591, #ffc069, #ffa940, #fa8c16, #d46b08, #ad4e00, #873800, #612500);
+  background-image: linear-gradient(135deg,
+          #fff7e6, #ffe7ba, #ffd591, #ffc069, #ffa940, #fa8c16, #d46b08, #ad4e00);
 }
 
 .Calendula_Gold {
-  background-image: linear-gradient(to bottom right,
-          #fffbe6, #fff1b8, #ffe58f, #ffd666, #ffc53d, #faad14, #d48806, #ad6800, #874d00, #613400);
+  background-image: linear-gradient(180deg,
+          #fffbe6, #fff1b8, #ffe58f, #ffd666, #ffc53d, #faad14, #d48806, #ad6800);
 }
 
 .Sunrise_Yellow {
-  background-image: linear-gradient(to bottom right,
-          #feffe6, #ffffb8, #fffb8f, #fff566, #ffec3d, #fadb14, #d4b106, #ad8b00, #876800, #614700);
+  background-image: linear-gradient(225deg,
+          #feffe6, #ffffb8, #fffb8f, #fff566, #ffec3d, #fadb14, #d4b106, #ad8b00);
 }
 
 .Polar_Green {
-  background-image: linear-gradient(to top left,
-          #f6ffed, #d9f7be, #b7eb8f, #95de64, #73d13d, #52c41a, #389e0d, #237804, #135200, #092b00);
+  background-image: linear-gradient(270deg,
+          #f6ffed, #d9f7be, #b7eb8f, #95de64, #73d13d, #52c41a, #389e0d, #237804);
 }
 
 .Cyan {
-  background-image: linear-gradient(to bottom right,
-          #e6fffb, #b5f5ec, #87e8de, #5cdbd3, #36cfc9, #13c2c2, #08979c, #006d75, #00474f, #002329);
+  background-image: linear-gradient(315deg,
+          #e6fffb, #b5f5ec, #87e8de, #5cdbd3, #36cfc9, #13c2c2, #08979c, #006d75);
 }
 
 .Daybreak_Blue {
-  background-image: linear-gradient(to bottom right,
-          #e6f4ff, #bae0ff, #91caff, #69b1ff, #4096ff, #1677ff, #0958d9, #003eb3, #002c8c, #001d66);
+  background-image: linear-gradient(0,
+          #e6f4ff, #bae0ff, #91caff, #69b1ff, #4096ff, #1677ff, #0958d9, #003eb3);
 }
 
 .Geek_Blue {
-  background-image: linear-gradient(to bottom right,
-          #f0f5ff, #d6e4ff, #adc6ff, #85a5ff, #597ef7, #2f54eb, #1d39c4, #10239e, #061178, #030852);
+  background-image: linear-gradient(90deg,
+          #f0f5ff, #d6e4ff, #adc6ff, #85a5ff, #597ef7, #2f54eb, #1d39c4, #10239e);
 }
 
 .Golden_Purple {
-  background-image: linear-gradient(to bottom right,
-          #f9f0ff, #efdbff, #d3adf7, #b37feb, #9254de, #722ed1, #531dab, #391085, #22075e, #120338);
+  background-image: linear-gradient(180deg,
+          #f9f0ff, #efdbff, #d3adf7, #b37feb, #9254de, #722ed1, #531dab, #391085);
 }
 
 .Magenta {
-  background-image: linear-gradient(to bottom right,
-          #fff0f6, #ffd6e7, #ffadd2, #ff85c0, #f759ab, #eb2f96, #c41d7f, #9e1068, #780650, #520339);
+  background-image: linear-gradient(270deg,
+          #fff0f6, #ffd6e7, #ffadd2, #ff85c0, #f759ab, #eb2f96, #c41d7f, #9e1068);
 }
 
 @keyframes gradientBackground {
@@ -94,6 +105,22 @@
 .dynamic-gradient {
   height: 100vh;
   width: 100vw;
-  background-size: 200% 200%;
-  animation: gradientBackground 10s ease infinite;
+  background-size: 150% 150%;
+  animation: gradientBackground 8s ease-in-out infinite;
 }
+
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 9999px;
+  border: 4px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+

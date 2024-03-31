@@ -9,13 +9,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 24px;
+    font-family: "Poppins", sans-serif;
 
     .singerDetails {
       line-height: 32px;
-      margin: 24px;
+      margin: 12px;
       display: flex;
-      font-size: 24px;
+      font-size: 16px;
       flex-direction: column;
     }
   }

@@ -135,8 +135,8 @@ const AppContainer = () => {
                         style={{
                             ...iconColor,
                             fontSize: '16px',
-                            width: 32,
-                            height: 32,
+                            width: '32px',
+                            height: '32px',
                         }}
                     />
                     <SearchBar/>
@@ -145,7 +145,11 @@ const AppContainer = () => {
                             ...iconColor,
                             cursor: 'pointer',
                             width: '50px',
-                            height: '50px'
+                            height: '45.65px',
+                            border: 'none',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                         }}
                         icon={<UserOutlined/>}
                         onClick={avatarClickHandler}
