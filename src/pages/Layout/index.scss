@@ -105,8 +105,8 @@
 .dynamic-gradient {
   height: 100vh;
   width: 100vw;
-  background-size: 150% 150%;
-  animation: gradientBackground 8s ease-in-out infinite;
+  background-size: 200% 200%;
+  animation: gradientBackground 8s ease infinite;
 }
 
 ::-webkit-scrollbar {

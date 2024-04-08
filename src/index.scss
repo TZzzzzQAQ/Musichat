@@ -13,3 +13,9 @@ body {
 #root {
   height: 100%;
 }
+
+@layer derictives{
+  .flex-center{
+    @apply flex items-center justify-center
+  }
+}
