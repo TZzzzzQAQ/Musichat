@@ -837,7 +837,7 @@ const AppContainer = () => {
         setIsLoading(true);
         try {
             console.log(searchData);
-            //TODO request
+            //请求
             dispatch(setSearchResult(JSON.parse(JSON.stringify(someData))));
         } catch (error) {
             console.error('请求错误', error);
