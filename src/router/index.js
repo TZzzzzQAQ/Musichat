@@ -9,6 +9,7 @@ import Favourite from "@/pages/Library/Favourite";
 import Playlist from "@/pages/Library/Playlist";
 import Artist from "@/pages/Discover/Artist";
 import Album from "@/pages/Discover/Album";
+import SearchResult from "@/pages/SearchResult";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: '/artist',
                 element: <Artist></Artist>
+            },
+            {
+                path: '/searchResult',
+                element: <SearchResult/>
             }]
     }
 ])

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const request = axios.create({
-    baseURL: 'http://localhost',
+    baseURL: 'https://api.spotify.com/v1/search',
     timeout: 5000
 })
 

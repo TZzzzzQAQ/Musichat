@@ -3,15 +3,15 @@ import {createSlice} from '@reduxjs/toolkit';
 export const musicSlice = createSlice({
     name: 'music',
     initialState: {
-        value: 0,
+        searchResult: {}
     },
     reducers: {
-        increment: (state) => {
-            state.value += 1;
+        setSearchResult: (state, action) => {
+            state.searchResult = action.payload;
         }
     },
 });
 
-export const {increment} = musicSlice.actions;
+export const {setSearchResult} = musicSlice.actions;
 
 export default musicSlice.reducer;

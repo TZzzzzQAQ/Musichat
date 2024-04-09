@@ -13,7 +13,7 @@ library.add(fas, far, fab);
 
 const Layout = () => {
     const className = useSelector((state) => state.theme.backgroundTheme);
-    const primary = useSelector(state => state.theme.playerColor);
+    const primary = useSelector(state => state.theme.playerColor)
     const [isDaylight, setIsDaylight] = useState(true);
 
     const lightHandler = () => {

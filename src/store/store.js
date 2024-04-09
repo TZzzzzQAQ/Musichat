@@ -4,7 +4,7 @@ import themeReducer from '@/store/features/themeSlice'
 
 export const store = configureStore({
     reducer: {
-        counter: musicReducer,
+        music: musicReducer,
         theme: themeReducer
     },
 });
