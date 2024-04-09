@@ -5,15 +5,17 @@ const ImageCard = ({data: {name, images}}) => {
 
     return (
         <div
-            className='group w-48 h-52 flex flex-col items-center place-content-between rounded-lg mb-4'>
+            className='group w-48 h-52 flex flex-col items-center place-content-between rounded-lg mt-4'>
             <div className='w-48 h-48 mt-6 flex-center rounded-lg flex-col'>
                 <img src={imageUrl} alt={name}
-                     className='transition-all duration-150 transform group-hover:scale-150
+                     className='transition-all duration-150 transform group-hover:scale-150 group-hover:cursor-pointer
                      group-hover:-translate-y-2 w-32 h-32 object-cover rounded-lg'/>
-                <p className='transition-all duration-150 transform group-hover:scale-125 group-hover:translate-y-5'>
+                <p className='transition-all duration-150 transform group-hover:scale-125 group-hover:translate-y-8 group-hover:cursor-pointer'>
                     {name}
                 </p>
             </div>
+            <br/>
+            <br/>
         </div>
     );
 };
