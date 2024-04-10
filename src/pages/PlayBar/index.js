@@ -14,17 +14,9 @@ import {
     faShuffle,
     faVolumeOff
 } from "@fortawesome/free-solid-svg-icons";
-
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {fas} from '@fortawesome/free-solid-svg-icons';
-import {far} from '@fortawesome/free-regular-svg-icons';
-import {fab} from '@fortawesome/free-brands-svg-icons';
 import {debounce} from "lodash/function";
 import src from '@/assets/stay with me.mp3'
 import {formatTime} from "@/utils";
-
-library.add(fas, far, fab);
-
 const iconColor = {color: "#74C0FC"};
 const twoColors = {
     '0%': '#108ee9',
@@ -79,7 +71,7 @@ const PlayBar = () => {
         const clickX = e.clientX; // 获取点击的X坐标
         const newPercent = ((clickX - dimensionsVolume.left) / dimensionsVolume.width) * 100; // 计算新的进度百分比
 
-        setVolumePercent(prevState => prevState = newPercent); // 更新进度
+        setVolumePercent(prevState =>  newPercent); // 更新进度
     })
     const musicClickHandler = debounce((e) => {
         const clickX = e.clientX;
@@ -87,7 +79,7 @@ const PlayBar = () => {
 
         const audio = audioRef.current;
         audio.currentTime = (newPercent / 100) * audio.duration;
-        setPercent(prevState => prevState = newPercent);
+        setPercent(prevState => newPercent);
     })
 
     const audioRef = useRef(null);
