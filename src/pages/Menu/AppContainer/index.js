@@ -4,7 +4,10 @@ import {
     MenuUnfoldOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import {faList} from '@fortawesome/free-solid-svg-icons';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faList, fas} from '@fortawesome/free-solid-svg-icons';
+import {far} from '@fortawesome/free-regular-svg-icons';
+import {fab} from '@fortawesome/free-brands-svg-icons';
 import {Layout, Menu, Button, theme, Avatar, Select, Form} from 'antd';
 import './index.scss'
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
@@ -16,6 +19,7 @@ import {useDispatch} from "react-redux";
 
 const {Search} = Input;
 
+library.add(fas, far, fab);
 
 const someData = {
     "artists": {

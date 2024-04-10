@@ -2,8 +2,14 @@ import React, {useState} from 'react';
 import './index.scss'
 import AppContainer from "src/pages/Menu/AppContainer";
 import {ConfigProvider, theme} from "antd";
-import {useSelector} from "react-redux";
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {fas} from '@fortawesome/free-solid-svg-icons';
+import {far} from '@fortawesome/free-regular-svg-icons';
+import {fab} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useSelector} from "react-redux";
+
+library.add(fas, far, fab);
 
 const Layout = () => {
     const className = useSelector((state) => state.theme.backgroundTheme);
