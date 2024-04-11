@@ -2,14 +2,11 @@ import React, {useState} from 'react';
 import './index.scss'
 import AppContainer from "src/pages/Menu/AppContainer";
 import {ConfigProvider, theme} from "antd";
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {fas} from '@fortawesome/free-solid-svg-icons';
-import {far} from '@fortawesome/free-regular-svg-icons';
-import {fab} from '@fortawesome/free-brands-svg-icons';
+import {faLightbulb} from '@fortawesome/free-solid-svg-icons';
+import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useSelector} from "react-redux";
 
-library.add(fas, far, fab);
 
 const Layout = () => {
     const className = useSelector((state) => state.theme.backgroundTheme);
@@ -24,11 +21,11 @@ const Layout = () => {
             <div className={`switch ${isDaylight ? 'white' : 'black'}`}>
                 {!isDaylight ?
                     <FontAwesomeIcon
-                        icon="fa-solid fa-lightbulb"
+                        icon={faLightbulb}
                         style={{color: "#74C0FC", cursor: "pointer"}}
                         onClick={lightHandler}/> :
                     <FontAwesomeIcon
-                        icon="fa-regular fa-lightbulb"
+                        icon={faLightbulbRegular}
                         style={{color: "#74C0FC", cursor: "pointer"}}
                         onClick={lightHandler}/>
                 }

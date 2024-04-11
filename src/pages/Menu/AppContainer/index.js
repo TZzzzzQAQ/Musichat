@@ -4,10 +4,6 @@ import {
     MenuUnfoldOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {faList, fas} from '@fortawesome/free-solid-svg-icons';
-import {far} from '@fortawesome/free-regular-svg-icons';
-import {fab} from '@fortawesome/free-brands-svg-icons';
 import {Layout, Menu, Button, theme, Avatar, Select, Form} from 'antd';
 import './index.scss'
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
@@ -16,10 +12,18 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Input} from 'antd';
 import {setSearchResult} from "@/store/features/musicSlice";
 import {useDispatch} from "react-redux";
+import {
+    faClock, faCompactDisc,
+    faGear,
+    faHeart, faHouse,
+    faList,
+    faMagnifyingGlass, faMicrophoneLines,
+    faRecordVinyl,
+    faUser
+} from "@fortawesome/free-solid-svg-icons";
 
 const {Search} = Input;
 
-library.add(fas, far, fab);
 
 const someData = {
     "artists": {
@@ -711,34 +715,34 @@ const iconColor = {color: "#74C0FC"};
 const item = [
     {
         key: '1',
-        icon: <FontAwesomeIcon icon="fa-solid fa-user" style={iconColor}/>,
+        icon: <FontAwesomeIcon icon={faUser} style={iconColor}/>,
         label: 'User',
         children: [
             {
                 key: '/account',
-                icon: <FontAwesomeIcon icon="fa-solid fa-user" style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faUser} style={iconColor}/>,
                 label: 'Account',
             },
             {
                 key: '/setting',
-                icon: <FontAwesomeIcon icon="fa-solid fa-gear" style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faGear} style={iconColor}/>,
                 label: 'Setting'
             }
         ]
     },
     {
         key: '2',
-        icon: <FontAwesomeIcon icon="fa-solid fa-record-vinyl" style={iconColor}/>,
+        icon: <FontAwesomeIcon icon={faRecordVinyl} style={iconColor}/>,
         label: 'Library',
         children: [
             {
                 key: '/recent',
-                icon: <FontAwesomeIcon icon="fa-solid fa-clock" style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faClock} style={iconColor}/>,
                 label: 'Recent'
             },
             {
                 key: '/favourite',
-                icon: <FontAwesomeIcon icon="fa-solid fa-heart" style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faHeart} style={iconColor}/>,
                 label: 'Favourite'
             }, {
                 key: '/playlist',
@@ -749,24 +753,24 @@ const item = [
     },
     {
         key: '3',
-        icon: <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" style={iconColor}/>,
+        icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
         label: 'Discovery',
         children: [
             {
                 key: '/home',
-                icon: <FontAwesomeIcon icon="fa-solid fa-house" style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faHouse} style={iconColor}/>,
                 label: 'Home'
             }, {
                 key: '/artist',
-                icon: <FontAwesomeIcon icon="fa-solid fa-microphone-lines" style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor}/>,
                 label: 'Artist'
             }, {
                 key: '/album',
-                icon: <FontAwesomeIcon icon="fa-solid fa-compact-disc" style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor}/>,
                 label: 'Album'
             }, {
                 key: '/searchResult',
-                icon: <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
                 label: 'Search'
             }
         ]
