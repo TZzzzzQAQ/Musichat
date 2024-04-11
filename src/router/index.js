@@ -18,11 +18,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/home',
-                element: <Browse></Browse> //This is Home!
+                element: <Browse></Browse>
             },
             {
                 path: '/account',
-                element: <Account></Account> //This is Home!
+                element: <Account></Account>
             },
             {
                 path: '/setting',
@@ -53,6 +53,8 @@ const router = createBrowserRouter([
                 element: <SearchResult/>
             }]
     }
-])
+],{
+    basename:'/Musichat'
+})
 
 export default router;

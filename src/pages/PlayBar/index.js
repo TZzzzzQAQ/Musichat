@@ -14,16 +14,10 @@ import {
     faShuffle,
     faVolumeOff
 } from "@fortawesome/free-solid-svg-icons";
-
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {fas} from '@fortawesome/free-solid-svg-icons';
-import {far} from '@fortawesome/free-regular-svg-icons';
-import {fab} from '@fortawesome/free-brands-svg-icons';
+import {faHeart} from "@fortawesome/free-regular-svg-icons"
 import {debounce} from "lodash/function";
 import src from '@/assets/stay with me.mp3'
 import {formatTime} from "@/utils";
-
-library.add(fas, far, fab);
 
 const iconColor = {color: "#74C0FC"};
 const twoColors = {
@@ -172,7 +166,7 @@ const PlayBar = () => {
             </div>
             <div className={'extendControlBar'}>
                 <div className={'icons'}>
-                    <FontAwesomeIcon icon="fa-regular fa-heart" style={iconColor}/>
+                    <FontAwesomeIcon icon={faHeart} style={iconColor}/>
                     <FontAwesomeIcon icon={faVolumeOff} style={iconColor}/>
                     <div
                         onClick={volumeClickHandler}
