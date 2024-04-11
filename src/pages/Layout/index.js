@@ -33,7 +33,7 @@ const Layout = () => {
                         onClick={lightHandler}/>
                 }
             </div>
-            <div className={'appContainer'}>
+            <div className={'appContainer invisible xl:visible'}>
                 <ConfigProvider
                     theme={{
                         algorithm: isDaylight ? theme.defaultAlgorithm : theme.darkAlgorithm,
