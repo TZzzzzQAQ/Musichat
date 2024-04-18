@@ -868,7 +868,7 @@ const AppContainer = () => {
                     defaultSelectedKeys={['1']}
                     items={item}
                     onClick={clickHandler}
-                    selectedKeys={[location.pathname]}
+                        selectedKeys={[location.pathname]}
                 />
             </Sider>
             <Layout>

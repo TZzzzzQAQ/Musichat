@@ -4,7 +4,7 @@ import router from "@/router";
 
 const App = () => {
     return (
-        <div>
+        <div className={'overflow-hidden'}>
             <RouterProvider router={router}/>
         </div>
     );
