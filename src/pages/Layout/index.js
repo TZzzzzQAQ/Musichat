@@ -18,7 +18,7 @@ const Layout = () => {
     }
     return (
         <div className={`box Dust_Red ${className} dynamic-gradient`}>
-            <div className={`switch ${isDaylight ? 'white' : 'black'}`}>
+            <div className={`switch ${isDaylight ? 'white' : 'black'} invisible xl:visible`}>
                 {!isDaylight ?
                     <FontAwesomeIcon
                         icon={faLightbulb}
@@ -29,6 +29,9 @@ const Layout = () => {
                         style={{color: "#74C0FC", cursor: "pointer"}}
                         onClick={lightHandler}/>
                 }
+            </div>
+            <div className={'visible xl:invisible absolute bg-blue-500 text-xl top-1/2 left-0 w-full text-center'}>
+                For the best experience, browse on PC :P
             </div>
             <div className={'appContainer invisible xl:visible'}>
                 <ConfigProvider
