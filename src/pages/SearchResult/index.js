@@ -4,23 +4,28 @@ import ImageCard from "@/components/ImageCard";
 import {useSelector} from "react-redux";
 import TrackList from "@/components/TrackList";
 
-
 const SearchResult = () => {
-    const location = useLocation()
-    const dataFromRedux = useSelector(state => state.music.searchResult)
-    const someData = location.state?.someData || dataFromRedux || [];
-    const items = someData?.artists?.items || someData?.albums?.items || someData.tracks?.items || [];
+    const location = useLocation();
+    const dataFromRedux = useSelector(state => state.music.searchResult);
+    const someData = location.state?.someData || dataFromRedux || {};
+
+    const artistsItems = someData?.artists?.items || [];
+    const albumsItems = someData?.albums?.items || [];
+    const tracksItems = someData?.tracks?.items || [];
+
+    const hasData = artistsItems.length || albumsItems.length || tracksItems.length;
+
     return (
         <>
             {someData.artists && <div className={'grid grid-cols-4 overflow-x-hidden h-[400px] mb-8'}>
-                {items === undefined || items.map((item) => {
-                    return <ImageCard data={item} key={item.id}/>
-                })}
+                {artistsItems.map((item) => (
+                    <ImageCard data={item} key={item.id}/>
+                ))}
             </div>}
             {someData.albums && <div className={'grid grid-cols-4 overflow-x-hidden h-[400px] mb-8'}>
-                {items === undefined || items.map((item) => {
-                    return <ImageCard data={item} key={item.id}/>
-                })}
+                {albumsItems.map((item) => (
+                    <ImageCard data={item} key={item.id}/>
+                ))}
             </div>}
             {someData.tracks && <div className={'overflow-x-hidden h-[400px] mb-8'}>
                 <table className={'min-w-full leading-normal'}>
@@ -32,12 +37,13 @@ const SearchResult = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {items === undefined || items.map((item) => {
-                        return <TrackList data={item} key={item.id}/>
-                    })}
+                    {tracksItems.map((item) => (
+                        <TrackList data={item} key={item.id}/>
+                    ))}
                     </tbody>
                 </table>
             </div>}
+            {!hasData && <div className="text-xl font-poppins text-center py-10">Search what you want!</div>}
         </>
     );
 };
