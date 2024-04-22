@@ -31,10 +31,9 @@ body {
       @apply inset-x-0;
       @apply bottom-0;
       @apply w-0;
-      @apply h-0.5;
-      @apply bg-current;
-      /* Use the text color for the underline */
-      transition: width 300ms ease-in-out;
+      @apply h-1;
+      background-image: linear-gradient(to right, #05ef8f, #1c6ef5); /* Example gradient from teal to blue */
+      transition: width 200ms ease-in-out;
     }
 
     &:hover:after {
@@ -42,3 +41,4 @@ body {
     }
   }
 }
+
