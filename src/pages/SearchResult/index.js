@@ -26,9 +26,9 @@ const SearchResult = () => {
                 <table className={'min-w-full leading-normal'}>
                     <thead>
                     <tr>
-                        <th className={"px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider w-96"}>Track</th>
-                        <th className={'px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider'}>Singer</th>
-                        <th className={'px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider w-36'}>Duration</th>
+                        <th className={"px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider w-96"}>Track</th>
+                        <th className={'px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider'}>Singer</th>
+                        <th className={'px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider w-36'}>Duration</th>
                     </tr>
                     </thead>
                     <tbody>

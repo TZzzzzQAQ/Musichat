@@ -10,7 +10,7 @@ const ImageCard = ({data: {name, images}}) => {
                 <img src={imageUrl} alt={name}
                      className='transition-all duration-150 transform group-hover:scale-150 group-hover:cursor-pointer
                      group-hover:-translate-y-2 w-32 h-32 object-cover rounded-lg'/>
-                <p className='transition-all duration-150 transform group-hover:scale-125 group-hover:translate-y-8 group-hover:cursor-pointer'>
+                <p className='font-poppins w-32 text-center transition-all duration-150 transform group-hover:scale-125 group-hover:translate-y-8 group-hover:cursor-pointer truncate overflow-hidden'>
                     {name}
                 </p>
             </div>
