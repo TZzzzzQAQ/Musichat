@@ -1,16 +1,9 @@
 import {request} from "@/utils";
 
-export function loginAPI(data) {
+export function searchAPI(params) {
     return request({
-        url: '/authorizations',
-        method: 'POST',
-        data
-    })
-}
-
-export function getUserInfoAPI() {
-    return request({
-        url: '/user/profile',
+        url: '/search',
         method: 'GET',
+        params
     })
 }

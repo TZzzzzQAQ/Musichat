@@ -14,8 +14,31 @@ body {
   height: 100%;
 }
 
-@layer derictives{
-  .flex-center{
+@layer derictives {
+  .flex-center {
     @apply flex items-center justify-center
+  }
+}
+
+@layer components {
+  .underline-animation {
+    @apply relative;
+    overflow: hidden;
+
+    &:after {
+      content: '';
+      @apply absolute;
+      @apply inset-x-0;
+      @apply bottom-0;
+      @apply w-0;
+      @apply h-0.5;
+      @apply bg-current;
+      /* Use the text color for the underline */
+      transition: width 300ms ease-in-out;
+    }
+
+    &:hover:after {
+      @apply w-full;
+    }
   }
 }

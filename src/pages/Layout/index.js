@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import './index.scss'
-import AppContainer from "src/pages/Menu/AppContainer";
+import AppContainer from "src/pages/AppContainer";
 import {ConfigProvider, theme} from "antd";
 import {faLightbulb} from '@fortawesome/free-solid-svg-icons';
 import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useSelector} from "react-redux";
+import MobileOptimization from "@/components/MobileOptimization";
 
 
 const Layout = () => {
@@ -30,9 +31,7 @@ const Layout = () => {
                         onClick={lightHandler}/>
                 }
             </div>
-            <div className={'visible xl:invisible absolute bg-blue-500 text-xl top-1/2 left-0 w-full text-center'}>
-                For the best experience, browse on PC :P
-            </div>
+            <MobileOptimization/>
             <div className={'appContainer invisible xl:visible'}>
                 <ConfigProvider
                     theme={{
