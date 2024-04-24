@@ -219,7 +219,7 @@ const AppContainer = () => {
                         <Search
                             value={searchData.q}
                             onChange={handleSearchChange}
-                            placeholder="Taylor Swift"
+                            placeholder="Press Enter to Search"
                             enterButton="Search"
                             onSearch={onSearch}
                             size="large"

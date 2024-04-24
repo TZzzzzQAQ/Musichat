@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Card, Form, Input, Select, Space} from 'antd';
 import Checkbox from "antd/es/checkbox/Checkbox";
-import '../Account/index.scss'
+import './index.scss'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const {Option} = Select;
