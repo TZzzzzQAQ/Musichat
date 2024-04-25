@@ -54,7 +54,7 @@ const SearchForm = () => {
             }
         })
     }
-    const onSearch = async (value, _e, info) => {
+    const onSearch = async (value, _e) => {
         setIsLoading(true);
         let res;
         if (value === '') {
