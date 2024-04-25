@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {
     MenuFoldOutlined,
-    MenuUnfoldOutlined,
+    MenuUnfoldOutlined, SmileOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import {Layout, Menu, Button, theme, Avatar, Select, Form} from 'antd';
+import {Layout, Menu, Button, theme, Avatar, Select, Form, notification} from 'antd';
 import './index.scss'
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import PlayBar from "@/pages/PlayBar";
@@ -19,7 +19,7 @@ import {
     faList,
     faMagnifyingGlass, faMicrophoneLines,
     faRecordVinyl,
-    faUser
+    faUser, faFaceFrown
 } from "@fortawesome/free-solid-svg-icons";
 import {searchAPI} from "@/apis/search";
 
@@ -126,6 +126,8 @@ const AppContainer = () => {
     })
     const [collapsed, setCollapsed] = useState(false);
 
+    const [api, contextHolder] = notification.useNotification();
+
     const dispatch = useDispatch();
 
     const navigate = useNavigate()
@@ -163,6 +165,22 @@ const AppContainer = () => {
     const onSearch = async (value, _e, info) => {
         setIsLoading(true);
         let res;
+        if (value === '') {
+            api.open({
+                message: 'Warning',
+                description:
+                    'You have searched nothing. What about Taylor Swift? ^_^',
+                icon: (
+                    <FontAwesomeIcon icon={faFaceFrown}
+                        style={{
+                            color: '#108ee9',
+                        }}
+                    />
+                ),
+            });
+            setIsLoading(false);
+            return;
+        }
         try {
             res = await searchAPI(searchData);
             dispatch(setSearchResult(JSON.parse(JSON.stringify(res))));
@@ -175,6 +193,7 @@ const AppContainer = () => {
     }
     return (
         <Layout>
+            {contextHolder}
             <Sider
                 trigger={null}
                 collapsible
