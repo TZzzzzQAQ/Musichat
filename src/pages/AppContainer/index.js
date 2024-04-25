@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
 import {
     MenuFoldOutlined,
-    MenuUnfoldOutlined, SmileOutlined,
+    MenuUnfoldOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import {Layout, Menu, Button, theme, Avatar, Select, Form, notification} from 'antd';
+import {Layout, Menu, Button, theme, Avatar} from 'antd';
 import './index.scss'
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import PlayBar from "@/pages/PlayBar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Input} from 'antd';
-import {setSearchResult} from "@/store/features/musicSlice";
-import {useDispatch} from "react-redux";
+
 import {
     faClock, faCompactDisc,
     faGear,
@@ -19,11 +17,9 @@ import {
     faList,
     faMagnifyingGlass, faMicrophoneLines,
     faRecordVinyl,
-    faUser, faFaceFrown
+    faUser
 } from "@fortawesome/free-solid-svg-icons";
-import {searchAPI} from "@/apis/search";
-
-const {Search} = Input;
+import SearchForm from "@/components/SearchForm";
 
 const {
     Header,
@@ -99,101 +95,26 @@ const item = [
     }
 ]
 
-const options = [
-    {
-        value: 'album',
-        label: 'Album',
-    },
-    {
-        value: 'artist',
-        label: 'Artist',
-    },
-    {
-        value: 'track',
-        label: 'Track',
-    }
-]
 
 const AppContainer = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [offsetNumber, setOffsetNumber] = useState(0)
-    const [searchData, setSearchData] = useState({
-        q: 'Taylor Swift',
-        type: 'artist',
-        market: 'NZ',
-        limit: 20,
-        offset: offsetNumber
-    })
     const [collapsed, setCollapsed] = useState(false);
 
-    const [api, contextHolder] = notification.useNotification();
-
-    const dispatch = useDispatch();
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const {
         token: {colorBgContainer, borderRadiusLG},
     } = theme.useToken();
 
-    const location = useLocation();
-
     const clickHandler = (e) => {
         navigate(e.key, {replace: true})
     }
-
     const avatarClickHandler = () => {
         navigate('/account', {replace: true})
     }
 
-    const handleSelectChange = (value) => {
-        setSearchData(prevState => {
-            return {
-                ...prevState,
-                type: value
-            }
-        })
-    }
-    const handleSearchChange = ({target: {value}}) => {
-        setSearchData(prevState => {
-            return {
-                ...prevState,
-                q: value
-            }
-        })
-    }
-    const onSearch = async (value, _e, info) => {
-        setIsLoading(true);
-        let res;
-        if (value === '') {
-            api.open({
-                message: 'Warning',
-                description:
-                    'You have searched nothing. What about Taylor Swift? ^_^',
-                icon: (
-                    <FontAwesomeIcon icon={faFaceFrown}
-                        style={{
-                            color: '#108ee9',
-                        }}
-                    />
-                ),
-            });
-            setIsLoading(false);
-            return;
-        }
-        try {
-            res = await searchAPI(searchData);
-            dispatch(setSearchResult(JSON.parse(JSON.stringify(res))));
-        } catch (error) {
-            console.error('请求错误', error);
-        } finally {
-            setIsLoading(false);
-            navigate('/searchResult', {replace: true, state: {someData: JSON.parse(JSON.stringify(res))}})
-        }
-    }
     return (
         <Layout>
-            {contextHolder}
             <Sider
                 trigger={null}
                 collapsible
@@ -234,21 +155,7 @@ const AppContainer = () => {
                             height: '32px',
                         }}
                     />
-                    <Form className={"flex-center gap-4 mx-4"}>
-                        <Search
-                            value={searchData.q}
-                            onChange={handleSearchChange}
-                            placeholder="Press Enter to Search"
-                            enterButton="Search"
-                            onSearch={onSearch}
-                            size="large"
-                            loading={isLoading}
-                            style={{width: '600px'}}
-                        />
-                        <Select className={'w-24'} size={'large'} options={options}
-                                onChange={handleSelectChange}
-                                defaultValue={'Artist'}/>
-                    </Form>
+                    <SearchForm/>
                     <Avatar
                         style={{
                             ...iconColor,
