@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {ColorPicker, Select} from "antd";
 import {useDispatch} from "react-redux";
-import {setBackgroundTheme} from "@/store/features/themeSlice";
+import {setBackgroundTheme} from "FrontEnd/src/store/features/themeSlice";
 import {setPlayerColor} from "@/store/features/themeSlice";
 
 const options = [

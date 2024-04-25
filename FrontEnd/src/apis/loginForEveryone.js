@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {client_id, client_secret} from "@/config";
+import {client_id, client_secret} from "FrontEnd/src/config";
 
 const getAccessToken = async () => {
     const params = new URLSearchParams();
