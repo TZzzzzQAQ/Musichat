@@ -1,4 +1,4 @@
-import {request} from "FrontEnd/src/utils";
+import {request} from "@/utils";
 
 export function searchAPI(params) {
     return request({
