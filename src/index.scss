@@ -27,11 +27,7 @@ body {
 
     &:after {
       content: '';
-      @apply absolute;
-      @apply inset-x-0;
-      @apply bottom-0;
-      @apply w-0;
-      @apply h-0.5;
+      @apply absolute inset-x-0 bottom-0 w-0 h-0.5;
       background-image: linear-gradient(to right, #00ff96, #0061ff); /* Example gradient from teal to blue */
       transition: width 200ms ease-out;
     }

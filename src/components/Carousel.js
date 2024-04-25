@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Carousel} from 'antd';
 
 const contentStyle = {
-    height: '160px',
+    height: '300px',
     color: '#fff',
-    lineHeight: '160px',
+    lineHeight: '300px',
     textAlign: 'center',
     background: '#364d79',
 };
+
 const ContentCarousel = () => {
-    const [dotPosition] = useState('left');
     return (
-        <Carousel dotPosition={dotPosition} autoplay effect={'fade'}>
+        <Carousel dotPosition={'left'} autoplay effect={'fade'}>
             <div>
                 <h3 style={contentStyle}>1</h3>
             </div>
@@ -25,7 +25,7 @@ const ContentCarousel = () => {
                 <h3 style={contentStyle}>4</h3>
             </div>
         </Carousel>
-
     );
 };
+
 export default ContentCarousel;

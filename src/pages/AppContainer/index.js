@@ -17,7 +17,7 @@ import {
     faList,
     faMagnifyingGlass, faMicrophoneLines,
     faRecordVinyl,
-    faUser
+    faUser, faComments
 } from "@fortawesome/free-solid-svg-icons";
 import SearchForm from "@/components/SearchForm";
 
@@ -92,6 +92,11 @@ const item = [
                 label: 'Search'
             }
         ]
+    },
+    {
+        key: '/chatRoom',
+        icon: <FontAwesomeIcon icon={faComments} style={iconColor}/>,
+        label: 'ChatRoom'
     }
 ]
 

@@ -4,7 +4,7 @@ export const themeSlice = createSlice({
     name: 'theme',
     initialState: {
         backgroundTheme: 'box Dust_Red',
-        playerColor: '#a0d911'
+        playerColor: '#00FFA7'
     },
     reducers: {
         setBackgroundTheme: (state, action) => {

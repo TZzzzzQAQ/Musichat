@@ -56,7 +56,7 @@ const Setting = () => {
         dispatch(setBackgroundTheme(value))
     };
 
-    const [pickerColor, setPickerColor] = useState('#a0d911');
+    const [pickerColor, setPickerColor] = useState('#00FFA7');
 
     useEffect(() => {
         dispatch(setPlayerColor(pickerColor));

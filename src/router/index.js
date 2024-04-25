@@ -10,6 +10,7 @@ import Playlist from "@/pages/Menu/Library/Playlist"
 import Artist from "@/pages/Menu/Discover/Artist";
 import Album from "@/pages/Menu/Discover/Album";
 import SearchResult from "src/pages/Menu/SearchResult";
+import ChatRoom from "@/pages/Menu/ChatRoom";
 
 const router = createBrowserRouter([
     {
@@ -51,10 +52,14 @@ const router = createBrowserRouter([
             {
                 path: '/searchResult',
                 element: <SearchResult/>
+            },
+            {
+                path: '/chatRoom',
+                element: <ChatRoom/>
             }]
     }
-],{
-    basename:'/Musichat'
+], {
+    basename: '/Musichat'
 })
 
 export default router;
