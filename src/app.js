@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {RouterProvider} from "react-router-dom";
 import router from "@/router";
-import getAccessToken from "@/apis/login";
-import {getToken, setToken} from "@/utils/token";
+import getAccessToken from "@/apis/loginForEveryone";
+import {setToken} from "@/utils/token";
 
 const App = () => {
     useEffect(() => {
