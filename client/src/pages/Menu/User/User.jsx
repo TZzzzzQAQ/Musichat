@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {ColorPicker, Select} from "antd";
+import React from 'react';
+import {Select} from "antd";
 import {useDispatch} from "react-redux";
 import {setBackgroundTheme} from "@/store/features/themeSlice.jsx";
-import {setPlayerColor} from "@/store/features/themeSlice.jsx";
 
 const options = [
     {
@@ -56,12 +55,6 @@ const Setting = () => {
         dispatch(setBackgroundTheme(value))
     };
 
-    const [pickerColor, setPickerColor] = useState('#00FFA7');
-
-    useEffect(() => {
-        dispatch(setPlayerColor(pickerColor));
-    }, [pickerColor]);
-
     return (
         <div className={''}>
             <div className={"flex items-center"}>
@@ -79,13 +72,6 @@ const Setting = () => {
                     onChange={handleChange}
                     options={options}
                 />
-            </div>
-            <div className={"flex items-center my-4"}>
-                <div>
-                    Change Your Player Theme:
-                </div>
-                <ColorPicker onChange={(color) => setPickerColor(color.toHexString())} value={pickerColor} showText
-                             className={"mx-4"}/>
             </div>
         </div>
     );
