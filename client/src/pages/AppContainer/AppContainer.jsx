@@ -94,9 +94,9 @@ const item = [
         ]
     },
     {
-        key: '/chatRoom',
+        key: '/chatWithBot',
         icon: <FontAwesomeIcon icon={faComments} style={iconColor}/>,
-        label: 'ChatRoom'
+        label: 'chatWithBot'
     }
 ]
 
