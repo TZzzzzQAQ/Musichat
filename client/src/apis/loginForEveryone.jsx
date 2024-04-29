@@ -1,10 +1,11 @@
 import axios from 'axios';
+import {CLIENT_ID, CLIENT_SECRET} from "@/../config.js";
 
 const getAccessToken = async () => {
     const params = new URLSearchParams();
     params.append('grant_type', 'client_credentials');
-    params.append('client_id', import.meta.env.VITE_CLIENT_ID);
-    params.append('client_secret', import.meta.env.VITE_CLIENT_SECRET);
+    params.append('client_id', CLIENT_ID);
+    params.append('client_secret', CLIENT_SECRET);
 
     try {
         const response = await axios.post('https://accounts.spotify.com/api/token', params, {

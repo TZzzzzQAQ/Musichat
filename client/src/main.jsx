@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {StrictMode} from 'react'
 import ReactDOM from 'react-dom/client'
 // import "normalize.css"
 import './index.scss'
@@ -10,7 +10,9 @@ import App from "@/app.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render
 (
-    <Provider store={store}>
-        <App/>
-    </Provider>
+    <StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </StrictMode>
 )

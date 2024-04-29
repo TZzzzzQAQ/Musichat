@@ -1,10 +1,11 @@
 import axios from 'axios';
+import {OPENAI_API_KEY} from "@/../config.js";
 
 const api = axios.create({
     baseURL: 'https://api.openai.com/v1',
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
     }
 });
 

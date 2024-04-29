@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { VITE_CLIENT_ID, VITE_CLIENT_SECRET } from '../../../../env.js';
 import ImageCard from '@/components/ImageCard.jsx';
+import {CLIENT_ID, CLIENT_SECRET} from "@/../config.js";
 
 const ArtistPage = () => {
   const [artists, setArtists] = useState([]);
@@ -13,8 +13,8 @@ const ArtistPage = () => {
         const response = await axios.post('https://accounts.spotify.com/api/token', null, {
           params: {
             grant_type: 'client_credentials',
-            client_id: VITE_CLIENT_ID,
-            client_secret: VITE_CLIENT_SECRET,
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
           },
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
