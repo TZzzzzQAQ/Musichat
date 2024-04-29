@@ -26,11 +26,11 @@ function App() {
     };
 
     return (
-        <div className={'h-[27rem]'}>
+        <div className={'h-[30rem]'}>
             <header className="App-header">
                 <button onClick={handlerClick}>点我登录</button>
                 {profile && <div>{JSON.stringify(profile)}</div>}
-            {/*    profile是一个对象里面有用户的所有信息,可以用来做Account页面*/}
+                {/*    profile是一个对象里面有用户的所有信息,可以用来做Account页面*/}
             </header>
             <Card title="After Login">
                 <ul>

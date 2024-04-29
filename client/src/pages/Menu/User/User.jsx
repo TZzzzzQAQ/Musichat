@@ -56,7 +56,7 @@ const Setting = () => {
     };
 
     return (
-        <div className={'h-[27rem]'}>
+        <div className={'h-[30rem]'}>
             <div className={"flex items-center"}>
                 <div>
                     Change Your Background Theme:

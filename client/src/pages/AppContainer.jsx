@@ -141,13 +141,7 @@ const AppContainer = () => {
             </Sider>
             <Layout className={'bg-transparent'}>
                 <Header
-                    style={{
-                        background: "transparent",
-                        margin: '16px',
-                        padding: '0px 12px',
-                        borderRadius: borderRadiusLG,
-                    }}
-                    className={'flex-center'}
+                    className={'flex-center bg-transparent mt-4'}
                 >
                     <Button
                         type="text"
@@ -183,12 +177,7 @@ const AppContainer = () => {
                 >
                     <Outlet/>
                 </Content>
-                <Footer style={{
-                    background: "transparent",
-                    margin: '16px',
-                    padding: '0px 10px',
-                    height: '80px'
-                }}>
+                <Footer className={'bg-transparent h-20'}>
                     <PlayBar/>
                 </Footer>
             </Layout>

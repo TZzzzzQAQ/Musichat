@@ -86,27 +86,27 @@ const ArtistPage = () => {
   };
 
   return (
-    <div className={'h-[27rem]'}>
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search artists..."
-          value={searchQuery}
-          onChange={handleSearch}
-        />
+      <div className={'h-[30rem]'}>
+        <div className="search-bar">
+          <input
+              type="text"
+              placeholder="Search artists..."
+              value={searchQuery}
+              onChange={handleSearch}
+          />
+        </div>
+        {artists.length > 0 ? (
+            <div className={'grid grid-cols-4 overflow-x-hidden h-[400px] mb-8'}>
+              {artists.map((artist) => (
+                  <ImageCard data={artist} key={artist.id}/>
+              ))}
+            </div>
+        ) : (
+            <div className="text-xl font-poppins text-center py-10">
+              {searchQuery ? 'No artists found.' : 'Loading artists...'}
+            </div>
+        )}
       </div>
-      {artists.length > 0 ? (
-        <div className={'grid grid-cols-4 overflow-x-hidden h-[400px] mb-8'}>
-          {artists.map((artist) => (
-            <ImageCard data={artist} key={artist.id} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-xl font-poppins text-center py-10">
-          {searchQuery ? 'No artists found.' : 'Loading artists...'}
-        </div>
-      )}
-    </div>
   );
 };
 
