@@ -2,7 +2,7 @@ import React from 'react';
 
 const Playlist = () => {
     return (
-        <div className={'h-[30rem]'}>
+        <div>
             This is playlist!
         </div>
     );

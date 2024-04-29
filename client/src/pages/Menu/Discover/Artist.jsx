@@ -86,7 +86,7 @@ const ArtistPage = () => {
   };
 
   return (
-      <div className={'h-[30rem]'}>
+      <div>
         <div className="search-bar">
           <input
               type="text"

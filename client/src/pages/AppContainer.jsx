@@ -175,7 +175,7 @@ const AppContainer = () => {
                         background: "transparent",
                     }}
                 >
-                    <Outlet/>
+                    <div className={'h-[30rem]'}><Outlet/></div>
                 </Content>
                 <Footer className={'bg-transparent h-20'}>
                     <PlayBar/>

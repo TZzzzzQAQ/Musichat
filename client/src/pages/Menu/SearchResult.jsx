@@ -43,7 +43,7 @@ const SearchResult = () => {
                     </tbody>
                 </table>
             </div>}
-            {!hasData && <div className="text-xl font-poppins text-center py-10 h-[30rem]">Search what you want!</div>}
+            {!hasData && <div className="text-xl font-poppins text-center py-10">Search what you want!</div>}
         </>
     );
 };

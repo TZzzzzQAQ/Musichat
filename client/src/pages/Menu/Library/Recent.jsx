@@ -2,7 +2,7 @@ import React from 'react';
 
 const Recent = () => {
     return (
-        <div className={'h-[30rem]'}>
+        <div>
             This is Recent!
         </div>
     );
