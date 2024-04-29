@@ -1,10 +1,37 @@
-import React from 'react';
-import {Card} from 'antd';
+import {Card} from "antd";
+import {fetchProfile, redirectToAuthCodeFlow} from "@/apis/spotifyProfile.jsx";
+import {useLocation} from "react-router-dom";
+import {useEffect, useState} from "react";
 
-const Account = () => {
+function App() {
+    const location = useLocation();
+    const [profile, setProfile] = useState({})
+    useEffect(() => {
+        const fetchData = async () => {
+            const query = new URLSearchParams(location.search);
+            const code = query.get("code");
+            if (code) {
+                try {
+                    setProfile(await fetchProfile(code));
+                } catch (error) {
+                    console.error('Failed to fetch profile:', error);
+                }
+            }
+        };
+        fetchData();
+    }, [location]);
+
+    const handlerClick = () => {
+        redirectToAuthCodeFlow();
+    };
 
     return (
-        <>
+        <div>
+            <header className="App-header">
+                <button onClick={handlerClick}>点我登录</button>
+                {profile && <div>{JSON.stringify(profile)}</div>}
+                {/*    profile是一个对象里面有用户的所有信息,可以用来做Account页面*/}
+            </header>
             <Card title="After Login">
                 <ul>
                     <li>
@@ -18,7 +45,9 @@ const Account = () => {
                     </li>
                 </ul>
             </Card>
-        </>
-    );
-};
-export default Account;
+        </div>
+    )
+        ;
+}
+
+export default App;

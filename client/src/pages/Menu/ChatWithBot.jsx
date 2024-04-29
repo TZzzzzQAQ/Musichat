@@ -55,7 +55,7 @@ const ChatWithBot = () => {
         }
 
         setMessages(prevState => [...prevState, {sender: 'user', text: userMessage}]);
-        const botResponse = await chatWithGPT(input).then((response) => {
+        await chatWithGPT(input).then((response) => {
             setMessages(prevState => [...prevState, {sender: 'chat', text: response}]);
         });
         setIsLoading(false);

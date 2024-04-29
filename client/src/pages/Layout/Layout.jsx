@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './index.scss'
-import AppContainer from "@/pages/AppContainer/AppContainer.jsx";
+import AppContainer from "@/pages/AppContainer.jsx";
 import {ConfigProvider, theme} from "antd";
 import {faLightbulb} from '@fortawesome/free-solid-svg-icons';
 import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-icons';
@@ -32,7 +32,8 @@ const Layout = () => {
                 }
             </div>
             <MobileOptimization/>
-            <div className={'appContainer invisible xl:visible'}>
+            <div
+                className={'shadow-2xl appContainer invisible xl:visible max-w-7xl mx-auto p-2 rounded-xl bg-white/30 backdrop-blur-2xl h-[46rem]'}>
                 <ConfigProvider
                     theme={{
                         algorithm: isDaylight ? theme.defaultAlgorithm : theme.darkAlgorithm,

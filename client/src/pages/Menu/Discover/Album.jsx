@@ -57,9 +57,6 @@ const AlbumPage = () => {
 
   return (
     <div>
-      <div className="search-bar">
-        <input type="text" placeholder="Search albums..." value={searchQuery} onChange={handleSearch} />
-      </div>
       {albums.length > 0 ? (
         <div className={'grid grid-cols-4 overflow-x-hidden h-[400px] mb-8'}>
           {albums.map((album) => (

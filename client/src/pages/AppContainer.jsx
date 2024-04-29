@@ -5,7 +5,6 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import {Layout, Menu, Button, theme, Avatar} from 'antd';
-import './index.scss'
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import PlayBar from "@/pages/PlayBar/PlayBar.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -108,7 +107,7 @@ const AppContainer = () => {
     const location = useLocation();
 
     const {
-        token: {colorBgContainer, borderRadiusLG},
+        token: {borderRadiusLG},
     } = theme.useToken();
 
     const clickHandler = (e) => {
@@ -119,13 +118,13 @@ const AppContainer = () => {
     }
 
     return (
-        <Layout>
+        <Layout className={'bg-transparent rounded-2xl'}>
             <Sider
                 trigger={null}
                 collapsible
                 collapsed={collapsed}
                 style={{
-                    background: colorBgContainer,
+                    background: 'rgba(255,255,255,0)',
                     height: '100 %',
                     borderRadius: '10px',
                 }}
@@ -136,18 +135,13 @@ const AppContainer = () => {
                     defaultSelectedKeys={['1']}
                     items={item}
                     onClick={clickHandler}
+                    style={{background: "transparent"}}
                     selectedKeys={[location.pathname]}
                 />
             </Sider>
-            <Layout>
+            <Layout className={'bg-transparent'}>
                 <Header
-                    style={{
-                        background: colorBgContainer,
-                        margin: '16px',
-                        padding: '0px 12px',
-                        borderRadius: borderRadiusLG,
-                    }}
-                    className={'flex-center'}
+                    className={'flex-center bg-transparent mt-4'}
                 >
                     <Button
                         type="text"
@@ -178,19 +172,12 @@ const AppContainer = () => {
                         margin: '16px',
                         padding: 16,
                         minHeight: 280,
-                        background: colorBgContainer,
-                        borderRadius: borderRadiusLG,
+                        background: "transparent",
                     }}
                 >
-                    <Outlet/>
+                    <div className={'h-[30rem]'}><Outlet/></div>
                 </Content>
-                <Footer style={{
-                    background: colorBgContainer,
-                    margin: '16px',
-                    padding: '0px 10px',
-                    height: '80px',
-                    borderRadius: borderRadiusLG,
-                }}>
+                <Footer className={'bg-transparent h-20'}>
                     <PlayBar/>
                 </Footer>
             </Layout>

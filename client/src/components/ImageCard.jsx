@@ -5,8 +5,8 @@ const ImageCard = ({data: {name, images}}) => {
 
     return (
         <div
-            className='group w-48 h-52 flex flex-col items-center place-content-between rounded-lg mt-4'>
-            <div className='w-48 h-48 mt-6 flex-center rounded-lg flex-col'>
+            className='group w-48 h-52 flex flex-col items-center place-content-between rounded-lg mt-10'>
+            <div className='w-48 h-48 flex-center rounded-lg flex-col'>
                 <img src={imageUrl} alt={name}
                      className='transition-all duration-150 transform group-hover:scale-150 group-hover:cursor-pointer
                      group-hover:-translate-y-2 w-32 h-32 object-cover rounded-lg'/>
