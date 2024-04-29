@@ -1,10 +1,21 @@
-import React from 'react';
-import {Card} from 'antd';
+import {Card} from "antd";
+import {fetchProfile, redirectToAuthCodeFlow} from "@/apis/spotifyProfile.js";
+import {useLocation} from "react-router-dom";
 
-const Account = () => {
+function App() {
+    const location = useLocation();
 
     return (
-        <>
+        <div className="App">
+            <header className="App-header">
+                <button onClick={() => redirectToAuthCodeFlow()}>登录</button>
+                <button onClick={() => {
+                    const query = new URLSearchParams(location.search);
+                    const code = query.get('code');
+                    fetchProfile(code)
+                }}>简介
+                </button>
+            </header>
             <Card title="After Login">
                 <ul>
                     <li>
@@ -18,7 +29,8 @@ const Account = () => {
                     </li>
                 </ul>
             </Card>
-        </>
+        </div>
     );
-};
-export default Account;
+}
+
+export default App;
