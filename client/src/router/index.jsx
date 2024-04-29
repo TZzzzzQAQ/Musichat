@@ -10,7 +10,7 @@ import Playlist from "@/pages/Menu/Library/Playlist.jsx"
 import Artist from "@/pages/Menu/Discover/Artist.jsx";
 import Album from "@/pages/Menu/Discover/Album.jsx";
 import SearchResult from "@/pages/Menu/SearchResult.jsx";
-import ChatRoom from "@/pages/Menu/ChatRoom.jsx";
+import ChatWithBot from "@/pages/Menu/ChatWithBot.jsx";
 
 const router = createBrowserRouter([
     {
@@ -54,8 +54,8 @@ const router = createBrowserRouter([
                 element: <SearchResult/>
             },
             {
-                path: '/chatRoom',
-                element: <ChatRoom/>
+                path: '/chatWithBot',
+                element: <ChatWithBot/>
             }]
     }
 ], {
