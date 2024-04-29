@@ -2,7 +2,7 @@ import React from 'react';
 
 const Favourite = () => {
     return (
-        <div>
+        <div className={'h-[27rem]'}>
             This is Favourite!
         </div>
     );

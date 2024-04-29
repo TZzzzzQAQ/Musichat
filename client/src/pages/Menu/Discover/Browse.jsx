@@ -3,7 +3,7 @@ import ContentCarousel from "@/components/Carousel.jsx";
 
 const Browse = () => {
     return (
-        <div>
+        <div className={'h-[27rem]'}>
             <ContentCarousel/>
         </div>
     );

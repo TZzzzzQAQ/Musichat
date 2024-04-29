@@ -56,7 +56,7 @@ const AlbumPage = () => {
   };
 
   return (
-    <div>
+    <div className={'h-[27rem]'}>
       <div className="search-bar">
         <input type="text" placeholder="Search albums..." value={searchQuery} onChange={handleSearch} />
       </div>

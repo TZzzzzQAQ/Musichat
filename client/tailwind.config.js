@@ -8,6 +8,10 @@ export default {
         extend: {
             fontFamily: {
                 poppins: ['Poppins', 'sans-serif']
+            },
+            backdropFilter: {
+                'none': 'none',
+                'blur': 'blur(20px)',
             }
         },
     },

@@ -55,7 +55,7 @@ const ChatWithBot = () => {
         }
 
         setMessages(prevState => [...prevState, {sender: 'user', text: userMessage}]);
-        const botResponse = await chatWithGPT(input).then((response) => {
+        await chatWithGPT(input).then((response) => {
             setMessages(prevState => [...prevState, {sender: 'chat', text: response}]);
         });
         setIsLoading(false);
@@ -65,7 +65,7 @@ const ChatWithBot = () => {
     return (
         <>
             {contextHolder}
-            <div className="flex flex-col w-full h-full p-4 shadow rounded">
+            <div className="flex flex-col w-full h-[27rem] p-4 shadow rounded">
                 <div className="flex-1 overflow-y-auto space-y-2 mb-4 w-full">
                     {messages.map((message, index) => (
                         <div key={index}

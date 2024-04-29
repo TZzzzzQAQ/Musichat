@@ -26,7 +26,7 @@ function App() {
     };
 
     return (
-        <div className="App">
+        <div className={'h-[27rem]'}>
             <header className="App-header">
                 <button onClick={handlerClick}>点我登录</button>
                 {profile && <div>{JSON.stringify(profile)}</div>}

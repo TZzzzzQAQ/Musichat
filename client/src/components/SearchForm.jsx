@@ -82,7 +82,7 @@ const SearchForm = () => {
     return (
         <div>
             {contextHolder}
-            <Form className={"flex-center gap-4 mx-4"}>
+            <Form className={"flex justify-center items-center gap-4 mx-4"}>
                 <Search
                     value={searchData.q}
                     onChange={handleSearchChange}

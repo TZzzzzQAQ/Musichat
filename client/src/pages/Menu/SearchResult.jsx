@@ -17,17 +17,17 @@ const SearchResult = () => {
 
     return (
         <>
-            {someData.artists && <div className={'grid grid-cols-4 overflow-x-hidden h-[400px] mb-8'}>
+            {someData.artists && <div className={'grid grid-cols-5 overflow-x-hidden h-[27rem]'}>
                 {artistsItems.map((item) => (
                     <ImageCard data={item} key={item.id}/>
                 ))}
             </div>}
-            {someData.albums && <div className={'grid grid-cols-4 overflow-x-hidden h-[400px] mb-8'}>
+            {someData.albums && <div className={'grid grid-cols-5 overflow-x-hidden h-[27rem]'}>
                 {albumsItems.map((item) => (
                     <ImageCard data={item} key={item.id}/>
                 ))}
             </div>}
-            {someData.tracks && <div className={'overflow-x-hidden h-[400px] mb-8'}>
+            {someData.tracks && <div className={'overflow-x-hidden h-[27rem]'}>
                 <table className={'min-w-full leading-normal'}>
                     <thead>
                     <tr>
@@ -43,7 +43,7 @@ const SearchResult = () => {
                     </tbody>
                 </table>
             </div>}
-            {!hasData && <div className="text-xl font-poppins text-center py-10">Search what you want!</div>}
+            {!hasData && <div className="text-xl font-poppins text-center py-10 h-[27rem]">Search what you want!</div>}
         </>
     );
 };
