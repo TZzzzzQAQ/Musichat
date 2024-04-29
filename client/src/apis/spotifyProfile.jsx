@@ -60,12 +60,8 @@ export async function getAccessToken(clientId, code) {
 
 export async function fetchProfile(code) {
     const accessToken = await getAccessToken(CLIENT_ID, code);
-    await fetch("https://api.spotify.com/v1/me", {
+    console.log('accessToken', accessToken)
+    return await fetch("https://api.spotify.com/v1/me", {
         method: "GET", headers: {Authorization: `Bearer ${accessToken}`}
-    }).then(response => response.json()).then(data => {
-        console.log(data); // 处理解析后的数据
-        // 例如，你可以从数据中获取邮箱地址:
-        const email = data.email;
-        console.log(email); // 输出邮箱地址
-    })
+    }).then(response => response.json());
 }
