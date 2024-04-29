@@ -1,4 +1,3 @@
-import React from 'react';
 import {formatTime} from "@/utils/index.jsx";
 
 const TrackList = ({data: {name, artists, duration_ms}}) => {

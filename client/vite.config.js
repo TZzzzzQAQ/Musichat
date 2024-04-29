@@ -10,9 +10,9 @@ export default defineConfig({
     plugins: [
         react(),
         visualizer({
-            open: true,  // 打包后自动打开页面
-            gzipSize: true,  // 查看 gzip 压缩大小
-            brotliSize: true  // 查看 brotli 压缩大小
+            open: true,
+            gzipSize: true,
+            brotliSize: true
         })
     ],
     resolve: {
