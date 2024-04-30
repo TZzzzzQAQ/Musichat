@@ -53,7 +53,7 @@ const AlbumDetails = () => {
         fetchToken();
     },
         [id]);
-    
+
     const artist = album.artists && album.artists[0].name;
     const input = `Tell me some information about ${artist} `;
     const [bot, setBot] = useState("");
@@ -83,26 +83,26 @@ const AlbumDetails = () => {
             <img src={album.images && album.images[0].url} alt={album.name} className='h-[200px]' />
 
             <table className={'min-w-full leading-normal'}>
-                    <thead>
+                <thead>
                     <tr>
                         <th className={"px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider w-96"}>Track</th>
                         <th className={'px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider'}>Singer</th>
                         <th className={'px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider w-36'}>Duration</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     {tracks.map((item) => (
-                        <TrackList data={item} key={item.id}/>
+                        <TrackList data={item} key={item.id} />
                     ))}
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
             <button className='text-center pt-4 text-3xl font-poppins font-bold' onClick={sendMessage}>Tell me something about {artist}</button>
 
-            
-                <div>
-                    {bot}
-                </div>
-            
+
+            <div>
+                {bot}
+            </div>
+
 
         </div>
     );
