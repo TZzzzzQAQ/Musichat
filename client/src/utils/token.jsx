@@ -1,4 +1,3 @@
-// Encapsulate methods related to tokens
 const Token = 'token_key'
 const setToken = (token) => {
     localStorage.setItem(Token, token)

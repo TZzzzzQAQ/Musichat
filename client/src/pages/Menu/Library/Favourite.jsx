@@ -1,8 +1,12 @@
+import AuthRoute from "@/components/AuthRoute.jsx";
+
 const Favourite = () => {
     return (
-        <div>
-            This is Favourite!
-        </div>
+        <AuthRoute>
+            <div>
+                This is Favourite!
+            </div>
+        </AuthRoute>
     );
 };
 
