@@ -88,13 +88,14 @@ const item = [
                 icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor} />,
                 label: 'Artist'
               },
-              {
+              
+            ]
+            },
+            {
                 key: '/album',
                 icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor} />,
                 label: 'Album'
-              }
-            ]
-          }
+             }
         ]
     },
     {

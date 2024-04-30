@@ -52,6 +52,10 @@
   background-image: linear-gradient(270deg,
           #fff0f6, #ffd6e7, #ffadd2, #ff85c0, #f759ab, #eb2f96, #c41d7f, #9e1068);
 }
+.darkmode {
+  background-image: linear-gradient(270deg,
+          #0f0f0f,  #251f5e);
+}
 
 @keyframes gradientBackground {
   0% {

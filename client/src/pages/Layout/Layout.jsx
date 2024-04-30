@@ -17,8 +17,10 @@ const Layout = () => {
     const lightHandler = () => {
         setIsDaylight(prevState => !prevState)
     }
+    const backgroundClass = isDaylight ? className : 'darkmode';
+
     return (
-        <div className={`box Dust_Red ${className} dynamic-gradient`}>
+        <div className={`box Dust_Red ${backgroundClass} dynamic-gradient`}>
             <div className={`switch ${isDaylight ? 'white' : 'black'} invisible xl:visible`}>
                 {!isDaylight ?
                     <FontAwesomeIcon
