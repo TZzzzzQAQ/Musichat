@@ -79,17 +79,16 @@ const item = [
         label: 'Discovery',
         children: [
           {
-            key: 'search',
+            key: '/searchResult',
             icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor} />,
-            label: 'Search',
-            children: [
-              {
+            label: 'Search'
+        
+          },
+            
+            {
                 key: '/artist',
                 icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor} />,
                 label: 'Artist'
-              },
-              
-            ]
             },
             {
                 key: '/album',
