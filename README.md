@@ -5,4 +5,10 @@ In the project directory, you can run:
 ### ```npm install```
 Use this command to install libraries.
 ### ```npm run dev```
+<<<<<<< Updated upstream
 Runs the app in the development mode.
+=======
+Runs the app in the development mode.
+
+
+>>>>>>> Stashed changes
