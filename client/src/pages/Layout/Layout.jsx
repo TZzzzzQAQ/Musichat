@@ -17,7 +17,7 @@ const Layout = () => {
     const lightHandler = () => {
         setIsDaylight(prevState => !prevState)
     }
-    const backgroundClass = isDaylight ? className : 'darkmode';
+    const backgroundClass = isDaylight ? className : 'darkbg';
 
     return (
         <div className={`box Dust_Red ${backgroundClass} dynamic-gradient`}>
