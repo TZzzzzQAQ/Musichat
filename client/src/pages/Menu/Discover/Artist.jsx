@@ -42,7 +42,7 @@ const ArtistPage = () => {
                         q: searchQuery,
                         type: 'artist',
                         market: 'US',
-                        limit: 20,
+                        limit: 25,
                     },
                 });
 
@@ -62,7 +62,7 @@ const ArtistPage = () => {
                         q: getRandomSearchTerm(),
                         type: 'artist',
                         market: 'US',
-                        limit: 20,
+                        limit: 25,
                     },
                 });
 
@@ -87,16 +87,8 @@ const ArtistPage = () => {
 
     return (
         <div>
-            <div className="search-bar">
-                <input
-                    type="text"
-                    placeholder="Search artists..."
-                    value={searchQuery}
-                    onChange={handleSearch}
-                />
-            </div>
             {artists.length > 0 ? (
-                <div className={'grid grid-cols-4 overflow-x-hidden h-[400px] mb-8'}>
+                <div className={'grid grid-cols-5 overflow-x-hidden h-[400px] mb-8'}>
                     {artists.map((artist) => (
                         <ImageCard data={artist} key={artist.id}/>
                     ))}
