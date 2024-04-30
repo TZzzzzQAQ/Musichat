@@ -38,7 +38,6 @@ const AlbumPage = () => {
                         Authorization: `Bearer ${token}`,
                     },
                     params: {
-                        q: searchQuery || 'Taylor Swift', // 如果搜索词为空,使用默认搜索词"Taylor Swift"
                         type: 'album',
                         limit: 10,
                         market: region,
