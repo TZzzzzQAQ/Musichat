@@ -6,5 +6,3 @@ In the project directory, you can run:
 Use this command to install libraries.
 ### ```npm run dev```
 Runs the app in the development mode.
-
-origin2
