@@ -55,6 +55,7 @@ export async function getAccessToken(clientId, code) {
     });
 
     const {access_token} = await result.json();
+    localStorage.setItem('userToken', access_token);
     return access_token;
 }
 
