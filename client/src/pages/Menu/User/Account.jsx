@@ -14,7 +14,6 @@ function App() {
     useEffect(() => {
         if (userState) {
             setProfile(userState);
-            console.log(userState)
         }
     }, []);
     useEffect(() => {

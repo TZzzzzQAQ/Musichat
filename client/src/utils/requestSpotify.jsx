@@ -2,13 +2,13 @@ import axios from 'axios'
 import router from "@/router/index.jsx";
 import {getToken, removeToken} from "@/utils/token.jsx";
 
-const request = axios.create({
+const requestSpotify = axios.create({
     baseURL: 'https://api.spotify.com/v1',
     timeout: 5000
 })
 
 // 添加请求拦截器
-request.interceptors.request.use((config) => {
+requestSpotify.interceptors.request.use((config) => {
     if (getToken()) {
         config.headers.Authorization = `Bearer ${getToken()}`
     }
@@ -18,7 +18,7 @@ request.interceptors.request.use((config) => {
 })
 
 // 添加响应拦截器
-request.interceptors.response.use((response) => {
+requestSpotify.interceptors.response.use((response) => {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
     return response.data
@@ -31,4 +31,4 @@ request.interceptors.response.use((response) => {
     return Promise.reject(error)
 })
 
-export {request}
+export {requestSpotify}
