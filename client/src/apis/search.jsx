@@ -1,7 +1,7 @@
-import {request} from "@/utils/index.jsx";
+import {requestSpotify} from "@/utils/index.jsx";
 
 export function searchAPI(params) {
-    return request({
+    return requestSpotify({
         url: '/search',
         method: 'GET',
         params

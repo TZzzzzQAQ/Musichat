@@ -1,7 +1,6 @@
 import {formatTime} from "@/utils/index.jsx";
 
 const TrackList = ({data: {name, artists, duration_ms}}) => {
-    console.log()
     return (
         <tr className="underline-animation cursor-pointer font-poppins">
             <td className="px-5 py-3 border-b border-gray-200 text-base">
