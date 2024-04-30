@@ -75,7 +75,7 @@ const AlbumPage = () => {
                 <div className={'mb-8'}>
                     {albums.map((album) => (
                         <div className='flex' key={album.id}>
-                            <ImageCard data={album} showname={false} />
+                            <ImageCard data={album} artist={false} showname={false} />
                             <div className='ml-4 mt-10'>
                                 <h2 className='text-lg font-poppins font-bold'>{album.name}</h2>
                                 <p className='text-lg font-poppins'>{album.artists[0].name}</p>

@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 import ImageCard from '@/components/ImageCard.jsx';
-import {CLIENT_ID, CLIENT_SECRET} from "@/../config.js";
+import { CLIENT_ID, CLIENT_SECRET } from "@/../config.js";
+import { NavLink } from 'react-router-dom';
 
 const ArtistPage = () => {
     const [artists, setArtists] = useState([]);
@@ -90,7 +91,9 @@ const ArtistPage = () => {
             {artists.length > 0 ? (
                 <div className={'grid grid-cols-5 overflow-x-hidden h-[400px] mb-8'}>
                     {artists.map((artist) => (
-                        <ImageCard data={artist} key={artist.id}/>
+                        <NavLink to={`${artist.id}`} key={artist.id} >
+                            <ImageCard data={artist} />
+                        </NavLink>
                     ))}
                 </div>
             ) : (
