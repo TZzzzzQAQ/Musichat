@@ -12,6 +12,9 @@ import Album from "@/pages/Menu/Discover/Album.jsx";
 import SearchResult from "@/pages/Menu/SearchResult.jsx";
 import ChatWithBot from "@/pages/Menu/ChatWithBot.jsx";
 import GroupChat from "@/pages/Menu/GroupChat.jsx";
+import AlbumDetails from "@/pages/Menu/Discover/AlbumDetails.jsx";
+import Albums from "@/pages/Menu/Discover/Albums.jsx";
+
 
 const router = createBrowserRouter([
     {
@@ -44,7 +47,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/album',
-                element: <Album></Album>
+                element: <Albums></Albums>,
+                children: [
+                    {
+                        index: true,
+                        element: <Album></Album>},
+                    {
+                        path: ':id',
+                        element: <AlbumDetails/>
+                    }
+                ]
             },
             {
                 path: '/artist',
