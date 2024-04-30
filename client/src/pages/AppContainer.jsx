@@ -4,7 +4,7 @@ import {
     MenuUnfoldOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import {Layout, Menu, Button, theme, Avatar} from 'antd';
+import {Layout, Menu, Button, Avatar} from 'antd';
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import PlayBar from "@/pages/PlayBar/PlayBar.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -75,32 +75,38 @@ const item = [
     },
     {
         key: '3',
-        icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor} />,
+        icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
         label: 'Discovery',
         children: [
-          {
-            key: '/searchResult',
-            icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor} />,
-            label: 'Search'
-        
-          },
-            
             {
-                key: '/artist',
-                icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor} />,
-                label: 'Artist'
+                key: 'search',
+                icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
+                label: 'Search',
+                children: [
+                    {
+                        key: '/artist',
+                        icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor}/>,
+                        label: 'Artist'
+                    },
+
+                ]
             },
             {
                 key: '/album',
-                icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor} />,
+                icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor}/>,
                 label: 'Album'
-             }
+            }
         ]
     },
     {
         key: '/chatWithBot',
         icon: <FontAwesomeIcon icon={faComments} style={iconColor}/>,
         label: 'chatWithBot'
+    },
+    {
+        key: '/groupChat',
+        icon: <FontAwesomeIcon icon={faComments} style={iconColor}/>,
+        label: 'GroupChat'
     }
 ]
 
@@ -110,10 +116,6 @@ const AppContainer = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-
-    const {
-        token: {borderRadiusLG},
-    } = theme.useToken();
 
     const clickHandler = (e) => {
         navigate(e.key, {replace: true})

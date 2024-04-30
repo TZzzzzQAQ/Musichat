@@ -2,6 +2,7 @@ import {getToken} from '@/utils/index.jsx'
 import {Navigate} from 'react-router-dom'
 
 const AuthRoute = ({children}) => {
+
     const isToken = getToken()
     if (isToken) {
         return <>{children}</>
@@ -11,3 +12,5 @@ const AuthRoute = ({children}) => {
 }
 
 export default AuthRoute
+
+// 拿数据    const profile = useSelector(state => state.profile)

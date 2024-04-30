@@ -11,6 +11,7 @@ import Artist from "@/pages/Menu/Discover/Artist.jsx";
 import Album from "@/pages/Menu/Discover/Album.jsx";
 import SearchResult from "@/pages/Menu/SearchResult.jsx";
 import ChatWithBot from "@/pages/Menu/ChatWithBot.jsx";
+import GroupChat from "@/pages/Menu/GroupChat.jsx";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: '/chatWithBot',
                 element: <ChatWithBot/>
+            },
+            {
+                path: '/groupChat',
+                element: <GroupChat/>
             }]
     }
 ], {
