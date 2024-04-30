@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import {chatWithGPT} from "@/apis/chatgpt.jsx";
 import {Form, Input, notification} from "antd";
 import {useDispatch, useSelector} from "react-redux";

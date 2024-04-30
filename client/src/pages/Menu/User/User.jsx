@@ -1,4 +1,3 @@
-import React from 'react';
 import {Select} from "antd";
 import {useDispatch} from "react-redux";
 import {setBackgroundTheme} from "@/store/features/themeSlice.jsx";

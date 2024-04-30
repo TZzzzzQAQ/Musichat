@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ImageCard = ({data: {name, images}}) => {
     const imageUrl = images[0]?.url || 'https://via.placeholder.com/160';
 

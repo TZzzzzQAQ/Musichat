@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -30,6 +30,11 @@ const {
 const iconColor = {color: "#74C0FC"};
 
 const item = [
+    {
+        key: '/home',
+        icon: <FontAwesomeIcon icon={faHouse} style={iconColor}/>,
+        label: 'home'
+    },
     {
         key: '1',
         icon: <FontAwesomeIcon icon={faUser} style={iconColor}/>,
@@ -70,26 +75,26 @@ const item = [
     },
     {
         key: '3',
-        icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
+        icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor} />,
         label: 'Discovery',
         children: [
-            {
-                key: '/home',
-                icon: <FontAwesomeIcon icon={faHouse} style={iconColor}/>,
-                label: 'Home'
-            }, {
+          {
+            key: 'search',
+            icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor} />,
+            label: 'Search',
+            children: [
+              {
                 key: '/artist',
-                icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor} />,
                 label: 'Artist'
-            }, {
+              },
+              {
                 key: '/album',
-                icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor} />,
                 label: 'Album'
-            }, {
-                key: '/searchResult',
-                icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
-                label: 'Search'
-            }
+              }
+            ]
+          }
         ]
     },
     {
@@ -175,7 +180,9 @@ const AppContainer = () => {
                         background: "transparent",
                     }}
                 >
-                    <div className={'h-[30rem]'}><Outlet/></div>
+                    <div className={'h-[30rem]'}>
+                        <Outlet/>
+                    </div>
                 </Content>
                 <Footer className={'bg-transparent h-20'}>
                     <PlayBar/>
