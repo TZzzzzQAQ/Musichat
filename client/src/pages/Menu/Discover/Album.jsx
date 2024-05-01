@@ -1,64 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
 import ImageCard from '@/components/ImageCard.jsx';
-import { CLIENT_ID, CLIENT_SECRET } from "@/../config.js";
-import { NavLink } from 'react-router-dom';
-
-
+import {NavLink} from 'react-router-dom';
+import {getNewReleasesAPI} from "@/apis/search.jsx";
 
 const AlbumPage = () => {
     const [albums, setAlbums] = useState([]);
-    const [region, setRegion] = useState('us');
+    const [searchParams, setSearchParams] = useState({
+        type: 'album',
+        limit: 10,
+        market: 'us'
+    })
 
     useEffect(() => {
-        const fetchToken = async () => {
+        const fetchAlbums = async () => {
             try {
-                const response = await axios.post('https://accounts.spotify.com/api/token', null, {
-                    params: {
-                        grant_type: 'client_credentials',
-                        client_id: CLIENT_ID,
-                        client_secret: CLIENT_SECRET,
-                    },
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                });
-
-                const token = response.data.access_token;
-                fetchAlbums(token);
-            } catch (error) {
-                console.error('Error fetching token:', error);
-            }
-        };
-
-        const fetchAlbums = async (token) => {
-            try {
-                const response = await axios.get('https://api.spotify.com/v1/browse/new-releases', {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                    params: {
-                        type: 'album',
-                        limit: 10,
-                        market: region,
-                    },
-                });
-
-                setAlbums(response.data.albums.items);
+                const response = await getNewReleasesAPI(searchParams)
+                setAlbums(response.albums.items);
             } catch (error) {
                 console.error('Error fetching albums:', error);
             }
         };
-        fetchToken();
-    }, [region]);
-
-
-
+        fetchAlbums();
+    }, [searchParams]);
 
 
     const handleRegionChange = (e) => {
-        setRegion(e.target.value);
-
+        setSearchParams(prevState => {
+            return {
+                ...prevState,
+                region: e.target.value,
+            }
+        })
     };
 
     return (
@@ -75,7 +48,7 @@ const AlbumPage = () => {
                 <div className={'mb-8'}>
                     {albums.map((album) => (
                         <div className='flex' key={album.id}>
-                            <ImageCard data={album} artist={false} showname={false} />
+                            <ImageCard data={album} artist={false} showname={false}/>
                             <div className='ml-4 mt-10'>
                                 <h2 className='text-lg font-poppins font-bold'>{album.name}</h2>
                                 <p className='text-lg font-poppins'>{album.artists[0].name}</p>
@@ -89,7 +62,7 @@ const AlbumPage = () => {
                 </div>
             ) : (
                 <div className="text-xl font-poppins text-center py-10">
-                    {region ? 'No albums found.' : 'Loading albums...'}
+                    {searchParams.market ? 'No albums found.' : 'Loading albums...'}
                 </div>
             )}
         </div>

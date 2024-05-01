@@ -1,9 +1,9 @@
-import {getToken} from '@/utils/index.jsx'
+import {getEveryoneToken} from '@/utils/index.jsx'
 import {Navigate} from 'react-router-dom'
 
 const AuthRoute = ({children}) => {
 
-    const isToken = getToken()
+    const isToken = getEveryoneToken()
     if (isToken) {
         return <>{children}</>
     } else {
