@@ -1,8 +1,7 @@
 import {useEffect, useState} from 'react';
-import axios from 'axios';
 import ImageCard from '@/components/ImageCard.jsx';
 import {NavLink} from 'react-router-dom';
-import {getNewReleasesAPI} from "@/apis/search.jsx";
+import {getNewReleasesAPI} from "@/apis/everyoneDataAPI.jsx";
 
 const AlbumPage = () => {
     const [albums, setAlbums] = useState([]);
@@ -11,7 +10,6 @@ const AlbumPage = () => {
         limit: 10,
         market: 'us'
     })
-
     useEffect(() => {
         const fetchAlbums = async () => {
             try {
@@ -23,7 +21,6 @@ const AlbumPage = () => {
         };
         fetchAlbums();
     }, [searchParams]);
-
 
     const handleRegionChange = (e) => {
         setSearchParams(prevState => {

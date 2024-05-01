@@ -1,4 +1,4 @@
-import {chatWithGPT} from "@/apis/chatGPT.jsx";
+import {chatWithGPT} from "@/apis/chatGPTAPI.jsx";
 import ChatContent from "@/components/ChatContent.jsx";
 
 const ChatWithBot = () => {

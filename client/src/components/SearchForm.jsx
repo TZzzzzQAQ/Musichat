@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {Form, Input, notification, Select} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFaceFrown} from "@fortawesome/free-solid-svg-icons";
-import {searchAPI} from "@/apis/search.jsx";
+import {searchAPI} from "@/apis/everyoneDataAPI.jsx";
 import {setSearchResult} from "@/store/features/musicSlice.jsx";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";

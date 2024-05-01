@@ -15,3 +15,11 @@ export function getNewReleasesAPI(params) {
         params
     })
 }
+
+export function getAlbumsFromIDAPI(id) {
+    return requestSpotifyCommon({
+        url:`albums/${id}`,
+        method: 'GET'
+    })
+}
+
