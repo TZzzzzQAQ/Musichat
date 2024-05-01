@@ -35,7 +35,7 @@ const Layout = () => {
             </div>
             <MobileOptimization />
             <div
-                className={'shadow-2xl appContainer invisible xl:visible max-w-7xl mx-auto p-2 rounded-xl bg-white/30 backdrop-blur-2xl h-[46rem]'}>
+                className={'shadow-2xl appContainer invisible xl:visible max-w-[90rem] mx-auto p-2 rounded-xl bg-white/30 backdrop-blur-2xl h-[46rem]'}>
                 <ConfigProvider
                     theme={{
                         algorithm: isDaylight ? theme.defaultAlgorithm : theme.darkAlgorithm,
