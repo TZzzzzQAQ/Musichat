@@ -55,12 +55,12 @@ export async function getAccessToken(clientId, code) {
     });
 
     const {access_token} = await result.json();
+    localStorage.setItem('userToken', access_token);
     return access_token;
 }
 
 export async function fetchProfile(code) {
     const accessToken = await getAccessToken(CLIENT_ID, code);
-    console.log('accessToken', accessToken)
     return await fetch("https://api.spotify.com/v1/me", {
         method: "GET", headers: {Authorization: `Bearer ${accessToken}`}
     }).then(response => response.json());

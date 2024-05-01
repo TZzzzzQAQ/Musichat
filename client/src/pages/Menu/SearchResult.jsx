@@ -2,6 +2,7 @@ import {useLocation} from "react-router-dom";
 import ImageCard from "@/components/ImageCard.jsx";
 import {useSelector} from "react-redux";
 import TrackList from "@/components/TrackList.jsx";
+import {NavLink} from "react-router-dom";
 
 const SearchResult = () => {
     const location = useLocation();
@@ -18,12 +19,16 @@ const SearchResult = () => {
         <>
             {someData.artists && <div className={'grid grid-cols-5 overflow-x-hidden h-[30rem]'}>
                 {artistsItems.map((item) => (
-                    <ImageCard data={item} key={item.id}/>
+                    <NavLink to={`/artist/${item.id}`} key={item.id} className='text-lg font-poppins no-underline '>
+                        <ImageCard data={item} key={item.id} />
+                    </NavLink>
                 ))}
             </div>}
             {someData.albums && <div className={'grid grid-cols-5 overflow-x-hidden h-[30rem]'}>
                 {albumsItems.map((item) => (
-                    <ImageCard data={item} key={item.id}/>
+                    <NavLink to={`/album/${item.id}`} key={item.id} className='text-lg font-poppins no-underline '>
+                        <ImageCard data={item} artist={false} />
+                    </NavLink>
                 ))}
             </div>}
             {someData.tracks && <div className={'overflow-x-hidden h-[30rem]'}>
