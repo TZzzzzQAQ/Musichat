@@ -1,13 +1,13 @@
 import {useEffect} from 'react';
 import {RouterProvider} from "react-router-dom";
 import router from "@/router/index.jsx";
-import getAccessToken from "@/apis/loginForEveryone.jsx";
-import {setToken} from "@/utils/token.jsx";
+import {setEveryoneToken} from "@/utils/tokenForEveryone.jsx";
+import {getEveryoneTokenAPI} from "@/apis/accountsApi.jsx";
 
 const App = () => {
     useEffect(() => {
-        getAccessToken().then(data => {
-            setToken(data);
+        getEveryoneTokenAPI().then(data => {
+            setEveryoneToken(data);
         });
     }, []);
     return (

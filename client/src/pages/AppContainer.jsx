@@ -45,18 +45,7 @@ const item = [
                 icon: <FontAwesomeIcon icon={faUser} style={iconColor}/>,
                 label: 'Account',
             },
-            {
-                key: '/setting',
-                icon: <FontAwesomeIcon icon={faGear} style={iconColor}/>,
-                label: 'Setting'
-            }
-        ]
-    },
-    {
-        key: '2',
-        icon: <FontAwesomeIcon icon={faRecordVinyl} style={iconColor}/>,
-        label: 'Library',
-        children: [
+            
             {
                 key: '/recent',
                 icon: <FontAwesomeIcon icon={faClock} style={iconColor}/>,
@@ -70,26 +59,49 @@ const item = [
                 key: '/playlist',
                 icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
                 label: 'Playlist'
+            },
+            {
+                key: '/setting',
+                icon: <FontAwesomeIcon icon={faGear} style={iconColor}/>,
+                label: 'Setting'
             }
         ]
     },
+    // {
+    //     key: '2',
+    //     icon: <FontAwesomeIcon icon={faRecordVinyl} style={iconColor}/>,
+    //     label: 'Library',
+    //     children: [
+    //         {
+    //             key: '/recent',
+    //             icon: <FontAwesomeIcon icon={faClock} style={iconColor}/>,
+    //             label: 'Recent'
+    //         },
+    //         {
+    //             key: '/favourite',
+    //             icon: <FontAwesomeIcon icon={faHeart} style={iconColor}/>,
+    //             label: 'Favourite'
+    //         }, {
+    //             key: '/playlist',
+    //             icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
+    //             label: 'Playlist'
+    //         }
+    //     ]
+    // },
     {
         key: '3',
         icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
         label: 'Discovery',
         children: [
+            // {
+            //     key: 'search',
+            //     icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
+            //     label: 'Search',
+            // },
             {
-                key: 'search',
-                icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
-                label: 'Search',
-                children: [
-                    {
-                        key: '/artist',
-                        icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor}/>,
-                        label: 'Artist'
-                    },
-
-                ]
+                key: '/artist',
+                icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor}/>,
+                label: 'Artist'
             },
             {
                 key: '/album',
