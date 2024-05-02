@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -15,10 +15,11 @@ import {
     faHeart, faHouse,
     faList,
     faMagnifyingGlass, faMicrophoneLines,
-    faRecordVinyl,
     faUser, faComments
 } from "@fortawesome/free-solid-svg-icons";
 import SearchForm from "@/components/SearchForm.jsx";
+import ToggleDark from "@/components/ToggleDark.jsx";
+import {debounce} from "lodash/function";
 
 const {
     Header,
@@ -45,7 +46,7 @@ const item = [
                 icon: <FontAwesomeIcon icon={faUser} style={iconColor}/>,
                 label: 'Account',
             },
-            
+
             {
                 key: '/recent',
                 icon: <FontAwesomeIcon icon={faClock} style={iconColor}/>,
@@ -67,37 +68,11 @@ const item = [
             }
         ]
     },
-    // {
-    //     key: '2',
-    //     icon: <FontAwesomeIcon icon={faRecordVinyl} style={iconColor}/>,
-    //     label: 'Library',
-    //     children: [
-    //         {
-    //             key: '/recent',
-    //             icon: <FontAwesomeIcon icon={faClock} style={iconColor}/>,
-    //             label: 'Recent'
-    //         },
-    //         {
-    //             key: '/favourite',
-    //             icon: <FontAwesomeIcon icon={faHeart} style={iconColor}/>,
-    //             label: 'Favourite'
-    //         }, {
-    //             key: '/playlist',
-    //             icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
-    //             label: 'Playlist'
-    //         }
-    //     ]
-    // },
     {
         key: '3',
         icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
         label: 'Discovery',
         children: [
-            // {
-            //     key: 'search',
-            //     icon: <FontAwesomeIcon icon={faMagnifyingGlass} style={iconColor}/>,
-            //     label: 'Search',
-            // },
             {
                 key: '/artist',
                 icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor}/>,
@@ -122,10 +97,8 @@ const item = [
     }
 ]
 
-
 const AppContainer = () => {
-    const [collapsed, setCollapsed] = useState(false);
-
+    const [collapsed, setCollapsed] = useState(window.innerWidth < 1024);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -136,8 +109,21 @@ const AppContainer = () => {
         navigate('/account', {replace: true})
     }
 
+    useEffect(() => {
+        const handleResize = debounce(() => {
+            setCollapsed(window.innerWidth < 1280);
+        }, 500);
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => {
+            handleResize.cancel();
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
-        <Layout className={'bg-transparent rounded-2xl'}>
+        <Layout className={'bg-transparent rounded-2xl h-[45rem]'}>
+            <ToggleDark/>
             <Sider
                 trigger={null}
                 collapsible
@@ -147,8 +133,7 @@ const AppContainer = () => {
                     height: '100 %',
                     borderRadius: '10px',
                 }}
-                className="custom-sider">
-                <div className="demo-logo-vertical"/>
+                className="">
                 <Menu
                     mode="inline"
                     defaultSelectedKeys={['1']}
@@ -163,6 +148,7 @@ const AppContainer = () => {
                     className={'flex-center bg-transparent mt-4'}
                 >
                     <Button
+                        className={'invisible xl:visible'}
                         type="text"
                         icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                         onClick={() => setCollapsed(!collapsed)}
@@ -194,7 +180,7 @@ const AppContainer = () => {
                         background: "transparent",
                     }}
                 >
-                    <div className={'h-[30rem]'}>
+                    <div className={'h-[33rem]'}>
                         <Outlet/>
                     </div>
                 </Content>

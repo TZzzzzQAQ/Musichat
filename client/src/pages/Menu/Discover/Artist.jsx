@@ -30,9 +30,9 @@ const ArtistPage = () => {
     }, []);
 
     return (
-        <div>
+        <div className={'h-full'}>
             {artists &&
-                <div className={'grid grid-cols-5 overflow-x-hidden h-[400px] mb-8'}>
+                <div className={'grid grid-cols-5 overflow-x-hidden h-full mb-8'}>
                     {artists.map((artist) => (
                         <NavLink to={`${artist.id}`} key={artist.id}>
                             <ImageCard data={artist}/>

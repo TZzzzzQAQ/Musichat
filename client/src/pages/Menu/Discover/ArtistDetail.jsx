@@ -22,7 +22,7 @@ const ArtistDetail = () => {
         [id]);
 
     return (
-        <div className='overflow-y-auto h-[400px] flex flex-col items-center'>
+        <div className='overflow-y-auto h-full flex flex-col items-center'>
             <table className={'min-w-full leading-normal'}>
                 <thead>
                 <tr>
