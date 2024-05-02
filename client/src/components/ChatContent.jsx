@@ -52,7 +52,6 @@ const ChatContent = ({chatFunction, type}) => {
         }
         await chatFunction(input).then((response) => {
             setMessages(prevState => [...prevState, {sender: 'user', text: userMessage}]);
-            console.log(response)
             setMessages(prevState => [...prevState, {sender: type, text: response}]);
         }).catch(error => {
             console.log(error)

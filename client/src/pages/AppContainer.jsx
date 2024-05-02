@@ -82,6 +82,11 @@ const item = [
                 key: '/album',
                 icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor}/>,
                 label: 'Album'
+            },
+            {
+                key: '/searchResult',
+                icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor}/>,
+                label: 'SearchResult'
             }
         ]
     },
