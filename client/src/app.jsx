@@ -8,7 +8,8 @@ const App = () => {
     useEffect(() => {
         getEveryoneTokenAPI().then(data => {
             setEveryoneToken(data);
-        });
+        })
+
     }, []);
     return (
         <div className={'overflow-hidden'}>

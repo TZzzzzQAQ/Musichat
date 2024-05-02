@@ -32,7 +32,7 @@ const AlbumPage = () => {
     };
 
     return (
-        <div className='overflow-y-auto h-[400px]'>
+        <div className='overflow-y-auto h-full'>
             <h1 className="text-3xl font-poppins font-bold mb-4">New Releases</h1>
             <p className="text-lg font-poppins mb-4 text-black">Select a region:</p>
             <select onChange={handleRegionChange} className='border border-gray-300 rounded-md p-3'>

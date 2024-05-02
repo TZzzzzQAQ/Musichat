@@ -1,8 +1,12 @@
+import AuthRoute from "@/components/AuthRoute.jsx";
+
 const Recent = () => {
     return (
-        <div>
-            This is Recent!
-        </div>
+        <AuthRoute>
+            <div>
+                This is Recent!
+            </div>
+        </AuthRoute>
     );
 };
 

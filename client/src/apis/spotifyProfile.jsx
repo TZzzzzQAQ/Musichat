@@ -1,4 +1,5 @@
 import {CLIENT_ID} from "@/../config.js";
+import {setUserToken} from "@/utils/index.jsx";
 
 const redirect_uri = 'http://localhost:5173/Musichat/account';
 
@@ -55,7 +56,7 @@ export async function getAccessToken(clientId, code) {
     });
 
     const {access_token} = await result.json();
-    localStorage.setItem('userToken', access_token);
+    setUserToken(access_token);
     return access_token;
 }
 

@@ -1,8 +1,12 @@
+import AuthRoute from "@/components/AuthRoute.jsx";
+
 const Playlist = () => {
     return (
-        <div>
-            This is playlist!
-        </div>
+        <AuthRoute>
+            <div>
+                This is playlist!
+            </div>
+        </AuthRoute>
     );
 };
 

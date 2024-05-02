@@ -47,7 +47,7 @@ const AlbumDetails = () => {
     };
 
     return (
-        <div className='overflow-y-auto h-[400px] flex flex-col items-center'>
+        <div className='overflow-y-auto h-full flex flex-col items-center'>
             <h1 className='text-center pt-4 text-3xl font-poppins font-bold'>{album.name}</h1>
             <img src={album.images && album.images[0].url} alt={album.name} className='h-[200px]'/>
             <table className={'min-w-full leading-normal'}>
