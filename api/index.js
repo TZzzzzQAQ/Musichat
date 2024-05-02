@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-
+import moogose from "moogose"
 dotenv.config();
 
 const app = express();

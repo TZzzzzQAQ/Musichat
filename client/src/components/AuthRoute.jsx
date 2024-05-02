@@ -12,5 +12,3 @@ const AuthRoute = ({children}) => {
 }
 
 export default AuthRoute
-
-// 拿数据    const profile = useSelector(state => state.profile)

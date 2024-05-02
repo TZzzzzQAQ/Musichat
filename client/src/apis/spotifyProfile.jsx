@@ -13,7 +13,7 @@ export async function redirectToAuthCodeFlow() {
     params.append("client_id", CLIENT_ID);
     params.append("response_type", "code");
     params.append("redirect_uri", redirect_uri);
-    params.append("scope", "user-read-private user-read-email");
+    params.append("scope", "user-read-private user-read-email playlist-read-private playlist-read-collaborative");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 
@@ -55,7 +55,7 @@ export async function getAccessToken(clientId, code) {
         body: params
     });
 
-    const {access_token} = await result.json();
+    const {access_token, refresh_token} = await result.json();
     setUserToken(access_token);
     return access_token;
 }
@@ -64,5 +64,9 @@ export async function fetchProfile(code) {
     const accessToken = await getAccessToken(CLIENT_ID, code);
     return await fetch("https://api.spotify.com/v1/me", {
         method: "GET", headers: {Authorization: `Bearer ${accessToken}`}
-    }).then(response => response.json());
+    }).then(response => {
+        return response.json()
+    }).catch((error) => {
+        throw error;
+    });
 }

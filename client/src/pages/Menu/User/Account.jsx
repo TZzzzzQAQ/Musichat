@@ -12,35 +12,46 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (userState) {
+        setProfile(userState);
+    }, []);
+
+    useEffect(() => {
+        if (Object.keys(userState).length > 0) {
             setProfile(userState);
         }
-    }, []);
+    }, [userState]);
+
     useEffect(() => {
-        const fetchData = async () => {
-            const query = new URLSearchParams(location.search);
-            const code = query.get("code");
-            if (code) {
-                try {
-                    const profile = await fetchProfile(code)
-                    setProfile(profile);
-                    dispatch(setUserProfile(profile));
-                } catch (error) {
-                    console.error('Failed to fetch profile:', error);
-                }
-            }
-        };
-        fetchData();
-    }, [location]);
+        const query = new URLSearchParams(location.search);
+        const code = query.get("code");
+        if (code && Object.keys(profile).length === 0) {
+            handlerClickProfile();
+        }
+    }, [location, profile]);
 
     const handlerClick = () => {
         redirectToAuthCodeFlow();
     };
 
+    const handlerClickProfile = async () => {
+        const query = new URLSearchParams(location.search);
+        const code = query.get("code");
+        try {
+            const profile = await fetchProfile(code)
+            if (profile?.error?.status === 401) {
+                return
+            }
+            setProfile(profile);
+            dispatch(setUserProfile(profile));
+        } catch (error) {
+            console.error('Failed to fetch profile:', error);
+        }
+    }
     return (
         <div>
             <header className="App-header">
                 <button onClick={handlerClick}>点我登录</button>
+                {/*<button onClick={handlerClickProfile}>点我获取简介</button>*/}
                 {profile && <div>{JSON.stringify(profile)}</div>}
                 {/*    profile是一个对象里面有用户的所有信息,可以用来做Account页面*/}
             </header>

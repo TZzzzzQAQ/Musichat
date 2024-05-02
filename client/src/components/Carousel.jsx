@@ -4,7 +4,8 @@ import axios from 'axios';
 import {getEveryoneToken} from "@/utils/index.jsx";
 
 const contentStyle = {
-    height: '400px',
+    height: '33rem',
+    width: '33rem',
     color: '#fff',
     textAlign: 'center',
     position: 'relative',
@@ -42,7 +43,7 @@ const ContentCarousel = () => {
         <Carousel dotPosition={'left'} autoplay effect={'fade'}>
             {topTracks.map((track) => (
                 <div key={track.id}>
-                    <div style={{...contentStyle, backgroundImage: `url(${track.image})`, backgroundSize: 'cover'}}>
+                    <div style={{...contentStyle, backgroundImage: `url(${track.image})`, backgroundSize: 'auto'}}>
                         <div style={{
                             background: 'rgba(0, 0, 0, 0.5)',
                             height: '100%',
