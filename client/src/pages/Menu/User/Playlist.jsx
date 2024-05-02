@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 import {playListAPI} from "@/apis/userDataAPI.jsx";
 
 const Playlist = () => {
-    const [searchParams, setSearchParams] = useState({
-        limit: 10,
+    const [searchParams] = useState({
+        limit: 50,
         offset: 0
     })
     const [playListData, setPlayListData] = useState({})
@@ -12,21 +12,16 @@ const Playlist = () => {
         const fetchPlaylist = async () => {
             try {
                 const response = await playListAPI(searchParams);
-                setPlayListData(JSON.stringify(response))
+                setPlayListData(response.items)
             } catch (error) {
                 console.log(error)
-            } finally {
-
             }
-
         }
         fetchPlaylist();
     }, []);
     return (
         <AuthRoute>
-            <div>
-
-            </div>
+            {JSON.stringify(playListData)}
         </AuthRoute>
     );
 };

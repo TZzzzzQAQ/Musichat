@@ -2,7 +2,7 @@ import axios from 'axios';
 import {getUserToken} from "@/utils/tokenForUser.jsx";
 
 const requestSpotifyLogin = axios.create({
-    baseURL: 'https://api.spotify.com/v1',
+    baseURL: 'https://api.spotify.com/v1/me',
     timeout: 5000
 })
 

@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {RouterProvider} from "react-router-dom";
 import router from "@/router/index.jsx";
 import {setEveryoneToken} from "@/utils/tokenForEveryone.jsx";
-import {getEveryoneTokenAPI} from "@/apis/accountsApi.jsx";
+import {getEveryoneTokenAPI} from "@/apis/getEveryoneTokenAPI.jsx";
 
 const App = () => {
     useEffect(() => {

@@ -1,8 +1,8 @@
-import {fetchProfile, redirectToAuthCodeFlow} from "@/apis/spotifyProfile.jsx";
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setUserProfile} from "@/store/features/userSlice.jsx";
+import {useSpotifyAuth} from "@/hooks/useSpotifyAuth.jsx";
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     const [profile, setProfile] = useState({});
     const userState = useSelector(state => state.user);
     const dispatch = useDispatch();
-
+    const {redirectToAuthCodeFlow,fetchProfile} = useSpotifyAuth();
     useEffect(() => {
         setProfile(userState);
     }, []);
@@ -51,9 +51,7 @@ function App() {
         <div>
             <header className="App-header">
                 <button onClick={handlerClick}>点我登录</button>
-                {/*<button onClick={handlerClickProfile}>点我获取简介</button>*/}
                 {profile && <div>{JSON.stringify(profile)}</div>}
-                {/*    profile是一个对象里面有用户的所有信息,可以用来做Account页面*/}
             </header>
         </div>
     )

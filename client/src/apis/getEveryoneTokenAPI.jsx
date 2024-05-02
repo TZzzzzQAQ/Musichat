@@ -1,5 +1,5 @@
 import {CLIENT_ID, CLIENT_SECRET} from "../../config.js";
-import {requestSpotifyVerify} from "@/utils/requestSpotifyVerify.jsx";
+import {requestSpotifyVerify} from "@/axios/requestSpotifyVerify.jsx";
 
 export const getEveryoneTokenAPI = async () => {
     const params = new URLSearchParams();
