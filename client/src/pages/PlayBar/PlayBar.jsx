@@ -139,7 +139,7 @@ const PlayBar = () => {
                         backgroundRepeat: 'no-repeat' // 防止背景图像重复
                     }}
                 />
-                <div className={'singerDetails'}>
+                <div className={'singerDetails overflow-hidden max-w-28'}>
                     <span>{nowMusicFromRedux?.item?.name}</span>
                     <span>{nowMusicFromRedux?.item?.artists[0].name}</span>
                 </div>

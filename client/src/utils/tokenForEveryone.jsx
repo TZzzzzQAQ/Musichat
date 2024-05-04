@@ -1,14 +1,14 @@
 const TokenForEveryone = 'tokenForEveryone';
 const setEveryoneToken = (token) => {
-    localStorage.setItem(TokenForEveryone, token)
+    sessionStorage.setItem(TokenForEveryone, token)
 }
 
 const getEveryoneToken = () => {
-    return localStorage.getItem(TokenForEveryone)
+    return sessionStorage.getItem(TokenForEveryone)
 }
 
 const removeEveryoneToken = () => {
-    localStorage.removeItem(TokenForEveryone)
+    sessionStorage.removeItem(TokenForEveryone)
 }
 
 export {

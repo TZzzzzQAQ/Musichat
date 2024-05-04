@@ -1,6 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom'
 
-import Browse from "@/pages/Menu/Discover/Browse.jsx";
+import Browse from "@/pages/Menu/Browse.jsx";
 import Layout from "@/pages/Layout/Layout.jsx";
 import Account from "@/pages/Menu/User/Account.jsx";
 import Setting from "@/pages/Menu/User/User.jsx";
@@ -14,7 +14,7 @@ import ChatWithBot from "@/pages/Menu/ChatWithBot.jsx";
 import GroupChat from "@/pages/Menu/GroupChat.jsx";
 import AlbumDetails from "@/pages/Menu/Discover/AlbumDetails.jsx";
 import ArtistDetail from '../pages/Menu/Discover/ArtistDetail';
-
+import PlaylistDetails from '@/pages/Menu/User/PlaylistDetails';
 
 const router = createBrowserRouter([
     {
@@ -44,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: '/playlist',
                 element: <Playlist></Playlist>
+            },
+            {
+                path: 'playlist/:id',
+                element: <PlaylistDetails/>
             },
             {
                 path: '/album',

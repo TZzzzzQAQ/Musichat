@@ -1,14 +1,14 @@
 const ActiveDevice = 'activeDevice';
 const setActiveDevice = (token) => {
-    localStorage.setItem(ActiveDevice, token)
+    sessionStorage.setItem(ActiveDevice, token)
 }
 
 const getActiveDevice = () => {
-    return localStorage.getItem(ActiveDevice)
+    return sessionStorage.getItem(ActiveDevice)
 }
 
 const removeActiveDevice = () => {
-    localStorage.removeItem(ActiveDevice)
+    sessionStorage.removeItem(ActiveDevice)
 }
 
 export {

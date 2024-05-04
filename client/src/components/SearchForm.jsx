@@ -32,7 +32,7 @@ const SearchForm = () => {
         q: 'Taylor Swift',
         type: 'artist',
         market: 'NZ',
-        limit: 20,
+        limit: 50,
         offset: offsetNumber
     })
 
