@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setUserProfile} from "@/store/features/userSlice.jsx";
 import {useSpotifyAuth} from "@/hooks/useSpotifyAuth.jsx";
+import Setting from "@/pages/Menu/User/User.jsx";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
                 <button onClick={handlerClick}>点我登录</button>
                 {profile && <div>{JSON.stringify(profile)}</div>}
             </header>
+            <Setting/>
         </div>
     )
         ;

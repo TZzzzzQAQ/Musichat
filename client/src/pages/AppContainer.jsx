@@ -54,11 +54,6 @@ const item = [
                 key: '/playlist',
                 icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
                 label: 'Playlist'
-            },
-            {
-                key: '/setting',
-                icon: <FontAwesomeIcon icon={faGear} style={iconColor}/>,
-                label: 'Setting'
             }
         ]
     },
