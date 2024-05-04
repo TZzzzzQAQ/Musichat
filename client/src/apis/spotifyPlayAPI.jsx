@@ -14,3 +14,9 @@ export function getActiveDeviceAPI() {
         url: '/devices'
     })
 }
+
+export function getPlaybackStateAPI() {
+    return requestSpotifyPlay({
+        method: 'GET'
+    })
+}
