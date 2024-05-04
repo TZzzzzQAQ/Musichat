@@ -35,19 +35,17 @@ const Playlist = () => {
     return (
         <div className='overflow-y-auto h-full w-full px-4 md:px-10'>
             <h1 className="text-3xl font-bold mb-4 text-gray-800">Your Playlists</h1>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid grid-cols-3 2xl:grid-cols-4 gap-4'>
                 {playlists.length > 0 ? (
                     playlists.map((playlist) => (
-                        <div key={playlist.id}
-                             className="bg-white rounded-lg p-5 hover:shadow-2xl hover:bg-cyan-400 transition duration-300 ease-in-out">
-                            <h2 className='text-lg font-bold text-gray-700'>{playlist.name}</h2>
-                            <img src={playlist.images[0]?.url} alt={playlist.name}
-                                 className="w-52 h-52 rounded-full mx-auto my-3"/>
-                            <NavLink to={`/playlist/${playlist.id}`}
-                                     className='text-lg text-blue-500 hover:text-blue-600 no-underline '>
-                                Listen...
-                            </NavLink>
-                        </div>
+                        <NavLink to={`/playlist/${playlist.id}`}>
+                            <div key={playlist.id}
+                                 className="bg-white rounded-lg p-5 hover:shadow-2xl hover:bg-cyan-400 transition duration-300 ease-in-out">
+                                <h2 className='text-lg font-bold text-gray-700'>{playlist.name}</h2>
+                                <img src={playlist.images[0]?.url} alt={playlist.name}
+                                     className="w-52 h-52 rounded-full mx-auto my-3"/>
+                            </div>
+                        </NavLink>
                     ))
                 ) : (
                     <div className="text-xl text-gray-600 text-center py-10">Loading playlists...</div>
