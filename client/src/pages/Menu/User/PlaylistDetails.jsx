@@ -27,8 +27,8 @@ const Playlist = () => {
 
     return (
         <AuthRoute>
-            <div className='overflow-y-auto h-full flex flex-col items-center'>
-                <div>
+            <div className='overflow-y-auto h-full w-full flex flex-col items-center'>
+                <div className={"overflow-x-hidden h-full w-full"}>
                     {/*<h1 className='text-center pt-4 text-3xl font-poppins font-bold'>{playListData[0]?.name}</h1>*/}
                     {/*<img src={playListData[0]?.images[0]?.url} alt={playListData[0]?.name} className='h-[200px]'/>*/}
                     <table className={'min-w-full leading-normal'}>

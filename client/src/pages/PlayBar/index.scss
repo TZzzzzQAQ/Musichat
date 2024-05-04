@@ -17,6 +17,14 @@
       display: flex;
       font-size: 16px;
       flex-direction: column;
+      white-space: nowrap;
+
+      span {
+        display: inline-block; /* 或 display: block; 根据需要选择 */
+        overflow: hidden;
+        text-overflow: ellipsis; /* 添加省略号表示文本溢出 */
+        width: 100%; /* 使 span 占满整个容器宽度 */
+      }
     }
   }
 

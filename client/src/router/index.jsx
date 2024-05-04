@@ -1,6 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom'
 
-import Browse from "@/pages/Menu/Discover/Browse.jsx";
+import Browse from "@/pages/Menu/Browse.jsx";
 import Layout from "@/pages/Layout/Layout.jsx";
 import Account from "@/pages/Menu/User/Account.jsx";
 import Setting from "@/pages/Menu/User/User.jsx";

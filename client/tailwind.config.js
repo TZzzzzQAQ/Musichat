@@ -12,6 +12,9 @@ export default {
             backdropFilter: {
                 'none': 'none',
                 'blur': 'blur(20px)',
+            },
+            userSelect: {
+                none: 'none',
             }
         },
     },
