@@ -17,13 +17,26 @@ import {
 import {faHeart} from "@fortawesome/free-regular-svg-icons"
 import {debounce} from "lodash/function";
 import src from '@/assets/stay with me.mp3'
-import {formatTime} from "@/utils/index.jsx";
+import {formatTime, getUserToken} from "@/utils/index.jsx";
+import {playListAPI} from "@/apis/spotifyPlayAPI.jsx";
+import {getActiveDevice, setActiveDevice} from "@/utils/activeDevice.jsx";
 
 const iconColor = {color: "#74C0FC"};
 const twoColors = {
     '0%': '#108ee9',
     '100%': '#87d068',
 };
+const track = {
+    name: "",
+    album: {
+        images: [
+            {url: ""}
+        ]
+    },
+    artists: [
+        {name: ""}
+    ]
+}
 const PlayBar = () => {
     const [percent, setPercent] = useState(0); // 初始进度为0
     const [volumePercent, setVolumePercent] = useState(40)
@@ -115,8 +128,58 @@ const PlayBar = () => {
             audio.removeEventListener('timeupdate', updateProgress);
         };
     }, []);
+
+    const [is_paused, setPaused] = useState(false);
+    const [is_active, setActive] = useState(false);
+    const [player, setPlayer] = useState(undefined);
+    const [current_track, setTrack] = useState(track);
+    const [playUri, setPlayUri] = useState({"uris": ["spotify:track:1oLmDOpJtIMFdRFBXdnOvj"]})
+    useEffect(() => {
+        window.onSpotifyWebPlaybackSDKReady = () => {
+
+            const player = new window.Spotify.Player({
+                name: 'Web Playback SDK',
+                getOAuthToken: cb => {
+                    cb(getUserToken());
+                },
+                volume: 0.5
+            });
+
+            setPlayer(player);
+
+            player.addListener('ready', ({device_id}) => {
+                console.log('Ready with Device ID', device_id);
+                setActiveDevice(device_id)
+            });
+
+            player.addListener('not_ready', ({device_id}) => {
+                console.log('Device ID has gone offline', device_id);
+            });
+
+            player.addListener('player_state_changed', (state => {
+
+                if (!state) {
+                    return;
+                }
+
+                setTrack(state.track_window.current_track);
+                setPaused(state.paused);
+
+                player.getCurrentState().then(state => {
+                    (!state) ? setActive(false) : setActive(true)
+                });
+
+            }));
+            player.connect();
+        };
+    }, []);
+    const tempHandlerClick = () => {
+        // player.togglePlay()
+        playListAPI(getActiveDevice(), playUri)
+    }
     return (
         <div className={'playBar'}>
+            <button onClick={tempHandlerClick}>play</button>
             <audio
                 id="audioPlayer"
                 src={src}
