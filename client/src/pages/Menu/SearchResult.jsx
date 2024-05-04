@@ -1,4 +1,3 @@
-import {useLocation} from "react-router-dom";
 import ImageCard from "@/components/ImageCard.jsx";
 import {useSelector} from "react-redux";
 import TrackList from "@/components/TrackList.jsx";

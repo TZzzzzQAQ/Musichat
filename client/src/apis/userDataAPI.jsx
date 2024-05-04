@@ -2,7 +2,6 @@ import {requestSpotifyLogin} from "@/axios/requestSpotifyLogin.jsx";
 import axios from 'axios';
 import { getUserToken } from "@/utils/tokenForUser.jsx";
 
-
 export function getPlayListAPI(params) {
     return requestSpotifyLogin({
         method: 'GET',
