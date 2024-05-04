@@ -1,7 +1,7 @@
 import ImageCard from "@/components/ImageCard.jsx";
 import {useSelector} from "react-redux";
 import TrackList from "@/components/TrackList.jsx";
-import { useLocation, useNavigate } from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 const SearchResult = () => {
     const location = useLocation();
