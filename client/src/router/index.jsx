@@ -14,7 +14,7 @@ import ChatWithBot from "@/pages/Menu/ChatWithBot.jsx";
 import GroupChat from "@/pages/Menu/GroupChat.jsx";
 import AlbumDetails from "@/pages/Menu/Discover/AlbumDetails.jsx";
 import ArtistDetail from '../pages/Menu/Discover/ArtistDetail';
-
+import PlaylistDetails from '@/pages/Menu/User/PlaylistDetails';
 
 const router = createBrowserRouter([
     {
@@ -44,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: '/playlist',
                 element: <Playlist></Playlist>
+            },
+            {
+                path: 'playlist/:id',
+                element: <PlaylistDetails/>
             },
             {
                 path: '/album',
