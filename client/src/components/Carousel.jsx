@@ -10,6 +10,9 @@ const contentStyle = {
     textAlign: 'center',
     position: 'relative',
     overflow: 'hidden',
+    backgroundSize: 'cover', // 确保背景图像覆盖整个元素
+    backgroundPosition: 'center', // 确保图片以其中心为中心显示
+    backgroundRepeat: 'no-repeat' // 防止背景图像重复
 };
 
 const ContentCarousel = () => {

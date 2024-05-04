@@ -3,7 +3,14 @@ import {CLIENT_ID} from "@/../config.js";
 import {setUserToken} from "@/utils/index.jsx";
 
 const redirect_uri = 'http://localhost:5173/Musichat/account';
-
+const scope = "user-read-private " +
+    "user-read-email " +
+    "playlist-read-private " +
+    "user-read-recently-played " +
+    "playlist-read-collaborative " +
+    "user-modify-playback-state " +
+    "user-read-playback-state " +
+    "streaming"
 export const useSpotifyAuth = () => {
     const [accessToken, setAccessToken] = useState(null);
     const [refreshToken, setRefreshToken] = useState(null);
@@ -37,7 +44,7 @@ export const useSpotifyAuth = () => {
         params.append("client_id", CLIENT_ID);
         params.append("response_type", "code");
         params.append("redirect_uri", redirect_uri);
-        params.append("scope", "user-read-private user-read-email playlist-read-private user-read-recently-played playlist-read-collaborative");
+        params.append("scope", scope);
         params.append("code_challenge_method", "S256");
         params.append("code_challenge", challenge);
 

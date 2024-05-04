@@ -1,6 +1,6 @@
 import {requestSpotifyLogin} from "@/axios/requestSpotifyLogin.jsx";
 
-export function playListAPI(params) {
+export function getPlayListAPI(params) {
     return requestSpotifyLogin({
         method: 'GET',
         url: '/playlists',
@@ -8,7 +8,7 @@ export function playListAPI(params) {
     })
 }
 
-export function recentPlaylistsAPI(params) {
+export function getRecentPlaylistsAPI(params) {
     return requestSpotifyLogin({
         method: 'GET',
         url: 'player/recently-played',
