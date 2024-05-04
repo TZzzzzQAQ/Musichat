@@ -1,6 +1,6 @@
 import AuthRoute from "@/components/AuthRoute.jsx";
 import {useEffect, useState} from "react";
-import {playListAPI} from "@/apis/userDataAPI.jsx";
+import {getPlayListAPI} from "@/apis/userDataAPI.jsx";
 
 const Playlist = () => {
     const [searchParams] = useState({
@@ -11,7 +11,7 @@ const Playlist = () => {
     useEffect(() => {
         const fetchPlaylist = async () => {
             try {
-                const response = await playListAPI(searchParams);
+                const response = await getPlayListAPI(searchParams);
                 setPlayListData(response.items)
             } catch (error) {
                 console.log(error)

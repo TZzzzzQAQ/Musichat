@@ -1,11 +1,10 @@
 import {requestSpotifyPlay} from "@/axios/requestSpotifyPlay.jsx";
 
-export function playListAPI(deviceId, params) {
+export function playListAPI(deviceId, data) {
     return requestSpotifyPlay({
         method: 'PUT',
-        // url: `/play?device_id=${deviceId}`,
-        url: '/play',
-        params
+        url: `/play?device_id=${deviceId}`,
+        data
     })
 }
 

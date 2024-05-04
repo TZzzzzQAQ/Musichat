@@ -1,6 +1,6 @@
 import AuthRoute from "@/components/AuthRoute.jsx";
 import {useEffect, useState} from "react";
-import {recentPlaylistsAPI} from "@/apis/userDataAPI.jsx";
+import {getRecentPlaylistsAPI} from "@/apis/userDataAPI.jsx";
 
 const Recent = () => {
 
@@ -12,7 +12,7 @@ const Recent = () => {
     useEffect(() => {
         const fetchRecentPlaylist = async () => {
             try {
-                const response = await recentPlaylistsAPI(searchParams);
+                const response = await getRecentPlaylistsAPI(searchParams);
                 setRecentPlaylist(response.items)
             } catch (error) {
                 console.log(error)
