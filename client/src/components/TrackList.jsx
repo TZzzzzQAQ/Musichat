@@ -1,16 +1,20 @@
 import {formatTime} from "@/utils/index.jsx";
-import {playListAPI} from "@/apis/spotifyPlayAPI.jsx";
+import {getPlaybackStateAPI, playListAPI} from "@/apis/spotifyPlayAPI.jsx";
 import {useState} from "react";
 import {getActiveDevice} from "@/utils/activeDevice.jsx";
+import {useDispatch} from "react-redux";
+import {setNowMusic} from "@/store/features/musicSlice.jsx";
 
 const TrackList = ({data: {name, artists, duration_ms, uri}}) => {
-    const [playUri, setPlayUri] = useState({
-        uri: [uri]
-    })
+    const [playUri, setPlayUri] = useState({"uris": [uri]})
+    const dispatch = useDispatch();
     const handlerClick = async () => {
         try {
-            const response = await playListAPI(getActiveDevice(),playUri);
-            console.log(response)
+            await playListAPI(getActiveDevice(), playUri);
+            setTimeout(async () => {
+                const response = await getPlaybackStateAPI();
+                dispatch(setNowMusic(response));
+            }, 1000);
         } catch (err) {
 
         }
