@@ -3,8 +3,11 @@ import ImageCard from '@/components/ImageCard.jsx';
 import {NavLink} from 'react-router-dom';
 import {getNewReleasesAPI} from "@/apis/everyoneDataAPI.jsx";
 
+
+
 const AlbumPage = () => {
     const [albums, setAlbums] = useState([]);
+    const [error, setError] = useState(null);
     const [searchParams, setSearchParams] = useState({
         type: 'album',
         limit: 10,
@@ -15,8 +18,10 @@ const AlbumPage = () => {
             try {
                 const response = await getNewReleasesAPI(searchParams)
                 setAlbums(response.albums.items);
+                setError(null); 
             } catch (error) {
-                console.error('Error fetching albums:', error);
+                setError(`Error fetching albums: ${error.message}`);
+                setAlbums([]); // clear albums
             }
         };
         fetchAlbums();

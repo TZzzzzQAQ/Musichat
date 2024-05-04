@@ -13,8 +13,16 @@ export function getNewReleasesAPI(params) {
         url: '/browse/new-releases',
         method: 'GET',
         params
-    })
+    }).then(response => {
+        // Assuming the response is the direct data you want
+        return response;
+    }).catch(error => {
+        console.error("Error fetching new releases:", error);
+        // Optionally re-throw the error or handle it by returning a default structure
+         // Re-throwing keeps the error handling consistent and lets the caller handle it
+    });
 }
+
 
 export function getAlbumsFromIDAPI(id) {
     return requestSpotifyCommon({
