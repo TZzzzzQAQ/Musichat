@@ -20,7 +20,7 @@ musicRoutes.post('/', async (req, res) => {
     const run = await openai.beta.threads.runs.createAndPoll(
       thread.id,
       { 
-        assistant_id: process.env.OPENAI_ASSISTANT_ID,
+        assistant_id: process.env.OPENAI_ASSISTANT_ID
       }
     );
 
