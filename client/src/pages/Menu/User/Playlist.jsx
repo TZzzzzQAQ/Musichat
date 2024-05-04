@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import {NavLink} from 'react-router-dom';
-import {getPlaylistTracks} from '@/apis/userDataAPI.jsx';
-import {playListAPI} from "@/apis/spotifyPlayAPI.jsx";
+import {getPlayListAPI, getPlaylistTracks} from '@/apis/userDataAPI.jsx';
 
 const Playlist = () => {
     const [playlists, setPlaylists] = useState([]);
@@ -10,7 +9,7 @@ const Playlist = () => {
     useEffect(() => {
         const fetchPlaylists = async () => {
             try {
-                const response = await playListAPI(searchParams);
+                const response = await getPlayListAPI(searchParams);
                 const playlistsWithTracks = await Promise.all(
                     response.items.map(async (playlist) => {
                         const tracksResponse = await getPlaylistTracks(playlist.id);

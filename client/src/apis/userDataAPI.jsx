@@ -43,7 +43,7 @@ export function getPlaylistTracks(playlist_id, params) {
   
 export function getPlaylistFromIDAPI(id) {
     console.log('Playlist ID passed to getPlaylistFromIDAPI:', id);
-    return requestSpotifyCommon({
+    return requestSpotifyLogin({
       url: `playlists/${id}`,
       method: 'GET'
     })

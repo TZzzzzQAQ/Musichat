@@ -2,24 +2,21 @@ import AuthRoute from "@/components/AuthRoute.jsx";
 import {useEffect, useState} from "react";
 import {getPlaylistTracks} from "@/apis/userDataAPI.jsx";
 import TrackList from "@/components/TrackList.jsx";
-import {getPlaylistFromIDAPI} from "@/apis/userDataAPI.jsx";
 import {useParams} from 'react-router-dom';
-import {playListAPI} from "@/apis/spotifyPlayAPI.jsx";
 
 const Playlist = () => {
-    const [searchParams] = useState({limit: 50, offset: 0});
     const [playListData, setPlayListData] = useState([]);
     const {id} = useParams();
-    const [playlist, setPlaylist] = useState({});
-    const [tracks, setTracks] = useState([]);
 
     useEffect(() => {
             const fetchPlaylist = async () => {
                 try {
                     console.log('Playlist ID from URL:', id);
-                    const response = await getPlaylistFromIDAPI(id);
-                    setPlaylist(response);
-                    setTracks(response.tracks.items);
+                    let response = await getPlaylistTracks(id);
+                    response=response.items.flatMap(item => {
+                        return item.track
+                    })
+                    setPlayListData(response);
                 } catch (error) {
                     console.error('Error fetching Playlist:', error);
                 }
@@ -28,36 +25,12 @@ const Playlist = () => {
         },
         [id]);
 
-    useEffect(() => {
-        const fetchPlaylist = async () => {
-            try {
-                const response = await playListAPI(searchParams);
-                const playlistsWithTracks = await Promise.all(
-                    response.items.map(async (playlist) => {
-                        const tracksResponse = await getPlaylistTracks(playlist.id);
-                        const tracks = tracksResponse.items ? tracksResponse.items.map((item) => ({
-                            name: item.track.name,
-                            artists: item.track.artists,
-                            duration_ms: item.track.duration_ms,
-                            uri: item.track.uri,
-                        })) : [];
-                        return {...playlist, tracks};
-                    })
-                );
-                setPlayListData(playlistsWithTracks);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchPlaylist();
-    }, []);
-
     return (
         <AuthRoute>
             <div className='overflow-y-auto h-full flex flex-col items-center'>
                 <div>
-                    <h1 className='text-center pt-4 text-3xl font-poppins font-bold'>{playListData[0]?.name}</h1>
-                    <img src={playListData[0]?.images[0]?.url} alt={playListData[0]?.name} className='h-[200px]'/>
+                    {/*<h1 className='text-center pt-4 text-3xl font-poppins font-bold'>{playListData[0]?.name}</h1>*/}
+                    {/*<img src={playListData[0]?.images[0]?.url} alt={playListData[0]?.name} className='h-[200px]'/>*/}
                     <table className={'min-w-full leading-normal'}>
                         <thead>
                         <tr>
@@ -67,7 +40,7 @@ const Playlist = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {playListData[0]?.tracks.map((item) => (
+                        {playListData.map((item) => (
                             <TrackList data={item} key={item.uri}/>
                         ))}
                         </tbody>
