@@ -18,8 +18,14 @@ export function getNewReleasesAPI(params) {
 
 export function getAlbumsFromIDAPI(id) {
     return requestSpotifyCommon({
-        url:`albums/${id}`,
+        url: `albums/${id}`,
         method: 'GET'
     })
 }
 
+export function getTopTracksAPI(id) {
+    return requestSpotifyCommon({
+        url: `/artists/${id}/top-tracks`,
+        method: 'GET'
+    })
+}

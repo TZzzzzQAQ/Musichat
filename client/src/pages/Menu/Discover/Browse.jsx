@@ -2,7 +2,7 @@ import ContentCarousel from "@/components/Carousel.jsx";
 
 const Browse = () => {
     return (
-        <div>
+        <div className={'h-full'}>
             <ContentCarousel/>
         </div>
     );
