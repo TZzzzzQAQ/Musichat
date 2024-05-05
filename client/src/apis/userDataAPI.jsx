@@ -13,7 +13,7 @@ export function getPlayListAPI(params) {
 export function getRecentPlaylistsAPI(params) {
     return requestSpotifyLogin({
         method: 'GET',
-        url: 'player/recently-played',
+        url: '/player/recently-played',
         params
     })
 }

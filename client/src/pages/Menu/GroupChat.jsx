@@ -1,8 +1,9 @@
 import ChatContent from "@/components/ChatContent.jsx";
+import {sendMessageAPI} from "@/apis/chatGroupAPI.jsx";
 
 const GroupChat = () => {
     const chatFunction = async (input) => {
-        return await chatWithGroup(input)
+        return sendMessageAPI(input);
     }
 
     return (

@@ -50,7 +50,7 @@ const ChatContent = ({chatFunction, type}) => {
             setIsLoading(false);
             return;
         }
-        await chatFunction(input).then((response) => {
+        await chatFunction({input}).then((response) => {
             setMessages(prevState => [...prevState, {sender: 'user', text: userMessage}]);
             setMessages(prevState => [...prevState, {sender: type, text: response}]);
         }).catch(error => {

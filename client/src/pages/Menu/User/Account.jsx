@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setUserProfile} from "@/store/features/userSlice.jsx";
 import {useSpotifyAuth} from "@/hooks/useSpotifyAuth.jsx";
 import Setting from "@/pages/Menu/User/User.jsx";
+import {sendUserDataAPI} from "@/apis/chatGroupAPI.jsx";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     useEffect(() => {
         if (Object.keys(userState).length > 0) {
             setProfile(userState);
+            sendUserDataAPI(userState)
         }
     }, [userState]);
 
