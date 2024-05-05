@@ -1,7 +1,8 @@
 import express from 'express';
 import {OpenAI} from 'openai';
-
-const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+import dotenv from 'dotenv';
+dotenv.config();
+const openai = new OpenAI({apiKey: process.env.VITE_OPENAI_API_KEY});
 
 const musicRoutes = express.Router();
 musicRoutes.post('/', async (req, res) => {
@@ -19,7 +20,7 @@ musicRoutes.post('/', async (req, res) => {
         const run = await openai.beta.threads.runs.createAndPoll(
             thread.id,
             {
-                assistant_id: process.env.OPENAI_ASSISTANT_ID
+                assistant_id: process.env.VITE_OPENAI_ASSISTANT_ID
             }
         );
 

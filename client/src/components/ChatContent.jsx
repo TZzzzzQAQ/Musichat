@@ -24,6 +24,7 @@ const ChatContent = ({chatFunction, type}) => {
             setMessages(dataFromRedux)
         }
     }, []);
+
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
@@ -50,12 +51,9 @@ const ChatContent = ({chatFunction, type}) => {
             setIsLoading(false);
             return;
         }
-        await chatFunction({input}).then((response) => {
-            setMessages(prevState => [...prevState, {sender: 'user', text: userMessage}]);
-            setMessages(prevState => [...prevState, {sender: type, text: response}]);
-        }).catch(error => {
-            console.log(error)
-        });
+        const response = chatFunction(input)
+        setMessages(prevState => [...prevState, {sender: dataFromRedux.profile.display_name, text: userMessage}]);
+        setMessages(prevState => [...prevState, {sender: type, text: response}]);
         setIsLoading(false);
         setInput('');
     };
