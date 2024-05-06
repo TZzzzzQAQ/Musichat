@@ -1,5 +1,6 @@
-const ImageCard = ({data: {name, images}, artist = true, showname = true}) => {
-    const imageUrl = images[0]?.url || 'https://via.placeholder.com/160';
+const ImageCard = ({ data: { name, images = [] }, artist = true, showname = true }) => {
+    // Ensuring that an image URL is available, defaulting to a placeholder if not
+    const imageUrl = images.length > 0 && images[0].url ? images[0].url : 'https://via.placeholder.com/160';
 
     return (
         <div className='group w-48 h-48 flex flex-col items-center place-content-between rounded-lg mt-10 relative'>
@@ -26,7 +27,6 @@ const ImageCard = ({data: {name, images}, artist = true, showname = true}) => {
                     null
                 }
             </div>
-
         </div>
     );
 };
