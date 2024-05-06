@@ -43,7 +43,7 @@ const ChatWithBot = () => {
         <div className="h-full flex flex-col ">
             <div className="flex-1 overflow-y-auto p-4 ">
                 {chatHistory.map((chat, index) => (
-                    <div key={index} className={`flex ${chat.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div key={index} className={`flex mt-2 ${chat.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`max-w-xs p-2 rounded-lg  ${chat.type === 'user' ? 'bg-green-300' : 'border-2 shadow-lg'}`}>
                             {chat.message}
                         </div>
