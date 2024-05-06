@@ -14,7 +14,7 @@ import {
     faHeart, faHouse,
     faList,
     faMagnifyingGlass, faMicrophoneLines,
-    faUser, faComments
+    faUser, faComments, faRobot
 } from "@fortawesome/free-solid-svg-icons";
 import SearchForm from "@/components/SearchForm.jsx";
 import ToggleDark from "@/components/ToggleDark.jsx";
@@ -76,7 +76,7 @@ const item = [
     },
     {
         key: '/chatWithBot',
-        icon: <FontAwesomeIcon icon={faComments} style={iconColor}/>,
+        icon: <FontAwesomeIcon icon={faRobot} style={iconColor}/>,
         label: 'chatWithBot'
     },
     {
