@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import ImageCard from '@/components/ImageCard.jsx';
 import {NavLink} from 'react-router-dom';
 import {getNewReleasesAPI} from "@/apis/everyoneDataAPI.jsx";
+import Loading from "@/components/Loading/Loading.jsx";
 
 const AlbumPage = () => {
     const [albums, setAlbums] = useState([]);
@@ -24,7 +25,6 @@ const AlbumPage = () => {
 
     return (
         <div className='overflow-y-auto h-full'>
-            <h1 className="text-3xl font-poppins font-bold mb-4">New Releases</h1>
             {albums.length > 0 ? (
                 <div className={'mb-8'}>
                     {albums.map((album) => (
@@ -41,11 +41,7 @@ const AlbumPage = () => {
                         </div>
                     ))}
                 </div>
-            ) : (
-                <div className="text-xl font-poppins text-center py-10">
-                    {searchParams.market ? 'No albums found.' : 'Loading albums...'}
-                </div>
-            )}
+            ) : <Loading/>}
         </div>
     );
 };

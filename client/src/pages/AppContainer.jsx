@@ -50,11 +50,6 @@ const item = [
                 icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
                 label: 'Playlist'
             }
-            // , {
-            //     key: '/recent',
-            //     icon: <FontAwesomeIcon icon={faClock} style={iconColor}/>,
-            //     label: 'Recent'
-            // }
         ]
     },
     {
@@ -68,9 +63,9 @@ const item = [
                 label: 'Artist'
             },
             {
-                key: '/album',
+                key: '/newRelease',
                 icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor}/>,
-                label: 'Album'
+                label: 'NewRelease'
             },
             {
                 key: '/searchResult',
