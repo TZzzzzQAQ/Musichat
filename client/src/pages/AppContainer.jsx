@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    UserOutlined,
 } from '@ant-design/icons';
 import {Layout, Menu, Button, Avatar} from 'antd';
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
@@ -10,7 +9,7 @@ import PlayBar from "@/pages/Menu/PlayBar.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {
-    faClock, faCompactDisc,
+    faCompactDisc,
     faHeart, faHouse,
     faList,
     faMagnifyingGlass, faMicrophoneLines,
