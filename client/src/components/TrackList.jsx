@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
 
 const TrackList = ({data: {name, artists, duration_ms, uri}}) => {
-    const [playUri, setPlayUri] = useState({"uris": [uri]})
+    const [playUri] = useState({"uris": [uri]})
     const dispatch = useDispatch();
     const handlerClick = async () => {
         try {

@@ -94,31 +94,40 @@ const PlayBar = () => {
         const clickX = e.clientX;
         const newPercent = ((clickX - dimensionsVolume.left) / dimensionsVolume.width) * 100;
         setVolumePercent(() => newPercent);
-        player.setVolume(newPercent / 100)
+        player.setVolume(newPercent / 100).then()
     })
 
-    const play = () => {
-        player.togglePlay();
+    const play = async () => {
+        await player.togglePlay();
         setIsPlaying(prevState => !prevState)
     };
-    const pause = () => {
-        player.togglePlay();
+    const pause = async () => {
+        await player.togglePlay();
         setIsPlaying(prevState => !prevState)
     };
-    const previousTrack = () => {
-        player.previousTrack()
+    const previousTrack = async () => {
+        await player.previousTrack()
         setTimeout(async () => {
             const response = await getPlaybackStateAPI();
             dispatch(setNowMusic(response));
         }, 1000);
     }
-    const nextTrack = () => {
-        player.nextTrack()
+    const nextTrack = async () => {
+        await player.nextTrack()
         setTimeout(async () => {
             const response = await getPlaybackStateAPI();
             dispatch(setNowMusic(response));
         }, 1000);
     }
+    const handleProgressClick = debounce((e) => {
+        const progressBar = progressRef.current;
+        const clickX = e.clientX - progressBar.getBoundingClientRect().left;
+        const progressBarWidth = progressBar.clientWidth;
+        const clickPercentage = clickX / progressBarWidth;
+        const seekTime = clickPercentage * durationTime;
+        player.seek(seekTime);
+        setNowTime(seekTime);
+    }, 200);
     useEffect(() => {
         window.onSpotifyWebPlaybackSDKReady = () => {
             const player = new window.Spotify.Player({
@@ -178,7 +187,7 @@ const PlayBar = () => {
                     <p className={'font-bold w-12'}>{formatTime(nowTime / 1000)}</p>
                     <div
                         className={'w-72 cursor-pointer'}
-                        ref={progressRef}
+                        ref={progressRef} onClick={handleProgressClick}
                     >
                         <Progress percent={Math.round(nowTime / durationTime * 100)} strokeColor={twoColors}
                                   showInfo={false}/>
