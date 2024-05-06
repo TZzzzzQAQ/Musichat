@@ -16,7 +16,7 @@ const TrackList = ({data: {name, artists, duration_ms, uri}}) => {
                 dispatch(setNowMusic(response));
             }, 1000);
         } catch (err) {
-
+            console.log(err)
         }
     }
     return (

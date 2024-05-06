@@ -1,7 +1,7 @@
 import ImageCard from "@/components/ImageCard.jsx";
 import {useSelector} from "react-redux";
-import TrackList from "@/components/TrackList.jsx";
 import {NavLink, useLocation} from "react-router-dom";
+import TrackTable from "@/components/TrackTable.jsx";
 
 const SearchResult = () => {
     const location = useLocation();
@@ -31,20 +31,7 @@ const SearchResult = () => {
                 ))}
             </div>}
             {someData.tracks && <div className={'overflow-x-hidden h-full'}>
-                <table className={'min-w-full leading-normal'}>
-                    <thead>
-                    <tr>
-                        <th className={"w-[32rem] xl:w-[40rem] px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider"}>Track</th>
-                        <th className={'w-80 xl:w-96 px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider'}>Singer</th>
-                        <th className={'xl:px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider'}>Duration</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {tracksItems.map((item) => (
-                        <TrackList data={item} key={item.id}/>
-                    ))}
-                    </tbody>
-                </table>
+                <TrackTable playListData={tracksItems}/>
             </div>}
             {!hasData && <div className="text-xl font-poppins text-center py-10">Search what you want!</div>}
         </>

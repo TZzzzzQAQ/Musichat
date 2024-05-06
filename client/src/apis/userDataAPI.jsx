@@ -31,7 +31,6 @@ export function getPlaylistTracks(playlist_id, params) {
       params
     })
     .then(response => {
-      console.log('Response data:', response.data);
       return response.data;
     })
     .catch(error => {

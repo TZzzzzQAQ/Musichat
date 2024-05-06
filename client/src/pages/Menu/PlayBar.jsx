@@ -14,7 +14,9 @@ import {faHeart} from "@fortawesome/free-regular-svg-icons"
 import {debounce} from "lodash/function";
 import {formatTime, getUserToken} from "@/utils/index.jsx";
 import {setActiveDevice} from "@/utils/activeDevice.jsx";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getPlaybackStateAPI} from "@/apis/spotifyPlayAPI.jsx";
+import {setNowMusic} from "@/store/features/musicSlice.jsx";
 
 const iconColor = {color: "#74C0FC"};
 const twoColors = {
@@ -31,27 +33,43 @@ const PlayBar = () => {
     const [durationTime, setDurationTime] = useState(0)
     const [rotation, setRotation] = useState(0);
     const [dimensionsVolume, setDimensionsVolume] = useState({width: 0, left: 0})
+    const dispatch = useDispatch()
+
     const progressRef = useRef(null);
     const volumeProgressBar = useRef(null);
 
     useEffect(() => {
-        setIsPlaying(true)
+        setIsPlaying(true);
         if (nowMusicFromRedux?.item?.duration_ms) {
             setDurationTime(nowMusicFromRedux.item.duration_ms);
         }
         setNowTime(0);
-        const intervalId = setInterval(() => {
-            setNowTime(prevNowTime => {
-                if (prevNowTime < durationTime - 500) {
-                    return prevNowTime + 1000;
-                } else {
-                    clearInterval(intervalId);
-                    return prevNowTime;
-                }
-            });
-        }, 1000);
-        return () => clearInterval(intervalId);
-    }, [nowMusicFromRedux, durationTime]);
+    }, [nowMusicFromRedux]);
+
+    useEffect(() => {
+        let intervalId;
+        if (isPlaying) {
+            intervalId = setInterval(() => {
+                setNowTime(prevNowTime => {
+                    if (prevNowTime < durationTime - 1000) {
+                        return prevNowTime + 1000;
+                    } else {
+                        clearInterval(intervalId);
+                        return durationTime;
+                    }
+                });
+            }, 1000);
+        } else {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        }
+        return () => {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        };
+    }, [isPlaying, durationTime]);
 
     useEffect(() => {
         if (volumeProgressBar.current) {
@@ -87,7 +105,20 @@ const PlayBar = () => {
         player.togglePlay();
         setIsPlaying(prevState => !prevState)
     };
-
+    const previousTrack = () => {
+        player.previousTrack()
+        setTimeout(async () => {
+            const response = await getPlaybackStateAPI();
+            dispatch(setNowMusic(response));
+        }, 1000);
+    }
+    const nextTrack = () => {
+        player.nextTrack()
+        setTimeout(async () => {
+            const response = await getPlaybackStateAPI();
+            dispatch(setNowMusic(response));
+        }, 1000);
+    }
     useEffect(() => {
         window.onSpotifyWebPlaybackSDKReady = () => {
             const player = new window.Spotify.Player({
@@ -135,12 +166,13 @@ const PlayBar = () => {
             </div>
             <div className={'h-full flex flex-col'}>
                 <div className={'flex items-center justify-center gap-8 text-2xl'}>
-                    <FontAwesomeIcon icon={faBackward} style={{...iconColor, cursor: 'pointer'}}/>
+                    <FontAwesomeIcon icon={faBackward} style={{...iconColor, cursor: 'pointer'}}
+                                     onClick={previousTrack}/>
                     {isPlaying &&
                         <FontAwesomeIcon icon={faPause} style={{...iconColor, cursor: 'pointer'}} onClick={pause}/>}
                     {!isPlaying &&
                         <FontAwesomeIcon icon={faPlay} style={{...iconColor, cursor: 'pointer'}} onClick={play}/>}
-                    <FontAwesomeIcon icon={faForward} style={{...iconColor, cursor: 'pointer'}}/>
+                    <FontAwesomeIcon icon={faForward} style={{...iconColor, cursor: 'pointer'}} onClick={nextTrack}/>
                 </div>
                 <div className={'flex items-center justify-center gap-4'}>
                     <p className={'font-bold w-12'}>{formatTime(nowTime / 1000)}</p>
