@@ -2,11 +2,19 @@ import {useEffect, useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import {getPlayListAPI, getPlaylistTracks} from '@/apis/userDataAPI.jsx';
 import AuthRoute from "@/components/AuthRoute.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlay} from "@fortawesome/free-solid-svg-icons";
+import {getPlaybackStateAPI, playListAPI} from "@/apis/spotifyPlayAPI.jsx";
+import {getActiveDevice} from "@/utils/activeDevice.jsx";
+import {setNowMusic} from "@/store/features/musicSlice.jsx";
+import {useDispatch} from "react-redux";
+
+const iconColor = {color: "#00FFA7"};
 
 const Playlist = () => {
     const [playlists, setPlaylists] = useState([]);
     const [searchParams] = useState({limit: 50, offset: 0});
-
+    const dispatch = useDispatch();
     useEffect(() => {
         const fetchPlaylists = async () => {
             try {
@@ -32,7 +40,18 @@ const Playlist = () => {
         };
         fetchPlaylists();
     }, []);
-
+    const play = async (e, uri) => {
+        e.preventDefault()
+        await playListAPI(getActiveDevice(), {
+            context_uri: uri,
+            offset: {position: 0},
+            position_ms: 0
+        })
+        setTimeout(async () => {
+            const response = await getPlaybackStateAPI();
+            dispatch(setNowMusic(response));
+        }, 1000);
+    }
     return (
         <AuthRoute>
             <div className='overflow-y-auto h-full w-full px-4 md:px-10'>
@@ -40,10 +59,15 @@ const Playlist = () => {
                 <div className='grid grid-cols-3 2xl:grid-cols-4 gap-4'>
                     {playlists.length > 0 ? (
                         playlists.map((playlist) => (
-                            <NavLink to={`/playlist/${playlist.id}`}>
-                                <div key={playlist.id}
-                                     className="bg-white rounded-lg p-5 hover:shadow-2xl hover:bg-cyan-400 transition duration-300 ease-in-out">
-                                    <h2 className='text-lg font-bold text-gray-700'>{playlist.name}</h2>
+                            <NavLink key={playlist.id} to={`/playlist/${playlist.id}`}>
+                                <div
+                                    className="bg-white rounded-lg p-5 hover:shadow-2xl hover:bg-cyan-400 transition duration-300 ease-in-out">
+                                    <div className={'flex justify-between items-center'}>
+                                        <h2 className='text-lg font-bold text-gray-700'>{playlist.name}</h2>
+                                        <FontAwesomeIcon className={'text-3xl hover:shadow-2xl'} icon={faPlay}
+                                                         style={{...iconColor}}
+                                                         onClick={(e) => play(e, playlist.uri)}/>
+                                    </div>
                                     <img src={playlist.images[0]?.url} alt={playlist.name}
                                          className="w-52 h-52 rounded-full mx-auto my-3"/>
                                 </div>
