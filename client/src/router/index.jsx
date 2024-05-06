@@ -1,7 +1,7 @@
 import {createBrowserRouter} from 'react-router-dom'
 
 import Browse from "@/pages/Menu/Browse.jsx";
-import Layout from "@/pages/Layout/Layout.jsx";
+import Layout from "@/pages/Layout.jsx";
 import Account from "@/pages/Menu/User/Account.jsx";
 import Setting from "@/pages/Menu/User/User.jsx";
 import Recent from "@/pages/Menu/User/Recent.jsx"

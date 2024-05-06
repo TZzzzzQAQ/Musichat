@@ -6,12 +6,11 @@ import {
 } from '@ant-design/icons';
 import {Layout, Menu, Button, Avatar} from 'antd';
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
-import PlayBar from "@/pages/PlayBar/PlayBar.jsx";
+import PlayBar from "@/pages/Menu/PlayBar.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {
     faClock, faCompactDisc,
-    faGear,
     faHeart, faHouse,
     faList,
     faMagnifyingGlass, faMicrophoneLines,
@@ -21,12 +20,7 @@ import SearchForm from "@/components/SearchForm.jsx";
 import ToggleDark from "@/components/ToggleDark.jsx";
 import {debounce} from "lodash/function";
 
-const {
-    Header,
-    Sider,
-    Content,
-    Footer
-} = Layout;
+const {Header, Sider, Content, Footer} = Layout;
 
 const iconColor = {color: "#74C0FC"};
 
@@ -182,9 +176,9 @@ const AppContainer = () => {
                         <Outlet/>
                     </div>
                 </Content>
-                <Footer className={'bg-transparent h-20'}>
-                    <PlayBar/>
-                </Footer>
+                    <Footer className={'bg-transparent h-20'}>
+                        <PlayBar/>
+                    </Footer>
             </Layout>
         </Layout>
     );

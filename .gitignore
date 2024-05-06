@@ -26,3 +26,4 @@ yarn-error.log*
 api/.env
 /client/.env
 package-lock.json
+/client/dist*
