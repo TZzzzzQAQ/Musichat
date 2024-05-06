@@ -10,9 +10,9 @@ const contentStyle = {
     textAlign: 'center',
     position: 'relative',
     overflow: 'hidden',
-    backgroundSize: 'cover', // 确保背景图像覆盖整个元素
-    backgroundPosition: 'center', // 确保图片以其中心为中心显示
-    backgroundRepeat: 'no-repeat' // 防止背景图像重复
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
 };
 
 const ContentCarousel = () => {
@@ -54,8 +54,8 @@ const ContentCarousel = () => {
                             flexDirection: 'column',
                             justifyContent: 'center'
                         }}>
-                            <h2 style={{fontSize: '24px', marginBottom: '10px'}}>{track.name}</h2>
-                            <p style={{fontSize: '16px'}}>{track.artists}</p>
+                            <h2 className={'text-2xl font-poppins font-extrabold uppercase'}>{track.name}</h2>
+                            <p className={'text-xl font-poppins'}>{track.artists}</p>
                         </div>
                     </div>
                 </div>

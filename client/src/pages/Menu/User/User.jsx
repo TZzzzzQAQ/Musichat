@@ -4,45 +4,45 @@ import {setBackgroundTheme} from "@/store/features/themeSlice.jsx";
 
 const options = [
     {
-        value: 'Dust_Red',
+        value: 'bg-dust-red',
         label: 'Dust Red',
     },
     {
-        value: 'Volcano',
+        value: 'bg-volcano',
         label: 'Volcano',
     },
     {
-        value: 'Sunset_Orange',
+        value: 'bg-sunset-orange',
         label: 'Sunset Orange',
     },
     {
-        value: 'Calendula_Gold',
+        value: 'bg-calendula-gold',
         label: 'Calendula Gold',
     },
     {
-        value: 'Sunrise_Yellow',
+        value: 'bg-sunrise-yellow',
         label: 'Sunrise Yellow',
     },
     {
-        value: 'Polar_Green',
+        value: 'bg-polar-green',
         label: 'Polar Green'
     },
     {
-        value: 'Cyan',
+        value: 'bg-cyan',
         label: 'Cyan'
     },
     {
-        value: 'Daybreak_Blue',
+        value: 'bg-daybreak-blue',
         label: 'Daybreak Blue'
     },
     {
-        value: 'Geek_Blue',
+        value: 'bg-geek-blue',
         label: 'Geek Blue'
     }, {
-        value: 'Golden_Purple',
+        value: 'bg-golden-purple',
         label: 'Golden Purple'
     }, {
-        value: 'Magenta',
+        value: 'bg-magenta',
         label: 'Magenta'
     }
 ]

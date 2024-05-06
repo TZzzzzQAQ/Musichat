@@ -6,12 +6,11 @@ import {
 } from '@ant-design/icons';
 import {Layout, Menu, Button, Avatar} from 'antd';
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
-import PlayBar from "@/pages/PlayBar/PlayBar.jsx";
+import PlayBar from "@/pages/Menu/PlayBar.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {
     faClock, faCompactDisc,
-    faGear,
     faHeart, faHouse,
     faList,
     faMagnifyingGlass, faMicrophoneLines,
@@ -20,13 +19,9 @@ import {
 import SearchForm from "@/components/SearchForm.jsx";
 import ToggleDark from "@/components/ToggleDark.jsx";
 import {debounce} from "lodash/function";
+import {useDispatch, useSelector} from "react-redux";
 
-const {
-    Header,
-    Sider,
-    Content,
-    Footer
-} = Layout;
+const {Header, Sider, Content, Footer} = Layout;
 
 const iconColor = {color: "#74C0FC"};
 
@@ -99,6 +94,8 @@ const AppContainer = () => {
     const [collapsed, setCollapsed] = useState(window.innerWidth < 1024);
     const navigate = useNavigate();
     const location = useLocation();
+    const dataFromRedux = useSelector(state => state.user)
+    const [url, setUrl] = useState('')
 
     const clickHandler = (e) => {
         navigate(e.key, {replace: true})
@@ -118,70 +115,83 @@ const AppContainer = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
+    useEffect(() => {
+        if (dataFromRedux.profile?.images?.length > 1) {
+            setUrl(dataFromRedux.profile.images[1].url);
+        }
+    }, [dataFromRedux]); // 当 dataFromRedux 更新时触发
     return (
         <Layout className={'bg-transparent rounded-2xl h-[45rem]'}>
-            <ToggleDark/>
-            <Sider
-                trigger={null}
-                collapsible
-                collapsed={collapsed}
-                style={{
-                    background: 'rgba(255,255,255,0)',
-                    height: '100 %',
-                    borderRadius: '10px',
-                }}
-                className="">
-                <Menu
-                    mode="inline"
-                    defaultSelectedKeys={['1']}
-                    items={item}
-                    onClick={clickHandler}
-                    style={{background: "transparent"}}
-                    selectedKeys={[location.pathname]}
-                />
-            </Sider>
-            <Layout className={'bg-transparent'}>
-                <Header
-                    className={'flex-center bg-transparent mt-4'}
-                >
-                    <Button
-                        className={'invisible xl:visible'}
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
-                        onClick={() => setCollapsed(!collapsed)}
-                        style={{
-                            ...iconColor,
-                            fontSize: '16px',
-                            width: '32px',
-                            height: '32px',
-                        }}
-                    />
-                    <SearchForm/>
-                    <Avatar
-                        style={{
-                            ...iconColor,
-                            cursor: 'pointer',
-                            width: '50px',
-                            height: '50px',
-                            border: 'none'
-                        }}
-                        icon={<UserOutlined/>}
-                        onClick={avatarClickHandler}
-                    />
-                </Header>
-                <Content
+            <Layout className={'bg-transparent rounded-2xl'}>
+                <ToggleDark/>
+                <Sider
+                    trigger={null}
+                    collapsible
+                    collapsed={collapsed}
                     style={{
-                        margin: '16px',
-                        padding: 16,
-                        minHeight: 280,
-                        background: "transparent",
+                        background: 'rgba(255,255,255,0)',
+                        height: '100 %',
+                        borderRadius: '10px',
                     }}
-                >
-                    <div className={'h-[33rem]'}>
-                        <Outlet/>
-                    </div>
-                </Content>
+                    className="">
+                    <Menu
+                        mode="inline"
+                        defaultSelectedKeys={['1']}
+                        items={item}
+                        onClick={clickHandler}
+                        style={{background: "transparent"}}
+                        selectedKeys={[location.pathname]}
+                    />
+                </Sider>
+                <Layout className={'bg-transparent'}>
+                    <Header
+                        className={'flex justify-between items-center bg-transparent mt-4'}
+                    >
+                        <Button
+                            className={'invisible xl:visible'}
+                            type="text"
+                            icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                            onClick={() => setCollapsed(!collapsed)}
+                            style={{
+                                ...iconColor,
+                                fontSize: '16px',
+                                width: '32px',
+                                height: '32px',
+                            }}
+                        />
+                        <SearchForm/>
+                        <Avatar
+                            style={{
+                                ...iconColor,
+                                cursor: 'pointer',
+                                width: '50px',
+                                height: '50px',
+                                border: 'none',
+                                backgroundSize: 'cover',
+                                backgroundImage: `url(${url})`,
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
+                            onClick={avatarClickHandler}
+                        />
+
+                    </Header>
+                    <Content
+                        style={{
+                            margin: '16px',
+                            padding: 16,
+                            minHeight: 280,
+                            background: "transparent",
+                        }}
+                    >
+                        <div className={'h-[33rem]'}>
+                            <Outlet/>
+                        </div>
+                    </Content>
+                </Layout>
+
+            </Layout>
+            <Layout className={'bg-transparent'}>
                 <Footer className={'bg-transparent h-20'}>
                     <PlayBar/>
                 </Footer>
