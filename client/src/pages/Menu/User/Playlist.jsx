@@ -55,7 +55,6 @@ const Playlist = () => {
     return (
         <AuthRoute>
             <div className='overflow-y-auto h-full w-full px-4 md:px-10'>
-                <h1 className="text-3xl font-bold mb-4 text-gray-800">Your Playlists</h1>
                 <div className='grid grid-cols-3 2xl:grid-cols-4 gap-4'>
                     {playlists.length > 0 ? (
                         playlists.map((playlist) => (
@@ -74,7 +73,7 @@ const Playlist = () => {
                             </NavLink>
                         ))
                     ) : (
-                        <div className="text-xl text-gray-600 text-center py-10">Loading playlists...</div>
+                        <div className="text-xl font-poppins text-center py-100">Loading playlists...</div>
                     )}
                 </div>
             </div>

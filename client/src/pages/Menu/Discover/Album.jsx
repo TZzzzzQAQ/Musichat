@@ -5,10 +5,10 @@ import {getNewReleasesAPI} from "@/apis/everyoneDataAPI.jsx";
 
 const AlbumPage = () => {
     const [albums, setAlbums] = useState([]);
-    const [searchParams, setSearchParams] = useState({
+    const [searchParams] = useState({
         type: 'album',
         limit: 10,
-        market: 'us'
+        market: 'nz'
     })
     useEffect(() => {
         const fetchAlbums = async () => {
@@ -22,25 +22,9 @@ const AlbumPage = () => {
         fetchAlbums();
     }, [searchParams]);
 
-    const handleRegionChange = (e) => {
-        setSearchParams(prevState => {
-            return {
-                ...prevState,
-                region: e.target.value,
-            }
-        })
-    };
-
     return (
         <div className='overflow-y-auto h-full'>
             <h1 className="text-3xl font-poppins font-bold mb-4">New Releases</h1>
-            <p className="text-lg font-poppins mb-4 text-black">Select a region:</p>
-            <select onChange={handleRegionChange} className='border border-gray-300 rounded-md p-3'>
-                <option value="US">United States</option>
-                <option value="NZ">New Zealand</option>
-                <option value="JP">Japan</option>
-            </select>
-
             {albums.length > 0 ? (
                 <div className={'mb-8'}>
                     {albums.map((album) => (
