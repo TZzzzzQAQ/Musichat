@@ -119,6 +119,15 @@ const PlayBar = () => {
             dispatch(setNowMusic(response));
         }, 1000);
     }
+    const handleProgressClick = debounce((e) => {
+        const progressBar = progressRef.current;
+        const clickX = e.clientX - progressBar.getBoundingClientRect().left;
+        const progressBarWidth = progressBar.clientWidth;
+        const clickPercentage = clickX / progressBarWidth;
+        const seekTime = clickPercentage * durationTime;
+        player.seek(seekTime);
+        setNowTime(seekTime);
+    }, 200);
     useEffect(() => {
         window.onSpotifyWebPlaybackSDKReady = () => {
             const player = new window.Spotify.Player({
@@ -178,7 +187,7 @@ const PlayBar = () => {
                     <p className={'font-bold w-12'}>{formatTime(nowTime / 1000)}</p>
                     <div
                         className={'w-72 cursor-pointer'}
-                        ref={progressRef}
+                        ref={progressRef} onClick={handleProgressClick}
                     >
                         <Progress percent={Math.round(nowTime / durationTime * 100)} strokeColor={twoColors}
                                   showInfo={false}/>

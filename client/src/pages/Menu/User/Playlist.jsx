@@ -62,14 +62,14 @@ const Playlist = () => {
                             <NavLink key={playlist.id} to={`/playlist/${playlist.id}`}>
                                 <div
                                     className="bg-white rounded-lg p-5 hover:shadow-2xl hover:bg-cyan-400 transition duration-300 ease-in-out">
-                                    <div className={'flex justify-between items-center'}>
+                                    <div className={'flex justify-between items-center '}>
                                         <h2 className='text-lg font-bold text-gray-700'>{playlist.name}</h2>
                                         <FontAwesomeIcon className={'text-3xl hover:shadow-2xl'} icon={faPlay}
                                                          style={{...iconColor}}
                                                          onClick={(e) => play(e, playlist.uri)}/>
                                     </div>
                                     <img src={playlist.images[0]?.url} alt={playlist.name}
-                                         className="w-52 h-52 rounded-full mx-auto my-3"/>
+                                         className="w-52 h-52 rounded-full mx-auto my-3 duration-300 ease-in-out hover:scale-110"/>
                                 </div>
                             </NavLink>
                         ))
