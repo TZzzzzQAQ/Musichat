@@ -19,6 +19,7 @@ import {
 import SearchForm from "@/components/SearchForm.jsx";
 import ToggleDark from "@/components/ToggleDark.jsx";
 import {debounce} from "lodash/function";
+import {useSelector} from "react-redux";
 
 const {Header, Sider, Content, Footer} = Layout;
 
@@ -93,7 +94,7 @@ const AppContainer = () => {
     const [collapsed, setCollapsed] = useState(window.innerWidth < 1024);
     const navigate = useNavigate();
     const location = useLocation();
-
+    const dataFromRedux = useSelector(state => state.user)
     const clickHandler = (e) => {
         navigate(e.key, {replace: true})
     }
@@ -138,7 +139,7 @@ const AppContainer = () => {
                 </Sider>
                 <Layout className={'bg-transparent'}>
                     <Header
-                        className={'flex-center bg-transparent mt-4'}
+                        className={'flex justify-between items-center bg-transparent mt-4'}
                     >
                         <Button
                             className={'invisible xl:visible'}
@@ -159,9 +160,12 @@ const AppContainer = () => {
                                 cursor: 'pointer',
                                 width: '50px',
                                 height: '50px',
-                                border: 'none'
+                                border: 'none',
+                                backgroundImage: `url(${dataFromRedux?.profile?.images[1]?.url}`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
                             }}
-                            icon={<UserOutlined/>}
                             onClick={avatarClickHandler}
                         />
                     </Header>
@@ -180,7 +184,7 @@ const AppContainer = () => {
                 </Layout>
 
             </Layout>
-            <Layout  className={'bg-transparent'}>
+            <Layout className={'bg-transparent'}>
                 <Footer className={'bg-transparent h-20'}>
                     <PlayBar/>
                 </Footer>

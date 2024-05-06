@@ -3,7 +3,6 @@ import {ConfigProvider, theme} from "antd";
 import {useSelector} from "react-redux";
 import MobileOptimization from "@/components/MobileOptimization.jsx";
 
-
 const Layout = () => {
     const className = useSelector((state) => state.theme.backgroundTheme);
     const primary = useSelector(state => state.theme.playerColor);

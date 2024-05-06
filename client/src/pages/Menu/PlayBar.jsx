@@ -108,18 +108,19 @@ const PlayBar = () => {
     return (
         <div className={'w-full h-full flex justify-between items-center font-poppins'}>
             <div className={'flex items-center justify-center gap-4'}>
-                <Avatar
-                    style={{
-                        width: '60px',
-                        height: '60px',
-                        transform: `rotate(${rotation}deg)`,
-                        transition: 'transform 0.2s linear',
-                        backgroundImage: `url(${nowMusicFromRedux?.item?.album?.images[2]?.url}`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                />
+                {nowMusicFromRedux?.item?.album?.images[0]?.url &&
+                    <Avatar
+                        style={{
+                            width: '60px',
+                            height: '60px',
+                            transform: `rotate(${rotation}deg)`,
+                            transition: 'transform 0.2s linear',
+                            backgroundImage: `url(${nowMusicFromRedux.item.album.images[0].url}`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat'
+                        }}
+                    />}
                 <div className="overflow-hidden w-60 xl:w-72 flex flex-col">
                     <div className={`whitespace-nowrap ${isPlaying ? 'animate-marquee' : ''} text-xl font-bold`}>
                         <span>
