@@ -8,6 +8,7 @@ import {getPlaybackStateAPI, playListAPI} from "@/apis/spotifyPlayAPI.jsx";
 import {getActiveDevice} from "@/utils/activeDevice.jsx";
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
 import {useDispatch} from "react-redux";
+import Loading from "@/components/Loading/Loading.jsx";
 
 const iconColor = {color: "#00FFA7"};
 
@@ -72,9 +73,7 @@ const Playlist = () => {
                                 </div>
                             </NavLink>
                         ))
-                    ) : (
-                        <div className="text-xl font-poppins text-center py-100">Loading playlists...</div>
-                    )}
+                    ) : <Loading/>}
                 </div>
             </div>
         </AuthRoute>

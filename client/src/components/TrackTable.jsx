@@ -1,6 +1,7 @@
 import TrackList from "@/components/TrackList.jsx";
 
 const TrackTable = ({playListData}) => {
+    console.log(playListData)
     return (
         <table className={'min-w-full leading-normal'}>
             <thead>

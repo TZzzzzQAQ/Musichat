@@ -49,11 +49,12 @@ const item = [
                 key: '/playlist',
                 icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
                 label: 'Playlist'
-            }, {
-                key: '/recent',
-                icon: <FontAwesomeIcon icon={faClock} style={iconColor}/>,
-                label: 'Recent'
             }
+            // , {
+            //     key: '/recent',
+            //     icon: <FontAwesomeIcon icon={faClock} style={iconColor}/>,
+            //     label: 'Recent'
+            // }
         ]
     },
     {
