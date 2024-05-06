@@ -8,7 +8,7 @@ import Recent from "@/pages/Menu/User/Recent.jsx"
 import Favourite from "@/pages/Menu/User/Favourite.jsx"
 import Playlist from "@/pages/Menu/User/Playlist.jsx"
 import Artist from "@/pages/Menu/Discover/Artist.jsx";
-import Album from "@/pages/Menu/Discover/NewRelease.jsx";
+import NewRelease from "@/pages/Menu/Discover/NewRelease.jsx";
 import SearchResult from "@/pages/Menu/SearchResult.jsx";
 import ChatWithBot from "@/pages/Menu/ChatWithBot.jsx";
 import GroupChat from "@/pages/Menu/GroupChat.jsx";
@@ -50,8 +50,8 @@ const router = createBrowserRouter([
                 element: <PlaylistDetails/>
             },
             {
-                path: '/album',
-                element: <Album></Album>,
+                path: '/newRelease',
+                element: <NewRelease></NewRelease>,
             },
             {
                 path: 'album/:id',
