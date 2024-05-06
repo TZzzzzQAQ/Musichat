@@ -31,7 +31,6 @@ const PlayBar = () => {
     const [durationTime, setDurationTime] = useState(0)
     const [rotation, setRotation] = useState(0);
     const [dimensionsVolume, setDimensionsVolume] = useState({width: 0, left: 0})
-
     const progressRef = useRef(null);
     const volumeProgressBar = useRef(null);
 
@@ -40,10 +39,10 @@ const PlayBar = () => {
         if (nowMusicFromRedux?.item?.duration_ms) {
             setDurationTime(nowMusicFromRedux.item.duration_ms);
         }
-        setNowTime(1000);
+        setNowTime(0);
         const intervalId = setInterval(() => {
             setNowTime(prevNowTime => {
-                if (prevNowTime < durationTime) {
+                if (prevNowTime < durationTime - 500) {
                     return prevNowTime + 1000;
                 } else {
                     clearInterval(intervalId);
@@ -111,8 +110,8 @@ const PlayBar = () => {
             <div className={'flex items-center justify-center gap-4'}>
                 <Avatar
                     style={{
-                        width: '72px',
-                        height: '72px',
+                        width: '60px',
+                        height: '60px',
                         transform: `rotate(${rotation}deg)`,
                         transition: 'transform 0.2s linear',
                         backgroundImage: `url(${nowMusicFromRedux?.item?.album?.images[2]?.url}`,
@@ -121,44 +120,45 @@ const PlayBar = () => {
                         backgroundRepeat: 'no-repeat'
                     }}
                 />
-                <div className={'flex flex-col whitespace-nowrap max-w-80 xl:max-w-[28rem]'}>
-                    <span
-                        className={'uppercase font-bold overflow-ellipsis overflow-hidden text-xl'}>
+                <div className="overflow-hidden w-60 xl:w-72 flex flex-col">
+                    <div className={`whitespace-nowrap ${isPlaying ? 'animate-marquee' : ''} text-xl font-bold`}>
+                        <span>
                         {nowMusicFromRedux?.item?.name}
-                    </span>
+                        </span>
+                    </div>
                     <span
-                        className={'overflow-ellipsis overflow-hidden text-lg'}>
+                        className={'text-base font-bold'}>
                         {nowMusicFromRedux?.item?.artists[0].name}
                     </span>
                 </div>
             </div>
-            <div className={'flex flex-row'}>
-                <div className={'h-full flex flex-col'}>
-                    <div className={'flex items-center justify-center gap-8 text-2xl'}>
-                        <FontAwesomeIcon icon={faShuffle} style={{...iconColor, cursor: 'pointer'}}/>
-                        <FontAwesomeIcon icon={faBackward} style={{...iconColor, cursor: 'pointer'}}/>
-                        {isPlaying &&
-                            <FontAwesomeIcon icon={faPause} style={{...iconColor, cursor: 'pointer'}} onClick={pause}/>}
-                        {!isPlaying &&
-                            <FontAwesomeIcon icon={faPlay} style={{...iconColor, cursor: 'pointer'}} onClick={play}/>}
-                        <FontAwesomeIcon icon={faForward} style={{...iconColor, cursor: 'pointer'}}/>
-                        <FontAwesomeIcon icon={faArrowsRotate} style={{...iconColor, cursor: 'pointer'}}/>
-                        <FontAwesomeIcon icon={faHeart} style={iconColor}/>
-                        <FontAwesomeIcon icon={faList} style={iconColor}/>
-                    </div>
-                    <div className={'flex items-center justify-center gap-4'}>
-                        <p className={'font-bold'}>{formatTime(nowTime / 1000)}</p>
-                        <div
-                            className={'w-80 cursor-pointer'}
-                            ref={progressRef}
-                        >
-                            <Progress percent={Math.round(nowTime / durationTime * 100)} strokeColor={twoColors}
-                                      showInfo={false}/>
-                        </div>
-                        <p className={'font-bold'}>{formatTime(durationTime / 1000)}</p>
-                    </div>
+            <div className={'h-full flex flex-col'}>
+                <div className={'flex items-center justify-center gap-8 text-2xl'}>
+                    <FontAwesomeIcon icon={faBackward} style={{...iconColor, cursor: 'pointer'}}/>
+                    {isPlaying &&
+                        <FontAwesomeIcon icon={faPause} style={{...iconColor, cursor: 'pointer'}} onClick={pause}/>}
+                    {!isPlaying &&
+                        <FontAwesomeIcon icon={faPlay} style={{...iconColor, cursor: 'pointer'}} onClick={play}/>}
+                    <FontAwesomeIcon icon={faForward} style={{...iconColor, cursor: 'pointer'}}/>
                 </div>
-                <div className={'flex justify-center items-center text-2xl ml-4 gap-4'}>
+                <div className={'flex items-center justify-center gap-4'}>
+                    <p className={'font-bold w-12'}>{formatTime(nowTime / 1000)}</p>
+                    <div
+                        className={'w-72 cursor-pointer'}
+                        ref={progressRef}
+                    >
+                        <Progress percent={Math.round(nowTime / durationTime * 100)} strokeColor={twoColors}
+                                  showInfo={false}/>
+                    </div>
+                    <p className={'font-bold w-12'}>{formatTime(durationTime / 1000)}</p>
+                </div>
+            </div>
+            <div className={'flex flex-row mr-4'}>
+                <div className={'flex justify-center items-center text-xl xl:text-2xl xl:gap-4 gap-2'}>
+                    <FontAwesomeIcon icon={faShuffle} style={{...iconColor, cursor: 'pointer'}}/>
+                    <FontAwesomeIcon icon={faArrowsRotate} style={{...iconColor, cursor: 'pointer'}}/>
+                    <FontAwesomeIcon icon={faHeart} style={iconColor}/>
+                    <FontAwesomeIcon icon={faList} style={iconColor}/>
                     <FontAwesomeIcon icon={faVolumeOff} style={iconColor}/>
                     <div
                         className={'w-24 mb-2.5'}

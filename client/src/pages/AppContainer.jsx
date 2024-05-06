@@ -115,70 +115,75 @@ const AppContainer = () => {
 
     return (
         <Layout className={'bg-transparent rounded-2xl h-[45rem]'}>
-            <ToggleDark/>
-            <Sider
-                trigger={null}
-                collapsible
-                collapsed={collapsed}
-                style={{
-                    background: 'rgba(255,255,255,0)',
-                    height: '100 %',
-                    borderRadius: '10px',
-                }}
-                className="">
-                <Menu
-                    mode="inline"
-                    defaultSelectedKeys={['1']}
-                    items={item}
-                    onClick={clickHandler}
-                    style={{background: "transparent"}}
-                    selectedKeys={[location.pathname]}
-                />
-            </Sider>
-            <Layout className={'bg-transparent'}>
-                <Header
-                    className={'flex-center bg-transparent mt-4'}
-                >
-                    <Button
-                        className={'invisible xl:visible'}
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
-                        onClick={() => setCollapsed(!collapsed)}
-                        style={{
-                            ...iconColor,
-                            fontSize: '16px',
-                            width: '32px',
-                            height: '32px',
-                        }}
-                    />
-                    <SearchForm/>
-                    <Avatar
-                        style={{
-                            ...iconColor,
-                            cursor: 'pointer',
-                            width: '50px',
-                            height: '50px',
-                            border: 'none'
-                        }}
-                        icon={<UserOutlined/>}
-                        onClick={avatarClickHandler}
-                    />
-                </Header>
-                <Content
+            <Layout className={'bg-transparent rounded-2xl'}>
+                <ToggleDark/>
+                <Sider
+                    trigger={null}
+                    collapsible
+                    collapsed={collapsed}
                     style={{
-                        margin: '16px',
-                        padding: 16,
-                        minHeight: 280,
-                        background: "transparent",
+                        background: 'rgba(255,255,255,0)',
+                        height: '100 %',
+                        borderRadius: '10px',
                     }}
-                >
-                    <div className={'h-[33rem]'}>
-                        <Outlet/>
-                    </div>
-                </Content>
-                    <Footer className={'bg-transparent h-20'}>
-                        <PlayBar/>
-                    </Footer>
+                    className="">
+                    <Menu
+                        mode="inline"
+                        defaultSelectedKeys={['1']}
+                        items={item}
+                        onClick={clickHandler}
+                        style={{background: "transparent"}}
+                        selectedKeys={[location.pathname]}
+                    />
+                </Sider>
+                <Layout className={'bg-transparent'}>
+                    <Header
+                        className={'flex-center bg-transparent mt-4'}
+                    >
+                        <Button
+                            className={'invisible xl:visible'}
+                            type="text"
+                            icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                            onClick={() => setCollapsed(!collapsed)}
+                            style={{
+                                ...iconColor,
+                                fontSize: '16px',
+                                width: '32px',
+                                height: '32px',
+                            }}
+                        />
+                        <SearchForm/>
+                        <Avatar
+                            style={{
+                                ...iconColor,
+                                cursor: 'pointer',
+                                width: '50px',
+                                height: '50px',
+                                border: 'none'
+                            }}
+                            icon={<UserOutlined/>}
+                            onClick={avatarClickHandler}
+                        />
+                    </Header>
+                    <Content
+                        style={{
+                            margin: '16px',
+                            padding: 16,
+                            minHeight: 280,
+                            background: "transparent",
+                        }}
+                    >
+                        <div className={'h-[33rem]'}>
+                            <Outlet/>
+                        </div>
+                    </Content>
+                </Layout>
+
+            </Layout>
+            <Layout  className={'bg-transparent'}>
+                <Footer className={'bg-transparent h-20'}>
+                    <PlayBar/>
+                </Footer>
             </Layout>
         </Layout>
     );

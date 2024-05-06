@@ -36,9 +36,14 @@ export default {
                     '50%': { 'background-position': '50% 100%' },
                     '100%': { 'background-position': '50% 0' },
                 },
+                marquee: {
+                    '0%': { transform: 'translateX(100%)' },
+                    '100%': { transform: 'translateX(-100%)' }
+                }
             },
             animation: {
                 'gradient-bg': 'gradientBackground 8s ease infinite',
+                'marquee': 'marquee 10s linear infinite'
             },
             backgroundSize: {
                 'large-300': '300% 300%',
