@@ -19,7 +19,7 @@ import {
 import SearchForm from "@/components/SearchForm.jsx";
 import ToggleDark from "@/components/ToggleDark.jsx";
 import {debounce} from "lodash/function";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const {Header, Sider, Content, Footer} = Layout;
 
@@ -95,6 +95,8 @@ const AppContainer = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const dataFromRedux = useSelector(state => state.user)
+    const [url, setUrl] = useState('')
+
     const clickHandler = (e) => {
         navigate(e.key, {replace: true})
     }
@@ -113,7 +115,11 @@ const AppContainer = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
+    useEffect(() => {
+        if (dataFromRedux.profile?.images?.length > 1) {
+            setUrl(dataFromRedux.profile.images[1].url);
+        }
+    }, [dataFromRedux]); // 当 dataFromRedux 更新时触发
     return (
         <Layout className={'bg-transparent rounded-2xl h-[45rem]'}>
             <Layout className={'bg-transparent rounded-2xl'}>
@@ -161,13 +167,14 @@ const AppContainer = () => {
                                 width: '50px',
                                 height: '50px',
                                 border: 'none',
-                                backgroundImage: `url(${dataFromRedux?.profile?.images[1]?.url}`,
                                 backgroundSize: 'cover',
+                                backgroundImage: `url(${url})`,
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat'
                             }}
                             onClick={avatarClickHandler}
                         />
+
                     </Header>
                     <Content
                         style={{
