@@ -8,6 +8,7 @@ import {getPlaybackStateAPI, playListAPI} from "@/apis/spotifyPlayAPI.jsx";
 import {getActiveDevice} from "@/utils/activeDevice.jsx";
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
 import {useDispatch} from "react-redux";
+import Loading from "@/components/Loading/Loading.jsx";
 
 const iconColor = {color: "#00FFA7"};
 
@@ -55,27 +56,24 @@ const Playlist = () => {
     return (
         <AuthRoute>
             <div className='overflow-y-auto h-full w-full px-4 md:px-10'>
-                <h1 className="text-3xl font-bold mb-4 text-gray-800">Your Playlists</h1>
                 <div className='grid grid-cols-3 2xl:grid-cols-4 gap-4'>
                     {playlists.length > 0 ? (
                         playlists.map((playlist) => (
                             <NavLink key={playlist.id} to={`/playlist/${playlist.id}`}>
                                 <div
                                     className="bg-white rounded-lg p-5 hover:shadow-2xl hover:bg-cyan-400 transition duration-300 ease-in-out">
-                                    <div className={'flex justify-between items-center'}>
+                                    <div className={'flex justify-between items-center '}>
                                         <h2 className='text-lg font-bold text-gray-700'>{playlist.name}</h2>
                                         <FontAwesomeIcon className={'text-3xl hover:shadow-2xl'} icon={faPlay}
                                                          style={{...iconColor}}
                                                          onClick={(e) => play(e, playlist.uri)}/>
                                     </div>
                                     <img src={playlist.images[0]?.url} alt={playlist.name}
-                                         className="w-52 h-52 rounded-full mx-auto my-3"/>
+                                         className="w-52 h-52 rounded-full mx-auto my-3 duration-300 ease-in-out hover:scale-110"/>
                                 </div>
                             </NavLink>
                         ))
-                    ) : (
-                        <div className="text-xl text-gray-600 text-center py-10">Loading playlists...</div>
-                    )}
+                    ) : <Loading/>}
                 </div>
             </div>
         </AuthRoute>

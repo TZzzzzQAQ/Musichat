@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    UserOutlined,
 } from '@ant-design/icons';
 import {Layout, Menu, Button, Avatar} from 'antd';
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
@@ -10,11 +9,11 @@ import PlayBar from "@/pages/Menu/PlayBar.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {
-    faClock, faCompactDisc,
+    faCompactDisc,
     faHeart, faHouse,
     faList,
     faMagnifyingGlass, faMicrophoneLines,
-    faUser, faComments
+    faUser, faComments, faRobot
 } from "@fortawesome/free-solid-svg-icons";
 import SearchForm from "@/components/SearchForm.jsx";
 import ToggleDark from "@/components/ToggleDark.jsx";
@@ -49,10 +48,6 @@ const item = [
                 key: '/playlist',
                 icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
                 label: 'Playlist'
-            }, {
-                key: '/recent',
-                icon: <FontAwesomeIcon icon={faClock} style={iconColor}/>,
-                label: 'Recent'
             }
         ]
     },
@@ -67,9 +62,9 @@ const item = [
                 label: 'Artist'
             },
             {
-                key: '/album',
+                key: '/newRelease',
                 icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor}/>,
-                label: 'Album'
+                label: 'NewRelease'
             },
             {
                 key: '/searchResult',
@@ -80,7 +75,7 @@ const item = [
     },
     {
         key: '/chatWithBot',
-        icon: <FontAwesomeIcon icon={faComments} style={iconColor}/>,
+        icon: <FontAwesomeIcon icon={faRobot} style={iconColor}/>,
         label: 'chatWithBot'
     },
     {

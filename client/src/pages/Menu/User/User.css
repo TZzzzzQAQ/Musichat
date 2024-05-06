@@ -1,0 +1,10 @@
+.gradient-text {
+    background-image: linear-gradient(to right, #594ea0, #6e073b, #ff0000);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+
+  }
+  .custom-select .ant-select-selector {
+    background-color: transparent !important;
+  }

@@ -32,18 +32,23 @@ export default {
             },
             keyframes: {
                 gradientBackground: {
-                    '0%': { 'background-position': '50% 0' },
-                    '50%': { 'background-position': '50% 100%' },
-                    '100%': { 'background-position': '50% 0' },
+                    '0%': {'background-position': '50% 0'},
+                    '50%': {'background-position': '50% 100%'},
+                    '100%': {'background-position': '50% 0'},
                 },
                 marquee: {
-                    '0%': { transform: 'translateX(100%)' },
-                    '100%': { transform: 'translateX(-100%)' }
+                    '0%': {transform: 'translateX(100%)'},
+                    '100%': {transform: 'translateX(-100%)'}
+                },
+                spin: {
+                    '0%': {transform: 'rotate(0deg)'},
+                    '100%': {transform: 'rotate(360deg)'}
                 }
             },
             animation: {
                 'gradient-bg': 'gradientBackground 8s ease infinite',
-                'marquee': 'marquee 10s linear infinite'
+                'marquee': 'marquee 10s linear infinite',
+                'spin': 'spin 1s linear infinite'
             },
             backgroundSize: {
                 'large-300': '300% 300%',

@@ -1,6 +1,6 @@
 import {requestSpotifyLogin} from "@/axios/requestSpotifyLogin.jsx";
 import axios from 'axios';
-import { getUserToken } from "@/utils/tokenForUser.jsx";
+import {getUserToken} from "@/utils/tokenForUser.jsx";
 
 export function getPlayListAPI(params) {
     return requestSpotifyLogin({
@@ -20,38 +20,46 @@ export function getRecentPlaylistsAPI(params) {
 
 export function getPlaylistTracks(playlist_id, params) {
     return axios.create({
-      baseURL: 'https://api.spotify.com/v1',
-      timeout: 5000,
-      headers: {
-        Authorization: `Bearer ${getUserToken()}`
-      }
+        baseURL: 'https://api.spotify.com/v1',
+        timeout: 5000,
+        headers: {
+            Authorization: `Bearer ${getUserToken()}`
+        }
     })({
-      method: 'GET',
-      url: `/playlists/${playlist_id}/tracks`,
-      params
+        method: 'GET',
+        url: `/playlists/${playlist_id}/tracks`,
+        params
     })
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      throw error;
-    });
-  }
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
 
-  
+
 export function getPlaylistFromIDAPI(id) {
     console.log('Playlist ID passed to getPlaylistFromIDAPI:', id);
     return requestSpotifyLogin({
-      url: `playlists/${id}`,
-      method: 'GET'
+        url: `playlists/${id}`,
+        method: 'GET'
     })
-    .catch(error => {
-      if (error.response && error.response.status === 404) {
-        console.error('Playlist not found. Please check the playlist ID.');
-      } else {
-        console.error('Error fetching playlist:', error);
-      }
-      throw error;
-    });
+        .catch(error => {
+            if (error.response && error.response.status === 404) {
+                console.error('Playlist not found. Please check the playlist ID.');
+            } else {
+                console.error('Error fetching playlist:', error);
+            }
+            throw error;
+        });
+}
+
+export function getUserTopItems(params) {
+    return requestSpotifyLogin({
+        url: `/top/tracks`,
+        method: 'GET',
+        params
+    })
 }

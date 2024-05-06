@@ -10,6 +10,8 @@ const scope = "user-read-private " +
     "playlist-read-collaborative " +
     "user-modify-playback-state " +
     "user-read-playback-state " +
+    "user-follow-read " +
+    "user-top-read " +
     "streaming"
 export const useSpotifyAuth = () => {
     const [accessToken, setAccessToken] = useState(null);
