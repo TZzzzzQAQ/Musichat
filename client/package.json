@@ -28,7 +28,8 @@
     "rollup-plugin-visualizer": "^5.12.0",
     "sass": "^1.75.0",
     "save-dev": "^0.0.1-security",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.5",
