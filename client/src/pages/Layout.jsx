@@ -10,7 +10,7 @@ const Layout = () => {
     const isDaylight = useSelector(state => state.theme.isDaylight);
 
 
-    const backgroundClass = isDaylight ? className : 'darkbg';
+    const backgroundClass = isDaylight ? className : 'bg-darkbg';
 
     return (
         <div className={`box ${backgroundClass} animate-gradient-bg pt-6 h-screen w-screen bg-large-300`}>
