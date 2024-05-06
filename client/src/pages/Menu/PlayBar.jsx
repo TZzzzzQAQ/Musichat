@@ -94,26 +94,26 @@ const PlayBar = () => {
         const clickX = e.clientX;
         const newPercent = ((clickX - dimensionsVolume.left) / dimensionsVolume.width) * 100;
         setVolumePercent(() => newPercent);
-        player.setVolume(newPercent / 100)
+        player.setVolume(newPercent / 100).then()
     })
 
-    const play = () => {
-        player.togglePlay();
+    const play = async () => {
+        await player.togglePlay();
         setIsPlaying(prevState => !prevState)
     };
-    const pause = () => {
-        player.togglePlay();
+    const pause = async () => {
+        await player.togglePlay();
         setIsPlaying(prevState => !prevState)
     };
-    const previousTrack = () => {
-        player.previousTrack()
+    const previousTrack = async () => {
+        await player.previousTrack()
         setTimeout(async () => {
             const response = await getPlaybackStateAPI();
             dispatch(setNowMusic(response));
         }, 1000);
     }
-    const nextTrack = () => {
-        player.nextTrack()
+    const nextTrack = async () => {
+        await player.nextTrack()
         setTimeout(async () => {
             const response = await getPlaybackStateAPI();
             dispatch(setNowMusic(response));
