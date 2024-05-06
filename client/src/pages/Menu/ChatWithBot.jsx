@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import searchTrack from '../../apis/BotrecomAPI';
 import TrackTable from '../../components/TrackTable';
+import AuthRoute from "@/components/AuthRoute.jsx";
 
 const ChatWithBot = () => {
     const [userInput, setUserInput] = useState('');
@@ -48,38 +49,42 @@ const ChatWithBot = () => {
     };
 
     return (
-        <div className="h-full flex flex-col ">
-            <div className="flex-1 overflow-y-auto p-4 ">
-                {chatHistory.map((chat, index) => (
-                    <div key={index} className={`flex mt-2 ${chat.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-xs p-2 rounded-lg  ${chat.type === 'user' ? 'bg-green-300' : 'border-2 shadow-lg'}`}>
-                            {chat.message}
-                        </div>
-                       
-                    </div>
-                    
-                ))}
-                <div ref={messagesEndRef} />
-            </div>
+        <AuthRoute>
+            <div className="h-full flex flex-col ">
+                <div className="flex-1 overflow-y-auto p-4 ">
+                    {chatHistory.map((chat, index) => (
+                        <div key={index}
+                             className={`flex mt-2 ${chat.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                            <div
+                                className={`max-w-xs p-2 rounded-lg  ${chat.type === 'user' ? 'bg-green-300' : 'border-2 shadow-lg'}`}>
+                                {chat.message}
+                            </div>
 
-            
-            <form onSubmit={handleRecommendation} className="flex items-center mb-4 p-4">
-                <input
-                    type="text"
-                    value={userInput}
-                    placeholder="Tell me about your music taste..."
-                    className="flex-1 px-4 py-2 border  rounded-l-md focus:outline-none focus:ring-2 focus:border-transparent"
-                    onChange={(e) => setUserInput(e.target.value)}
-                />
-                <button type="submit"
-                    className="ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50">
-                    Send
-                </button>
-            </form>
-            {error && <div className="text-red-500 text-center">{error}</div>}
-            
-            <TrackTable playListData={tracks}/>
-        </div>
+                        </div>
+
+                    ))}
+                    <div ref={messagesEndRef}/>
+                </div>
+
+
+                <form onSubmit={handleRecommendation} className="flex items-center mb-4 p-4">
+                    <input
+                        type="text"
+                        value={userInput}
+                        placeholder="Tell me about your music taste..."
+                        className="flex-1 px-4 py-2 border  rounded-l-md focus:outline-none focus:ring-2 focus:border-transparent"
+                        onChange={(e) => setUserInput(e.target.value)}
+                    />
+                    <button type="submit"
+                            className="ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50">
+                        Send
+                    </button>
+                </form>
+                {error && <div className="text-red-500 text-center">{error}</div>}
+
+                <TrackTable playListData={tracks}/>
+            </div>
+        </AuthRoute>
     );
 };
 
