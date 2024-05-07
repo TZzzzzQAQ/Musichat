@@ -54,6 +54,34 @@ const PlayBar = () => {
     
 
     useEffect(() => {
+        if (dataFromRedux.profile) {
+            window.onSpotifyWebPlaybackSDKReady = () => {
+                const player = new window.Spotify.Player({
+                    name: 'Web Playback SDK',
+                    getOAuthToken: cb => {
+                        cb(getUserToken());
+                    },
+                    volume: 0.5
+                });
+                setPlayer(player);
+                player.addListener('ready', ({device_id}) => {
+                    setActiveDevice(device_id)
+                });
+                player.connect()
+                player.addListener('player_state_changed', async (state) => {
+                    if (!state) return;
+                    const {position} = state;
+                    if (position === 0) {
+                        setIsPlaying(false);
+                        const response = await getPlaybackStateAPI();
+                        dispatch(setNowMusic(response));
+                    }
+                });
+            };
+        }
+    }, []);
+
+    useEffect(() => {
         let intervalId;
         if (isPlaying) {
             intervalId = setInterval(() => {
@@ -76,7 +104,7 @@ const PlayBar = () => {
                 clearInterval(intervalId);
             }
         };
-    }, [isPlaying, durationTime]);
+    }, [isPlaying, durationTime, nowMusicFromRedux]);
 
     useEffect(() => {
         if (volumeProgressBar.current) {
@@ -193,27 +221,10 @@ const PlayBar = () => {
         const progressBarWidth = progressBar.clientWidth;
         const clickPercentage = clickX / progressBarWidth;
         const seekTime = clickPercentage * durationTime;
-        await player.seek(seekTime);
+        await player.seek(seekTime)
         setNowTime(seekTime);
     }, 200);
-    useEffect(() => {
-        if (dataFromRedux.profile) {
-            window.onSpotifyWebPlaybackSDKReady = () => {
-                const player = new window.Spotify.Player({
-                    name: 'Web Playback SDK',
-                    getOAuthToken: cb => {
-                        cb(getUserToken());
-                    },
-                    volume: 0.5
-                });
-                setPlayer(player);
-                player.addListener('ready', ({device_id}) => {
-                    setActiveDevice(device_id)
-                });
-                player.connect();
-            };
-        }
-    }, []);
+
 
     return (
         <div className={'w-full h-full flex justify-between items-center font-poppins'}>

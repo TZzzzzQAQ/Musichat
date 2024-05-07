@@ -170,7 +170,6 @@ const AppContainer = () => {
                             }}
                             onClick={avatarClickHandler}
                         />
-
                     </Header>
                     <Content
                         style={{
