@@ -98,9 +98,7 @@ const AppContainer = () => {
     const avatarClickHandler = () => {
         navigate('/account', {replace: true})
     }
-    useEffect(() => {
-        avatarClickHandler()
-    }, []);
+
     useEffect(() => {
         const handleResize = debounce(() => {
             setCollapsed(window.innerWidth < 1280);
