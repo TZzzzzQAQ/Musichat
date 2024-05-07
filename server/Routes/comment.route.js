@@ -1,6 +1,7 @@
 import express from 'express';
+import {saveComment} from "../Controllers/comment.controller.js";
 
-const userRoute = express.Router();
-userRoute.put('/login');
+const commentRoute = express.Router();
+commentRoute.put('/',saveComment);
 
-export default userRoute;
+export default commentRoute;
