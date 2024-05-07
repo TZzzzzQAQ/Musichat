@@ -28,6 +28,7 @@ const PlayBar = () => {
     const [volumePercent, setVolumePercent] = useState(50)
     const [isPlaying, setIsPlaying] = useState(false);
     const nowMusicFromRedux = useSelector(state => state.music.nowMusic);
+    const dataFromRedux = useSelector(state => state.user)
     const [player, setPlayer] = useState(undefined);
     const [nowTime, setNowTime] = useState(0)
     const [durationTime, setDurationTime] = useState(0)
@@ -129,20 +130,22 @@ const PlayBar = () => {
         setNowTime(seekTime);
     }, 200);
     useEffect(() => {
-        window.onSpotifyWebPlaybackSDKReady = () => {
-            const player = new window.Spotify.Player({
-                name: 'Web Playback SDK',
-                getOAuthToken: cb => {
-                    cb(getUserToken());
-                },
-                volume: 0.5
-            });
-            setPlayer(player);
-            player.addListener('ready', ({device_id}) => {
-                setActiveDevice(device_id)
-            });
-            player.connect();
-        };
+        if (dataFromRedux.profile) {
+            window.onSpotifyWebPlaybackSDKReady = () => {
+                const player = new window.Spotify.Player({
+                    name: 'Web Playback SDK',
+                    getOAuthToken: cb => {
+                        cb(getUserToken());
+                    },
+                    volume: 0.5
+                });
+                setPlayer(player);
+                player.addListener('ready', ({device_id}) => {
+                    setActiveDevice(device_id)
+                });
+                player.connect();
+            };
+        }
     }, []);
 
     return (
