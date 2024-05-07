@@ -1,4 +1,4 @@
-import {requestSpotifyCommon} from "@/utils/index.jsx";
+import { requestSpotifyCommon } from "@/utils/index.jsx";
 
 export function searchAPI(params) {
     return requestSpotifyCommon({
@@ -26,6 +26,13 @@ export function getAlbumsFromIDAPI(id) {
 export function getTopTracksAPI(id) {
     return requestSpotifyCommon({
         url: `/artists/${id}/top-tracks`,
+        method: 'GET'
+    })
+}
+
+export function getTrackDetailAPI(id) {
+    return requestSpotifyCommon({
+        url: `/tracks/${id}`,
         method: 'GET'
     })
 }

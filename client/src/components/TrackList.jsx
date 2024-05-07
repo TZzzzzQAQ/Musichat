@@ -5,9 +5,11 @@ import {getActiveDevice} from "@/utils/activeDevice.jsx";
 import {useDispatch} from "react-redux";
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCommentDots, faPlus} from "@fortawesome/free-solid-svg-icons";
+import { faCommentDots, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from 'react-router-dom';
 
-const TrackList = ({data: {name, artists, duration_ms, uri}}) => {
+
+const TrackList = ({data: {name, artists, duration_ms, uri,id}}) => {
     const [playUri] = useState({"uris": [uri]})
     const dispatch = useDispatch();
     const handlerClick = async () => {
@@ -21,6 +23,15 @@ const TrackList = ({data: {name, artists, duration_ms, uri}}) => {
             console.log(err)
         }
     }
+    const navigate = useNavigate();
+
+    const handleIconClick = (event) => {
+        event.stopPropagation(); // 阻止事件冒泡
+        navigate(`/songDetails/${id}`); // 假设 uri 是歌曲的 ID
+      };
+
+
+
     return (
         <tr className="underline-animation cursor-pointer font-poppins" onClick={handlerClick}>
             <td className="px-5 py-3 border-b border-gray-200 text-base ">
@@ -37,7 +48,7 @@ const TrackList = ({data: {name, artists, duration_ms, uri}}) => {
                 </span>
             </td>
             <td className="px-5 py-3 border-b border-gray-200 text-2xl">
-                <FontAwesomeIcon icon={faCommentDots} style={{color: "#74C0FC",marginRight:"1rem"}} />
+                <FontAwesomeIcon icon={faCommentDots} style={{color: "#74C0FC",marginRight:"1rem"}} onClick={handleIconClick}/>
                 <FontAwesomeIcon icon={faPlus} style={{color: "#74C0FC",}} />
             </td>
         </tr>
