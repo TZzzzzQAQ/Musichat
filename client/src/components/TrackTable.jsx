@@ -17,6 +17,10 @@ const TrackTable = ({playListData}) => {
                     className={'xl:px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-900 uppercase tracking-wider'}>
                     Duration
                 </th>
+                <th
+                    className={'xl:px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-900 uppercase tracking-wider'}>
+                    Manipulate
+                </th>
             </tr>
             </thead>
             <tbody>

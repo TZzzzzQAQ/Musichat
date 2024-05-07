@@ -4,6 +4,8 @@ import {useState} from "react";
 import {getActiveDevice} from "@/utils/activeDevice.jsx";
 import {useDispatch} from "react-redux";
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCommentDots, faPlus} from "@fortawesome/free-solid-svg-icons";
 
 const TrackList = ({data: {name, artists, duration_ms, uri}}) => {
     const [playUri] = useState({"uris": [uri]})
@@ -21,18 +23,22 @@ const TrackList = ({data: {name, artists, duration_ms, uri}}) => {
     }
     return (
         <tr className="underline-animation cursor-pointer font-poppins" onClick={handlerClick}>
-            <td className="px-5 py-3 border-b border-gray-200 text-base">
+            <td className="px-5 py-3 border-b border-gray-200 text-base ">
                 <span className="cursor-pointer whitespace-no-wrap">
                 {name}
                 </span>
             </td>
-            <td className="px-5 py-3 border-b border-gray-200 text-base">
+            <td className="px-5 py-3 border-b border-gray-200 text-base ">
                 <span className="inline-block mr-2 last:mr-0">{artists[0].name}</span>
             </td>
-            <td className="px-5 py-3 border-b border-gray-200 text-base">
+            <td className="px-5 py-3 border-b border-gray-200 text-base ">
                 <span className="whitespace-no-wrap">
                   {formatTime(duration_ms / 1000)}
                 </span>
+            </td>
+            <td className="px-5 py-3 border-b border-gray-200 text-2xl">
+                <FontAwesomeIcon icon={faCommentDots} style={{color: "#74C0FC",marginRight:"1rem"}} />
+                <FontAwesomeIcon icon={faPlus} style={{color: "#74C0FC",}} />
             </td>
         </tr>
 
