@@ -1,24 +1,17 @@
 import mongoose from "mongoose";
 
 const CommentSchema = new mongoose.Schema({
-    display_name: {
-        type: String,
-        required: true,
-    },
-    userID: {
-        type: String,
-        required: true
-    },
-    uri: {
+    comment: {
         type: String,
         required: true
     },
     time:{
         type: Date,
+        default: Date.now,
         required: true
     },
     songID:{
-        type:String,
+        type: String,
         required:true
     }
 });

@@ -8,7 +8,7 @@ import { Server as SocketServer } from 'socket.io';
 import dotenv from 'dotenv';
 import {errorHandlerMiddleWare} from "./middleware/errorHandler.middleware.js";
 import Message from "./Modules/message.model.js";
-import commentRoute from "./Routes/comment.route.js";
+import commentRoute from './Routes/comment.route.js';
 dotenv.config();
 
 mongoose.connect(process.env.MONGO_URI)
