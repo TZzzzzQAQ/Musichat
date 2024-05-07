@@ -22,9 +22,9 @@ export const saveComment = async (req, res, next) => {
 }
 
 export const getCommentsBySongID = async (req, res, next) => {
-    const {songID} = req.params; // 从URL参数中获取songID
+    const {songID} = req.params;
     try {
-        const comments = await SongComment.find({songID}); // 查找所有与songID匹配的评论
+        const comments = await SongComment.find({songID});
         if (comments.length === 0) {
             return res.status(404).json({
                 message: "No comments found for this song."
@@ -35,6 +35,6 @@ export const getCommentsBySongID = async (req, res, next) => {
             comments
         });
     } catch (error) {
-        next(error); // 传递错误到下一个中间件
+        next(error);
     }
 }
