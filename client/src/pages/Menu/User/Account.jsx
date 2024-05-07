@@ -53,7 +53,7 @@ function Account() {
                         }}
                     />
                         <button
-                            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline"
+                            className="w-full bg-gradient-to-r from-[#594ea0] via-[#6e073b] to-[#ff0000] hover:from-[#4d4087] hover:via-[#5e0631] hover:to-[#cc0000] text-white font-bold py-7 px-6 rounded focus:outline-none focus:shadow-outline"
                             onClick={handlerLogin}
                         >
                             Sign In
