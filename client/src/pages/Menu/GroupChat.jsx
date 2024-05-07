@@ -40,7 +40,6 @@ const GroupChat = () => {
     return (
         <AuthRoute>
             <div className="h-full flex flex-col p-4">
-                <h1 className="text-2xl font-bold text-center text-gray-700 mb-4">Chat Room</h1>
                 <div className="flex flex-col flex-grow overflow-auto p-3 shadow">
                     {chat.map((msg, index) => (
                         <p key={index} className="text-gray-800 text-sm my-1">

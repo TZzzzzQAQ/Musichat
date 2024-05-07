@@ -44,7 +44,7 @@ function Account() {
             {Object.keys(userState).length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full w-full ">
                     <div
-                        className="w-full h-full"
+                        className="w-full h-full rounded-t-2xl"
                         style={{
                             backgroundImage: `url('${backgroundImageUrl}')`,
                             backgroundSize: 'cover',
@@ -53,7 +53,7 @@ function Account() {
                         }}
                     />
                         <button
-                            className="w-full bg-gradient-to-r from-[#594ea0] via-[#6e073b] to-[#ff0000] hover:from-[#4d4087] hover:via-[#5e0631] hover:to-[#cc0000] text-white font-bold py-7 px-6 rounded focus:outline-none focus:shadow-outline"
+                            className="w-full bg-gradient-to-r from-[#594ea0] via-[#6e073b] to-[#ff0000] hover:from-[#4d4087] hover:via-[#5e0631] hover:to-[#cc0000] text-white font-bold py-7 px-6 rounded-b-2xl focus:outline-none focus:shadow-outline text-3xl"
                             onClick={handlerLogin}
                         >
                             Sign In

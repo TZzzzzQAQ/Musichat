@@ -5,9 +5,18 @@ const TrackTable = ({playListData}) => {
         <table className={'min-w-full leading-normal'}>
             <thead>
             <tr>
-                <th className={"w-[32rem] xl:w-[40rem] px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider"}>Track</th>
-                <th className={'w-80 xl:w-96 px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider'}>Singer</th>
-                <th className={'xl:px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-600 uppercase tracking-wider'}>Duration</th>
+                <th
+                    className={"w-[32rem] xl:w-[40rem] px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-900 uppercase tracking-wider"}>
+                    Track
+                </th>
+                <th
+                    className={'w-80 xl:w-96 px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-900 uppercase tracking-wider'}>
+                    Singer
+                </th>
+                <th
+                    className={'xl:px-5 py-3 border-b-2 border-gray-200 text-left text-xl font-poppins text-gray-900 uppercase tracking-wider'}>
+                    Duration
+                </th>
             </tr>
             </thead>
             <tbody>
