@@ -2,7 +2,7 @@ import {useState, useCallback} from 'react';
 import {CLIENT_ID} from "@/../config.js";
 import {setUserToken} from "@/utils/index.jsx";
 
-const redirect_uri = 'http://localhost:5173/Musichat/account';
+const redirect_uri = 'http://localhost:5173/Musichat/home';
 const scope = "user-read-private " +
     "user-read-email " +
     "playlist-read-private " +
