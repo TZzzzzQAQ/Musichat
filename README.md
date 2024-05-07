@@ -20,26 +20,64 @@ The Spotify Clone project is a web application that mimics the functionality of 
 - **Styling:** Tailwind
 - **Deployment:** AWS
 
-## Installation
-1. Clone the repository: `git clone <repository-url>`
-2. Navigate to the project directory: `cd Musichat`
-3. Install dependencies:
-    - Frontend: `cd client && npm install`
-    - Backend: `cd server && npm install`
-    - env for FrontEnd:`
-        VITE_CLIENT_ID=<>
-        VITE_CLIENT_SECRET=<>`
-    - env for BackEnd:`
-        VITE_OPENAI_ASSISTANT_ID=<>
-        VITE_OPENAI_API_KEY=<>
-        MONGO_URI=<mongodb_uri>
-        PORT=<>`
-4. Set up environment variables:
-    - Create a `.env` file in the `server` directory.
-    - Define environment variables such as database connection URI, JWT secret, etc.
-5. Start the development servers:
-    - Frontend: `cd client && npm start`
-    - Backend: `cd server && npm start`
+## Project Setup Instructions
+
+### FrontEnd Setup
+Follow these steps to set up the frontend part of the project:
+
+1. **Navigate to the Client Directory**
+   ```bash
+   cd client
+   ```
+
+2. **Install Dependencies**
+   Install all the necessary dependencies for the frontend.
+   ```bash
+   npm install
+   ```
+
+3. **Start the Development Server**
+   Launch the development server to enable real-time site or application testing.
+   ```bash
+   npm run dev
+   ```
+
+   #### Setting Up Environment Variables for FrontEnd
+   Create a `.env` file in the `client` directory and include the following variables:
+   ```
+   VITE_CLIENT_ID=<Your_Client_ID>
+   VITE_CLIENT_SECRET=<Your_Client_Secret>
+   ```
+
+### BackEnd Setup
+Follow these steps to set up the backend part of the project:
+
+1. **Navigate to the Server Directory**
+   ```bash
+   cd server
+   ```
+
+2. **Install Dependencies**
+   Install all the necessary dependencies required for the backend to function.
+   ```bash
+   npm install
+   ```
+
+3. **Launch the Backend Application**
+   Start the backend application by executing the `index.js` file with Node.js.
+   ```bash
+   node index.js
+   ```
+
+   #### Setting Up Environment Variables for BackEnd
+   Create a `.env` file in the `server` directory and include the following variables:
+   ```
+   VITE_OPENAI_ASSISTANT_ID=<Your_OpenAI_Assistant_ID>
+   VITE_OPENAI_API_KEY=<Your_OpenAI_API_Key>
+   MONGO_URI=<Your_MongoDB_URI>
+   PORT=<Your_Port_Number>
+   ```
+
 
 ## Deployment
 1. Set up hosting platforms for frontend (Vercel, Netlify, etc.) and backend (Heroku, AWS, etc.).
