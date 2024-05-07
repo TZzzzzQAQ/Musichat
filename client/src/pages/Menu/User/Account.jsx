@@ -5,6 +5,9 @@ import { setUserProfile } from "@/store/features/userSlice.jsx";
 import { useSpotifyAuth } from "@/hooks/useSpotifyAuth.jsx";
 import { sendUserDataAPI } from "@/apis/chatGroupAPI.jsx";
 import Setting from "@/pages/Menu/User/User.jsx";
+import {removeActiveDevice } from '@/utils/activeDevice.jsx';
+import { removeUserToken } from '@/utils/tokenForUser.jsx';
+
 const backgroundImageUrl = "https://i.ibb.co/cTxbCWy/spotify-k8mh.png";;
 
 const BackgroundImage = () => (
@@ -64,6 +67,12 @@ function Account() {
       console.error("Failed to fetch profile:", error);
     }
   };
+  const handleLogout = () => {
+    removeUserToken();
+    removeActiveDevice();
+    dispatch(setUserProfile({}));
+    window.location.href = '/Musichat/account';
+  };
 
   return (
     <div className="h-full">
@@ -77,6 +86,12 @@ function Account() {
         <div className="flex flex-col items-center p-12">
                     <h2 className="text-6xl mb-5 bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-pink-500">Welcome, {userState.display_name}!</h2>
                     <Setting/>
+                    <button
+                        className="mt-6 px-6 py-3 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition duration-300"
+                        onClick={handleLogout}
+                                                >
+                            Logout
+                    </button>
                     <div className="flex items-center mt-12">
                         <div className="text-2xl">
                             <p className="mb-2.5 bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-pink-500">
