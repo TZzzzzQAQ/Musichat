@@ -18,7 +18,7 @@ import {
 import SearchForm from "@/components/SearchForm.jsx";
 import ToggleDark from "@/components/ToggleDark.jsx";
 import {debounce} from "lodash/function";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 const {Header, Sider, Content, Footer} = Layout;
 
@@ -43,7 +43,7 @@ const item = [
             {
                 key: '/favourite',
                 icon: <FontAwesomeIcon icon={faHeart} style={iconColor}/>,
-                label: 'Favourite'
+                label: 'GuessYouLike'
             }, {
                 key: '/playlist',
                 icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
@@ -59,7 +59,7 @@ const item = [
             {
                 key: '/artist',
                 icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor}/>,
-                label: 'Artist'
+                label: 'RandomArtist'
             },
             {
                 key: '/newRelease',
