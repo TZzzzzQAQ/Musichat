@@ -95,37 +95,37 @@ const PlayBar = () => {
         const newPercent = ((clickX - dimensionsVolume.left) / dimensionsVolume.width) * 100;
         setVolumePercent(() => newPercent);
         player.setVolume(newPercent / 100).then()
-    })
+    }, 200)
 
-    const play = async () => {
+    const play = debounce(async () => {
         await player.togglePlay();
         setIsPlaying(prevState => !prevState)
-    };
-    const pause = async () => {
+    }, 200);
+    const pause = debounce(async () => {
         await player.togglePlay();
         setIsPlaying(prevState => !prevState)
-    };
-    const previousTrack = async () => {
+    }, 200);
+    const previousTrack = debounce(async () => {
         await player.previousTrack()
         setTimeout(async () => {
             const response = await getPlaybackStateAPI();
             dispatch(setNowMusic(response));
         }, 1000);
-    }
-    const nextTrack = async () => {
+    }, 200)
+    const nextTrack = debounce(async () => {
         await player.nextTrack()
         setTimeout(async () => {
             const response = await getPlaybackStateAPI();
             dispatch(setNowMusic(response));
         }, 1000);
-    }
-    const handleProgressClick = debounce((e) => {
+    }, 200)
+    const handleProgressClick = debounce(async (e) => {
         const progressBar = progressRef.current;
         const clickX = e.clientX - progressBar.getBoundingClientRect().left;
         const progressBarWidth = progressBar.clientWidth;
         const clickPercentage = clickX / progressBarWidth;
         const seekTime = clickPercentage * durationTime;
-        player.seek(seekTime);
+        await player.seek(seekTime);
         setNowTime(seekTime);
     }, 200);
     useEffect(() => {
