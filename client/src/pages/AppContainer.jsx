@@ -98,7 +98,9 @@ const AppContainer = () => {
     const avatarClickHandler = () => {
         navigate('/account', {replace: true})
     }
-
+    useEffect(() => {
+        avatarClickHandler()
+    }, []);
     useEffect(() => {
         const handleResize = debounce(() => {
             setCollapsed(window.innerWidth < 1280);
@@ -114,7 +116,8 @@ const AppContainer = () => {
         if (dataFromRedux.profile?.images?.length > 1) {
             setUrl(dataFromRedux.profile.images[1].url);
         }
-    }, [dataFromRedux]); // 当 dataFromRedux 更新时触发
+    }, [dataFromRedux]);
+
     return (
         <Layout className={'bg-transparent rounded-2xl h-[45rem]'}>
             <Layout className={'bg-transparent rounded-2xl'}>
