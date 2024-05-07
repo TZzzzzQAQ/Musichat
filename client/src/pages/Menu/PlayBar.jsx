@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState,useCallback} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {Avatar, Progress} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -16,7 +16,7 @@ import {formatTime, getUserToken} from "@/utils/index.jsx";
 import {setActiveDevice} from "@/utils/activeDevice.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {getPlaybackStateAPI} from "@/apis/spotifyPlayAPI.jsx";
-import { playRepeat, playShuffle } from '../../apis/spotifyPlayAPI';
+import {playRepeat, playShuffle} from '../../apis/spotifyPlayAPI';
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
 
 const iconColor = {color: "#74C0FC"};
@@ -41,7 +41,7 @@ const PlayBar = () => {
     const volumeProgressBar = useRef(null);
 
     const [repeat, setRepeat] = useState('off')
-    const [shuffle , setShuffle] = useState('false')
+    const [shuffle, setShuffle] = useState('false')
 
     useEffect(() => {
         setIsPlaying(true);
@@ -51,8 +51,7 @@ const PlayBar = () => {
         setNowTime(0);
     }, [nowMusicFromRedux]);
 
-    
-
+    // init spotify
     useEffect(() => {
         if (dataFromRedux.profile) {
             window.onSpotifyWebPlaybackSDKReady = () => {
@@ -81,6 +80,7 @@ const PlayBar = () => {
         }
     }, []);
 
+    // init timer
     useEffect(() => {
         let intervalId;
         if (isPlaying) {
@@ -104,8 +104,9 @@ const PlayBar = () => {
                 clearInterval(intervalId);
             }
         };
-    }, [isPlaying, durationTime, nowMusicFromRedux]);
+    }, [isPlaying, durationTime]);
 
+    // init volume progressbar
     useEffect(() => {
         if (volumeProgressBar.current) {
             const {width, left} = volumeProgressBar.current.getBoundingClientRect();
@@ -113,6 +114,7 @@ const PlayBar = () => {
         }
     }, []);
 
+    // init rotate avatar
     useEffect(() => {
         let intervalId;
         if (isPlaying) {
@@ -131,7 +133,7 @@ const PlayBar = () => {
         setVolumePercent(() => newPercent);
         player.setVolume(newPercent / 100).then()
     }, 200)
-   
+
 
     const toggleRepeat = debounce(async () => {
         let newRepeatState;
@@ -146,18 +148,17 @@ const PlayBar = () => {
                 newRepeatState = 'off';
                 break;
             default:
-                newRepeatState = 'off'; 
+                newRepeatState = 'off';
                 break;
         }
-    
         try {
-            await playRepeat(newRepeatState); 
-            setRepeat(newRepeatState); 
+            await playRepeat(newRepeatState);
+            setRepeat(newRepeatState);
             console.log('Repeat mode set to:', newRepeatState);
         } catch (error) {
             console.error('Error setting repeat mode:', error);
         }
-    }, 200, { leading: true, trailing: false });
+    }, 200, {leading: true, trailing: false});
 
 
     const toggleShuffle = debounce(async () => {
@@ -169,29 +170,20 @@ const PlayBar = () => {
             case 'false':
                 newshuffleState = 'true';
                 break;
-            
             default:
-                newshuffleState = 'false'; 
+                newshuffleState = 'false';
                 break;
         }
-    
+
         try {
-            await playShuffle(newshuffleState); 
-            setShuffle(newshuffleState); 
+            await playShuffle(newshuffleState);
+            setShuffle(newshuffleState);
             console.log('Repeat mode set to:', newshuffleState);
         } catch (error) {
             console.error('Error setting repeat mode:', error);
         }
-    }, 200, { leading: true, trailing: false });
-    
-    
+    }, 200, {leading: true, trailing: false});
 
-    
-   
-
-
-    
-    
 
     const play = debounce(async () => {
         await player.togglePlay();
@@ -221,6 +213,8 @@ const PlayBar = () => {
         const progressBarWidth = progressBar.clientWidth;
         const clickPercentage = clickX / progressBarWidth;
         const seekTime = clickPercentage * durationTime;
+        console.log(seekTime)
+        console.log(durationTime)
         await player.seek(seekTime)
         setNowTime(seekTime);
     }, 200);
@@ -278,8 +272,10 @@ const PlayBar = () => {
             </div>
             <div className={'flex flex-row mr-4'}>
                 <div className={'flex justify-center items-center text-xl xl:text-2xl xl:gap-4 gap-2'}>
-                    <FontAwesomeIcon icon={faShuffle} style={{...iconColor, cursor: 'pointer'}} onClick={toggleShuffle}/>
-                    <FontAwesomeIcon icon={faArrowsRotate} style={{...iconColor, cursor: 'pointer'}} onClick={toggleRepeat}/>
+                    <FontAwesomeIcon icon={faShuffle} style={{...iconColor, cursor: 'pointer'}}
+                                     onClick={toggleShuffle}/>
+                    <FontAwesomeIcon icon={faArrowsRotate} style={{...iconColor, cursor: 'pointer'}}
+                                     onClick={toggleRepeat}/>
                     <FontAwesomeIcon icon={faHeart} style={iconColor}/>
                     <FontAwesomeIcon icon={faList} style={iconColor}/>
                     <FontAwesomeIcon icon={faVolumeOff} style={iconColor}/>
