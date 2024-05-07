@@ -1,5 +1,5 @@
 import {useLocation} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setUserProfile} from "@/store/features/userSlice.jsx";
 import {useSpotifyAuth} from "@/hooks/useSpotifyAuth.jsx";
