@@ -15,7 +15,7 @@ import GroupChat from "@/pages/Menu/GroupChat.jsx";
 import AlbumDetails from "@/pages/Menu/Discover/AlbumDetails.jsx";
 import ArtistDetail from '../pages/Menu/Discover/ArtistDetail';
 import PlaylistDetails from '@/pages/Menu/User/PlaylistDetails';
-import SongDetail from '@/pages/Menu/SongDetail';
+import TrackDetail from '@/pages/Menu/TrackDetail.jsx';
 
 const router = createBrowserRouter([
     {
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
             },
             {
                 path:"/songDetails/:id",
-                element: <SongDetail/>
+                element: <TrackDetail/>
             }
         ]
     }

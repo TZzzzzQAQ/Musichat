@@ -1,19 +1,23 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getTrackDetailAPI} from '@/apis/everyoneDataAPI.jsx';
+import {useParams} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {getTrackDetailAPI} from '@/apis/everyoneDataAPI.jsx';
 import {getCommentsAPI, postCommentAPI, deleteCommentAPI} from '@/apis/commentAPI.jsx';
+import {useDispatch, useSelector} from "react-redux";
 
-const SongDetail = () => {
+const TrackDetail = () => {
     const [data, setData] = useState(null);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
-    const { id } = useParams();
+    const {id} = useParams();
+
+    const userState = useSelector((state) => state.user.profile);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const trackResponse = await getTrackDetailAPI(id);
-                const commentsResponse = await getCommentsAPI(id); 
+                const commentsResponse = await getCommentsAPI(id);
                 setData(trackResponse);
                 setComments(commentsResponse);
             } catch (error) {
@@ -54,7 +58,9 @@ const SongDetail = () => {
                     {comments.map(comment => (
                         <div key={comment._id} className="mb-2">
                             {comment.comment}
-                            <button onClick={() => handleDeleteComment(comment._id)} className="bg-red-500 text-white p-2 ml-2">Delete</button>
+                            <button onClick={() => handleDeleteComment(comment._id)}
+                                    className="bg-red-500 text-white p-2 ml-2">Delete
+                            </button>
                         </div>
                     ))}
                 </div>
@@ -65,9 +71,10 @@ const SongDetail = () => {
                     className="border p-1 w-full mb-2"
                 />
                 <button onClick={handleAddComment} className="bg-blue-500 text-white p-2">Add Comment</button>
+                {JSON.stringify(userState)}
             </div>
         </div>
     );
 };
 
-export default SongDetail;
+export default TrackDetail;
