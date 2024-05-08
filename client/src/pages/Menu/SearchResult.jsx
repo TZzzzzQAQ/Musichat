@@ -38,7 +38,6 @@ const SearchResult = () => {
             {someData.tracks && <div className={'overflow-x-hidden h-full'}>
                 <TrackTable playListData={tracksItems}/>
             </div>}
-            {!hasData && <div className="text-xl font-poppins text-center py-10">Search what you want!</div>}
         </>
     );
 };
