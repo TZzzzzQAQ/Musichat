@@ -7,8 +7,8 @@ import {setNowMusic} from "@/store/features/musicSlice.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faCommentDots, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
-
-
+import { playbackQueue } from "../apis/spotifyPlayAPI";
+import { requestSpotifyCommon } from "../axios/requestSpotifyCommon";
 const TrackList = ({data: {name, artists, duration_ms, uri,id}}) => {
     const [playUri] = useState({"uris": [uri]})
     const dispatch = useDispatch();
@@ -31,6 +31,22 @@ const TrackList = ({data: {name, artists, duration_ms, uri,id}}) => {
       };
 
 
+      const handlePlusClick = async (event) => {
+    event.stopPropagation(); // Prevent event bubbling
+    try {
+        console.log("Adding to queue", uri); // Check URI
+        const device = getActiveDevice(); // Ensure device is retrieved
+        console.log("Device ID:", device); // Log device ID
+        await playbackQueue(uri, device);
+        console.log("Track added to queue"); // Confirm function was called
+    } catch (err) {
+        console.error("Error adding to queue:", err);
+    }
+};
+
+    
+
+
 
     return (
         <tr className="underline-animation cursor-pointer font-poppins" onClick={handlerClick}>
@@ -49,7 +65,7 @@ const TrackList = ({data: {name, artists, duration_ms, uri,id}}) => {
             </td>
             <td className="px-5 py-3 border-b border-gray-200 text-2xl">
                 <FontAwesomeIcon icon={faCommentDots} style={{color: "#74C0FC",marginRight:"1rem"}} onClick={handleIconClick}/>
-                <FontAwesomeIcon icon={faPlus} style={{color: "#74C0FC",}} />
+                <FontAwesomeIcon icon={faPlus} style={{color: "#74C0FC",}} onClick={handlePlusClick}/>
             </td>
         </tr>
 
