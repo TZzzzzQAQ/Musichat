@@ -8,11 +8,11 @@ import Setting from "@/pages/Menu/User/User.jsx";
 import {removeActiveDevice } from '@/utils/activeDevice.jsx';
 import { removeUserToken } from '@/utils/tokenForUser.jsx';
 
-const backgroundImageUrl = "https://i.ibb.co/cTxbCWy/spotify-k8mh.png";;
+const backgroundImageUrl = "https://i.ibb.co/9gjBQFk/Spotify-Logo-RGB-Green.png";;
 
 const BackgroundImage = () => (
     <div
-      className="absolute inset-0 bg-contain bg-center bg-no-repeat filter blur-[7px] z-[-1] overflow-hidden"
+      className="absolute inset-0 bg-contain bg-center bg-no-repeat filter blur-[11px] z-[-1] overflow-hidden"
       style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
     />
   );
@@ -87,7 +87,7 @@ function Account() {
                     <h2 className="text-6xl mb-5 bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-pink-500">Welcome, {userState.display_name}!</h2>
                     <Setting/>
                     <button
-                        className="mt-6 px-6 py-3 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition duration-300"
+                        className="mt-6 px-6 py-3 bg-gradient-to-r from-purple-800 to-pink-500 text-white rounded-md shadow-md hover:bg-red-600 transition duration-300"
                         onClick={handleLogout}
                                                 >
                             Logout
