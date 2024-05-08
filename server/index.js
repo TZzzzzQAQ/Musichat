@@ -9,6 +9,7 @@ import dotenv from 'dotenv';
 import {errorHandlerMiddleWare} from "./middleware/errorHandler.middleware.js";
 import Message from "./Modules/message.model.js";
 import commentRoute from './Routes/comment.route.js';
+import messageRoute from './Routes/message.route.js';
 dotenv.config();
 
 mongoose.connect(process.env.MONGO_URI)
@@ -26,7 +27,7 @@ app.use(cors());
 app.use('/recommend-music', musicRoutes);
 app.use('/user', userRoute)
 app.use('/comment', commentRoute)
-app.use('/message', commentRoute)
+app.use('/message', messageRoute)
 
 app.use(errorHandlerMiddleWare)
 
