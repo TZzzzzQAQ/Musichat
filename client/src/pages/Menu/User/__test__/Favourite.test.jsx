@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from "vitest";
-import Album from '../Favourite'; // Adjust the import path as necessary
+import Album from '../GuessYouLike.jsx'; // Adjust the import path as necessary
 import { getTopTracksAPI } from "@/apis/everyoneDataAPI"; // Ensure this is the correct path
 import '@testing-library/jest-dom';
 

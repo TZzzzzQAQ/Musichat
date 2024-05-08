@@ -4,7 +4,7 @@ import {getUserTopItems} from "@/apis/userDataAPI.jsx";
 import TrackTable from "@/components/TrackTable.jsx";
 import Loading from "@/components/Loading/Loading.jsx";
 
-const Favourite = () => {
+const GuessYouLike = () => {
     const [searchParams, setSearchParams] = useState({
         type: 'tracks',
         limit: 20,
@@ -34,4 +34,4 @@ const Favourite = () => {
     );
 };
 
-export default Favourite;
+export default GuessYouLike;

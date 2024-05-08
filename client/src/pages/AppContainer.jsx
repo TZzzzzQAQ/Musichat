@@ -43,11 +43,15 @@ const item = [
             {
                 key: '/favourite',
                 icon: <FontAwesomeIcon icon={faHeart} style={iconColor}/>,
-                label: 'GuessYouLike'
+                label: 'Guess You Like'
             }, {
                 key: '/playlist',
                 icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
                 label: 'Playlist'
+            }, {
+                key: '/yourFollow',
+                icon: <FontAwesomeIcon icon={faUser} style={iconColor}/>,
+                label: 'Your Follow'
             }
         ]
     },

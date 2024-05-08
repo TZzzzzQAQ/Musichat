@@ -63,3 +63,11 @@ export function getUserTopItems(params) {
         params
     })
 }
+
+export function getUserFollowedArtistsAPI(params) {
+    return requestSpotifyLogin({
+        url: `/following`,
+        method: 'GET',
+        params
+    })
+}

@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import TrackList from "@/components/TrackList.jsx";
 import {getAlbumsFromIDAPI} from "@/apis/everyoneDataAPI.jsx";
 import TrackTable from "@/components/TrackTable.jsx";
 

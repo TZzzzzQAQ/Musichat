@@ -13,7 +13,7 @@ const SearchResult = () => {
     const tracksItems = someData?.tracks?.items || [];
 
     const hasData = artistsItems.length || albumsItems.length || tracksItems.length;    
-    const hasAlbumData = albumsItems.length|| tracksItems.length;
+    const hasAlbumsData = albumsItems.length|| tracksItems.length;
 
     if (!hasData || !hasAlbumsData) {
         return <div className="text-xl font-poppins text-center py-10">Search what you want!</div>;
