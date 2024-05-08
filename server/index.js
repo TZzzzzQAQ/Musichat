@@ -25,7 +25,8 @@ app.use(cors());
 
 app.use('/recommend-music', musicRoutes);
 app.use('/user', userRoute)
-app.use('/comment',commentRoute)
+app.use('/comment', commentRoute)
+app.use('/message', commentRoute)
 
 app.use(errorHandlerMiddleWare)
 
