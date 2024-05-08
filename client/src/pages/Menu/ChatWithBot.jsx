@@ -1,55 +1,53 @@
 import { useState, useRef, useEffect } from 'react';
-import searchTrack from '../../apis/BotrecomAPI';
-import TrackTable from '../../components/TrackTable';
-import AuthRoute from "@/components/AuthRoute.jsx";
+import searchTrack from '../../apis/BotrecomAPI'; // Importing the function to search for tracks from BotrecomAPI
+import TrackTable from '../../components/TrackTable'; // Importing the TrackTable component
+import AuthRoute from "@/components/AuthRoute.jsx"; // Importing the AuthRoute component for authentication
 
 const ChatWithBot = () => {
-    const [userInput, setUserInput] = useState('');
-    const [error, setError] = useState('');
-    const [chatHistory, setChatHistory] = useState([]);
-    const [tracks, setTracks] = useState([]);
-    const messagesEndRef = useRef(null);
+    const [userInput, setUserInput] = useState(''); // State variable to hold user input
+    const [error, setError] = useState(''); // State variable to hold error messages
+    const [chatHistory, setChatHistory] = useState([]); // State variable to hold chat history
+    const [tracks, setTracks] = useState([]); // State variable to hold track information
+    const messagesEndRef = useRef(null); // Reference to the last message in the chat history
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); // Automatically scroll to the bottom when chat history updates
     }, [chatHistory]);
     
+    let messages; // Variable to hold bot messages
 
-
-    let messages;
-
+    // Function to handle user recommendation submission
     const handleRecommendation = async (event) => {
-        event.preventDefault();
-        setUserInput('');
-        setChatHistory(prev => [...prev, { message: userInput, type: 'user' }]);
+        event.preventDefault(); // Prevent default form submission behavior
+        setUserInput(''); // Clear user input field
+        setChatHistory(prev => [...prev, { message: userInput, type: 'user' }]); // Add user message to chat history
         try {
             const response = await fetch('http://localhost:3000/recommend-music', {
-                method: 'POST',
+                method: 'POST', // POST request method
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json' // Set content type to JSON
                 },
-                body: JSON.stringify({ userInput })
+                body: JSON.stringify({ userInput }) // Send user input as JSON in the request body
             });
 
             if (response.ok) {
-                const data = await response.json();
-                messages = JSON.parse(data[0].content)
-                setChatHistory(prev => [...prev, { message: messages.Reason, type: 'bot' }]);
+                const data = await response.json(); // Parse response data as JSON
+                messages = JSON.parse(data[0].content); // Parse bot messages from response data
+                setChatHistory(prev => [...prev, { message: messages.Reason, type: 'bot' }]); // Add bot message to chat history
                 if (messages.Music) {
-                    setTracks(await searchTrack(messages.Track, messages.Artist)); // 或者将搜索结果展示在你的 UI 中
+                    setTracks(await searchTrack(messages.Track, messages.Artist)); // Search for tracks based on bot recommendations
                 }
 
-                setError('');
-                
+                setError(''); // Clear error message
             } else {
-                throw new Error('Failed to fetch recommendations');
+                throw new Error('Failed to fetch recommendations'); // Throw error if fetching recommendations fails
             }
         } catch (error) {
-            setError(error.message);
+            setError(error.message); // Set error message
         }
     };
 
     return (
-        <AuthRoute>
+        <AuthRoute> {/* Protected route for authentication */}
             <div className="h-full flex flex-col ">
                 <div className="flex-1 overflow-y-auto p-4 ">
                     {chatHistory.map((chat, index) => (
@@ -57,13 +55,13 @@ const ChatWithBot = () => {
                              className={`flex mt-2 ${chat.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                             <div
                                 className={`max-w-xs p-2 rounded-lg  ${chat.type === 'user' ? 'bg-green-300' : 'border-2 shadow-lg'}`}>
-                                {chat.message}
+                                {chat.message} {/* Display user or bot messages */}
                             </div>
 
                         </div>
 
                     ))}
-                    <div ref={messagesEndRef}/>
+                    <div ref={messagesEndRef}/> {/* Reference to the last message */}
                 </div>
 
 
@@ -73,19 +71,19 @@ const ChatWithBot = () => {
                         value={userInput}
                         placeholder="Tell me about your music taste..."
                         className="flex-1 px-4 py-2 border  rounded-l-md focus:outline-none focus:ring-2 focus:border-transparent"
-                        onChange={(e) => setUserInput(e.target.value)}
+                        onChange={(e) => setUserInput(e.target.value)} // Update user input state
                     />
                     <button type="submit"
                             className="ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50">
                         Send
                     </button>
                 </form>
-                {error && <div className="text-red-500 text-center">{error}</div>}
+                {error && <div className="text-red-500 text-center">{error}</div>} {/* Display error message if exists */}
 
-                <TrackTable playListData={tracks}/>
+                <TrackTable playListData={tracks}/> {/* Display track table */}
             </div>
         </AuthRoute>
     );
 };
 
-export default ChatWithBot;
+export default ChatWithBot; // Export the ChatWithBot component
