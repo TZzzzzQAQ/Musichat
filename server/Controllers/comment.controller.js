@@ -15,15 +15,16 @@ export async function saveComment(req, res) {
     
     const newComment = new SongComment({
         comment: req.body.comment,
-        songID: req.body.songID
+        songID: req.body.songID,
+        time: new Date().toISOString(),
+        displayName: req.body.displayName,
+        userId: req.body.userId
     });
     try {
         
         const savedComment = await newComment.save();
         res.status(201).json(savedComment);
     } catch (error) {
-        console.log(req.body.songID)
-        console.log(req.body.comment.comment)
         res.status(400).json({ message: "error.message" });
     }
 }

@@ -10,11 +10,11 @@ export const getCommentsAPI = async (songId) => {
 };
 
 // Post a new comment to a specific song
-export const postCommentAPI = async (songId, comment) => {
+export const postCommentAPI = async (songId, comment, displayname, id) => {
     const response = await fetch(`${API_URL}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ songID: songId, comment: comment })
+        body: JSON.stringify({ songID: songId, comment: comment, displayName: displayname, userId: id})
     });
     if (!response.ok) {
         throw new Error('Failed to post comment');

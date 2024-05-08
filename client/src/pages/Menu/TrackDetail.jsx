@@ -29,7 +29,7 @@ const TrackDetail = () => {
 
     const handleAddComment = async () => {
         try {
-            const response = await postCommentAPI(id, newComment);
+            const response = await postCommentAPI(id, newComment, userState.display_name, userState.id);
             setComments([...comments, response]); // 更新评论列表
             setNewComment(''); // 清空输入框
         } catch (error) {
@@ -52,29 +52,38 @@ const TrackDetail = () => {
                 <h1 className="text-3xl mb-5 font-poppins font-bold">{data && data.name}</h1>
                 <img src={data && data.album.images[0].url} alt={data && data.album.name} className='h-[200px]'/>
             </div>
-            <div className="flex-1">
-                <h2 className="text-2xl mb-3">Comments</h2>
-                <div>
+            <div className="flex-1 p-5 bg-gray-50 rounded-lg shadow-md">
+                <h2 className="text-2xl mb-3 font-semibold">Comments</h2>
+                <div className="space-y-4">
                     {comments.map(comment => (
-                        <div key={comment._id} className="mb-2">
-                            {comment.comment}
-                            <button onClick={() => handleDeleteComment(comment._id)}
-                                    className="bg-red-500 text-white p-2 ml-2">Delete
-                            </button>
+                        <div key={comment._id} className="p-3 bg-white rounded-lg shadow">
+                            <div className="flex justify-between items-center">
+                                <span className="font-bold">{comment.displayName || userState.display_name}</span>
+                                <span className="text-sm text-gray-600">{comment.time}</span>
+                            </div>
+                            <p className="text-gray-800 mt-1">{comment.comment}</p>
+                            
+                            {comment.userId === userState.id && (
+                                <button onClick={() => handleDeleteComment(comment._id)}
+                                        className="bg-red-500 text-white p-2 mt-2 rounded hover:bg-red-700 transition duration-150 ease-in-out">
+                                    Delete
+                                </button>
+                            )}
                         </div>
                     ))}
                 </div>
-                <input
-                    value={newComment}
-                    onChange={(e) => setNewComment(e.target.value)}
-                    placeholder="Add a new comment"
-                    className="border p-1 w-full mb-2"
-                />
-                <button onClick={handleAddComment} className="bg-blue-500 text-white p-2">Add Comment</button>
-                {JSON.stringify(userState)}
+                <div className="mt-5">
+                    <input
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        placeholder="Add a new comment"
+                        className="border p-2 w-full mb-2 rounded"
+                    />
+                    <button onClick={handleAddComment} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 transition duration-150 ease-in-out">Add Comment</button>
+                </div>
             </div>
         </div>
-    );
+    );    
 };
 
 export default TrackDetail;
