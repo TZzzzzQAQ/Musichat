@@ -68,21 +68,27 @@ const GroupChat = () => {
             <div className="h-full flex flex-col ">
                 <div className="flex-grow overflow-auto p-3 shadow-inner">
                     {chat.map((msg, index) => (
-                        <div key={index} className="flex items-start mb-4 text-sm">
-                            <div className="flex-shrink-0 bg-gray-300 rounded-full w-8 h-8 mr-3">
-                                <span className="block w-full h-full rounded-full overflow-hidden">
-                                    <img src={msg.img} alt="avatar" className="w-full h-full object-cover" />
-                                </span>
-                            </div>
-                            <div className="flex-1 overflow-hidden">
-                                <div>
-                                    <span className="font-bold text-gray-600">{msg.display_name}</span>
-                                    <span className="text-gray-500 text-xs ml-2">{new Date(msg.time).toLocaleTimeString()}</span>
+                        <div key={index} className={`flex mb-4 text-sm items-start ${msg.id === userState.id ? 'justify-end' : 'justify-start'}`}>
+                            <div className={`flex ${msg.id === userState.id ? 'flex-row-reverse' : 'flex-row'} items-center`}>
+                                
+                                <div className={` flex-shrink-0 bg-gray-300 rounded-full w-8 h-8 ${msg.id === userState.id ? 'ml-3' : 'mr-3'}`} >
+                                    
+                                    <span className="block w-full h-full rounded-full overflow-hidden">
+                                        
+                                        <img src={msg.img} alt="avatar" className="w-full h-full object-cover" />
+                                    </span>
                                 </div>
-                                <p className="text-black leading-normal">{msg.message}</p>
+                                <div className="flex-1 overflow-hidden">
+                                    <div>
+                                        <span className="font-bold text-gray-600 ">{msg.display_name}</span>
+                                        <span className="text-gray-500 text-xs ml-2">{new Date(msg.time).toLocaleTimeString()}</span>
+                                    </div>
+                                    <p className="text-black leading-normal">{msg.message}</p>
+                                </div>
                             </div>
-                        </div >
+                        </div>
                     ))}
+
                     <div ref={messagesEndRef} />
                 </div>
                 <div className="p-4 max-w-lg mx-auto bg-white shadow-lg rounded-lg">
