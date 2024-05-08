@@ -15,7 +15,7 @@ const MessageSchema = new mongoose.Schema({
     },
     time:{
         type: Date,
-        required: true
+        //required: true
     }
 });
 

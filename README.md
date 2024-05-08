@@ -124,3 +124,4 @@ This project is licensed under the [MIT License](LICENSE).
 - Spotify for providing access to their API.
 - React, Node.js, MongoDB, and other open-source technologies used in this project.
 - Contributors and open-source community for their valuable contributions and support.
+
