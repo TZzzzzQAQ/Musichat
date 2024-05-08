@@ -2,7 +2,10 @@ import {useState, useCallback} from 'react';
 import {CLIENT_ID} from "@/../config.js";
 import {setUserToken} from "@/utils/index.jsx";
 
+// Redirect URI after authentication success
 const redirect_uri = 'http://localhost:5173/Musichat/account';
+
+// Required Spotify scopes as a single string separated by spaces
 const scope = "user-read-private " +
     "user-read-email " +
     "playlist-read-private " +
@@ -12,11 +15,14 @@ const scope = "user-read-private " +
     "user-read-playback-state " +
     "user-follow-read " +
     "user-top-read " +
-    "streaming"
+    "streaming";
+
+// Custom React hook to manage Spotify authentication
 export const useSpotifyAuth = () => {
     const [accessToken, setAccessToken] = useState(null);
     const [refreshToken, setRefreshToken] = useState(null);
 
+    // Generates a random string to be used as a code verifier
     function generateCodeVerifier(length) {
         let text = '';
         let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -27,6 +33,7 @@ export const useSpotifyAuth = () => {
         return text;
     }
 
+    // Generates a code challenge from the verifier to be used in the PKCE flow
     async function generateCodeChallenge(codeVerifier) {
         const data = new TextEncoder().encode(codeVerifier);
         const digest = await window.crypto.subtle.digest('SHA-256', data);
@@ -36,6 +43,7 @@ export const useSpotifyAuth = () => {
             .replace(/=+$/, '');
     }
 
+    // Redirects the user to Spotify's authorization page
     const redirectToAuthCodeFlow = useCallback(async () => {
         const verifier = generateCodeVerifier(128);
         const challenge = await generateCodeChallenge(verifier);
@@ -53,6 +61,7 @@ export const useSpotifyAuth = () => {
         document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
     }, []);
 
+    // Exchanges a code for an access token using the code verifier stored in session storage
     const getAccessToken = useCallback(async (code) => {
         const verifier = sessionStorage.getItem("verifier");
 
@@ -76,9 +85,9 @@ export const useSpotifyAuth = () => {
             setUserToken(data.access_token);
         }
         return data;
-
     }, []);
 
+    // Fetches the user profile from Spotify using the access token
     const fetchProfile = useCallback(async (code) => {
         const {access_token: accessToken} = await getAccessToken(code);
         if (!accessToken) {
