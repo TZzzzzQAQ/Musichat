@@ -12,12 +12,7 @@ const SearchResult = () => {
     const albumsItems = someData?.albums?.items || [];
     const tracksItems = someData?.tracks?.items || [];
 
-    const hasData = artistsItems.length || albumsItems.length || tracksItems.length;    
-    const hasAlbumsData = albumsItems.length|| tracksItems.length;
-
-    if (!hasData || !hasAlbumsData) {
-        return <div className="text-xl font-poppins text-center py-10">Search what you want!</div>;
-    }
+    const hasData = artistsItems.length || albumsItems.length || tracksItems.length;
     
     return (
         <>
@@ -38,6 +33,7 @@ const SearchResult = () => {
             {someData.tracks && <div className={'overflow-x-hidden h-full'}>
                 <TrackTable playListData={tracksItems}/>
             </div>}
+            {!hasData && <div className="text-xl font-poppins text-center py-10">Search what you want!</div>}
         </>
     );
 };

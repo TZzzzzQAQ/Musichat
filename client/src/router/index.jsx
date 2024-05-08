@@ -86,6 +86,10 @@ const router = createBrowserRouter([
             {
                 path: "/yourFollow",
                 element: <YourFollow/>
+            },
+            {
+                path: "yourFollow/:id",
+                element: <ArtistDetail/>
             }
         ]
     }

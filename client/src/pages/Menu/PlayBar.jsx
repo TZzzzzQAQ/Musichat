@@ -154,7 +154,6 @@ const PlayBar = () => {
         try {
             await playRepeat(newRepeatState);
             setRepeat(newRepeatState);
-            console.log('Repeat mode set to:', newRepeatState);
         } catch (error) {
             console.error('Error setting repeat mode:', error);
         }
@@ -174,11 +173,9 @@ const PlayBar = () => {
                 newshuffleState = 'false';
                 break;
         }
-
         try {
             await playShuffle(newshuffleState);
             setShuffle(newshuffleState);
-            console.log('Repeat mode set to:', newshuffleState);
         } catch (error) {
             console.error('Error setting repeat mode:', error);
         }
