@@ -8,7 +8,7 @@ const PlaylistPage = () => {
     const [searchParams, setSearchParams] = useState({
         type: 'Playlist',
         limit: 10,
-        market: 'us'
+        market: 'nz'
     })
     useEffect(() => {
         const fetchPlaylists = async () => {
@@ -45,12 +45,12 @@ const PlaylistPage = () => {
                 <div className={'mb-8'}>
                     {playlist.map((playlist) => (
                         <div className='flex' key={playlist.id}>
-                            <ImageCard data={playlist} artist={false} showname={false}/>
+                                <ImageCard data={playlist} artist={false} showname={false} />
                             <div className='ml-4 mt-10'>
                                 <h2 className='text-lg font-poppins font-bold'>{playlist.name}</h2>
                                 <p className='text-lg font-poppins'>{playlist.artists[0].name}</p>
                                 <p className='text-lg font-poppins'>{playlist.release_date}</p>
-                                <NavLink to={`/playlist/${playlist.id}`} className='text-lg font-poppins no-underline '>
+                                <NavLink to={`/playlist/${playlist.id}`} className='text-xl font-poppins '>
                                     More...
                                 </NavLink>
                             </div>
