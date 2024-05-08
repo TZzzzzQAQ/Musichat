@@ -48,7 +48,8 @@ io.on('connection', (socket) => {
                 display_name: messageData.display_name,
                 message: messageData.message,
                 id:messageData.id,
-                time:messageData.time
+                time: messageData.time,
+                img: messageData.img
             });
             await message.save();
             console.log('Message saved:', message);

@@ -70,7 +70,7 @@ const ChatWithBot = () => {
                         type="text"
                         value={userInput}
                         placeholder="Tell me about your music taste..."
-                        className="flex-1 px-4 py-2 border  rounded-l-md focus:outline-none focus:ring-2 focus:border-transparent"
+                        className="flex-1 px-4 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:border-transparent text-black"
                         onChange={(e) => setUserInput(e.target.value)} // Update user input state
                     />
                     <button type="submit"
