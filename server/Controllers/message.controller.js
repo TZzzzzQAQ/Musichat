@@ -12,14 +12,12 @@ export async function getMessage(req, res) {
 
 // save the comment
 export async function saveMessage(req, res) {
-    
     const newMessage = new Message({
         message: req.body.message,
         displayName: req.body.displayName,
         userId: req.body.userId
     });
     try {
-        
         const savedMessage = await newMessage.save();
         res.status(201).json(savedMessage);
     } catch (error) {
