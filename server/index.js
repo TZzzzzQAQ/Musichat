@@ -53,6 +53,7 @@ io.on('connection', (socket) => {
             await message.save();
             console.log('Message saved:', message);
             socket.broadcast.emit('receiveMessage', msg);
+            socket.emit('receiveMessage', msg);
         } catch (error) {
             console.error('Error saving message:', error);
         }

@@ -2,6 +2,7 @@ import io from 'socket.io-client';
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import AuthRoute from "@/components/AuthRoute.jsx";
+import {getMessageAPI} from "@/apis/messageAPI.jsx";
 
 const GroupChat = () => {
     const [socket, setSocket] = useState(null);
@@ -25,13 +26,23 @@ const GroupChat = () => {
         }
     }, [socket]);
 
+    useEffect(() => {
+        const fetch = async () => {
+            const response = await getMessageAPI();
+            setChat(prevState => {
+                return [...prevState, ...response];
+            })
+        }
+        fetch()
+    }, []);
+
     const sendMessage = () => {
         if (socket) {
             socket.emit('sendMessage', JSON.stringify({
                 display_name: dataFromRedux.profile.display_name,
                 message: message,
-                id:dataFromRedux.profile.id,
-                time:new Date().toISOString()
+                id: dataFromRedux.profile.id,
+                time: new Date().toISOString()
             }));
             setMessage('');
         }

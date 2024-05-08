@@ -1,9 +1,9 @@
-import Message from '../Modules/comment.model.js';
+import Message from '../Modules/message.model.js';
 
 // get all comments by songID
 export async function getMessage(req, res) {
     try {
-        const comments = await Message.findAll();
+        const comments = await Message.find();
         res.json(comments);
     } catch (error) {
         res.status(500).json({ message: error.message });
