@@ -17,7 +17,7 @@ The Spotify Clone project is a web application that mimics the functionality of 
 ### 2. Show Homepage
 - The homepage includes **Carousel** and **Playlist**。
 - Click on a **Playlist**，to enter and play music.
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Log%20in.GIF" width="600" height="400" alt="Description">
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Show%20homepage.GIF" width="600" height="400" alt="Description">
 
 ### 3. 随机艺人页面
 - 点击 **随机视频** 页面。
