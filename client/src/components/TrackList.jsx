@@ -10,12 +10,12 @@ import { useNavigate } from 'react-router-dom';
 import { playbackQueue } from "../apis/spotifyPlayAPI";
 import { requestSpotifyCommon } from "../axios/requestSpotifyCommon";
 const TrackList = ({data: {name, artists, duration_ms, uri,id}}) => {
-    const [playUri] = useState({"uris": [uri]})
-    const dispatch = useDispatch();
-    const handlerClick = async () => {
+    const [playUri] = useState({"uris": [uri]})// useState hook to store the play URI, initialized with the track's URI
+    const dispatch = useDispatch();// Hook to access the Redux store's dispatch method
+    const handlerClick = async () => { // Define an asynchronous function to handle the click event for playing the track
         try {
-            await playListAPI(getActiveDevice(), playUri);
-            setTimeout(async () => {
+            await playListAPI(getActiveDevice(), playUri);// Play the playlist using the playListAPI and the active device's identifier
+            setTimeout(async () => { // Set a timeout to fetch and update the now playing music after 1 second
                 const response = await getPlaybackStateAPI();
                 dispatch(setNowMusic(response));
             }, 1000);
@@ -26,8 +26,8 @@ const TrackList = ({data: {name, artists, duration_ms, uri,id}}) => {
     const navigate = useNavigate();
 
     const handleIconClick = (event) => {
-        event.stopPropagation(); // 阻止事件冒泡
-        navigate(`/songDetails/${id}`); // 假设 uri 是歌曲的 ID
+        event.stopPropagation(); // Blocking event bubbling
+        navigate(`/songDetails/${id}`); // Assuming the uri is the ID of the song
       };
 
 
