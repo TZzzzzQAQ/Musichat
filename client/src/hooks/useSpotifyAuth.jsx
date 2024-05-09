@@ -1,6 +1,7 @@
-import {useState, useCallback} from 'react';
-import {CLIENT_ID} from "@/../config.js";
-import {setUserToken} from "@/utils/index.jsx";
+import { useState, useCallback } from 'react';
+import { CLIENT_ID } from "@/../config.js";
+import { setUserToken } from "@/utils/index.jsx";
+import CryptoJS from 'crypto-js';
 
 // Redirect URI after authentication success
 const redirect_uri = 'http://localhost:5173/Musichat/account';
@@ -17,30 +18,28 @@ const scope = "user-read-private " +
     "user-top-read " +
     "streaming";
 
-// Custom React hook to manage Spotify authentication
 export const useSpotifyAuth = () => {
     const [accessToken, setAccessToken] = useState(null);
     const [refreshToken, setRefreshToken] = useState(null);
 
     // Generates a random string to be used as a code verifier
     function generateCodeVerifier(length) {
-        let text = '';
-        let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
         for (let i = 0; i < length; i++) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
         }
-        return text;
+        return result;
     }
 
     // Generates a code challenge from the verifier to be used in the PKCE flow
     async function generateCodeChallenge(codeVerifier) {
-        const data = new TextEncoder().encode(codeVerifier);
-        const digest = await window.crypto.subtle.digest('SHA-256', data);
-        return btoa(String.fromCharCode.apply(null, [...new Uint8Array(digest)]))
+        const hash = CryptoJS.SHA256(codeVerifier);
+        const base64 = CryptoJS.enc.Base64.stringify(hash)
             .replace(/\+/g, '-')
             .replace(/\//g, '_')
             .replace(/=+$/, '');
+        return base64;
     }
 
     // Redirects the user to Spotify's authorization page
@@ -72,13 +71,13 @@ export const useSpotifyAuth = () => {
         params.append("redirect_uri", redirect_uri);
         params.append("code_verifier", verifier);
 
-        const result = await fetch("https://accounts.spotify.com/api/token", {
+        const response = await fetch("https://accounts.spotify.com/api/token", {
             method: "POST",
-            headers: {"Content-Type": "application/x-www-form-urlencoded"},
-            body: params
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params.toString()
         });
 
-        const data = await result.json();
+        const data = await response.json();
         if (data.access_token && data.refresh_token) {
             setAccessToken(data.access_token);
             setRefreshToken(data.refresh_token);
@@ -89,16 +88,16 @@ export const useSpotifyAuth = () => {
 
     // Fetches the user profile from Spotify using the access token
     const fetchProfile = useCallback(async (code) => {
-        const {access_token: accessToken} = await getAccessToken(code);
+        const { access_token: accessToken } = await getAccessToken(code);
         if (!accessToken) {
             throw new Error("Access token is not available.");
         }
         const response = await fetch("https://api.spotify.com/v1/me", {
             method: "GET",
-            headers: {Authorization: `Bearer ${accessToken}`}
+            headers: { Authorization: `Bearer ${accessToken}` }
         });
-        return response.json();
+        return await response.json();
     }, [accessToken]);
 
-    return {fetchProfile, getAccessToken, redirectToAuthCodeFlow, accessToken, refreshToken};
+    return { fetchProfile, getAccessToken, redirectToAuthCodeFlow, accessToken, refreshToken };
 };
