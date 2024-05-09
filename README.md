@@ -11,12 +11,13 @@ The Spotify Clone project is a web application that mimics the functionality of 
 - **Favorite Songs:** Users can view their favorite songs and albums.
 - **Playback Controls:** Users can control playback features such as shuffle, repeat, and volume adjustment.
 - **Responsive Design:** The application is designed to be responsive and accessible across various devices.
-### 1. 登录
+### 1. Log In
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Log%20in.GIF" width="600" height="400" alt="Description">
 
-### 2. 展示首页
-- 首页包括 **轮播** 和 **Playlist**。
-- 点击某个 **Playlist**，进入并播放音乐。
+### 2. Show Homepage
+- The homepage includes **Carousel** and **Playlist**。
+- Click on a **Playlist**，to enter and play music.
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Log%20in.GIF" width="600" height="400" alt="Description">
 
 ### 3. 随机艺人页面
 - 点击 **随机视频** 页面。
