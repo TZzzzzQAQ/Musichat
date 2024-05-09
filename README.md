@@ -23,12 +23,11 @@ The Spotify Clone project is a web application that mimics the functionality of 
 ### 4. Latest Album
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/latest%20album.GIF" width="600" height="400" alt="Description">
 
-### 5. Search function
+### 5. Search Function
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/search%20function.GIF" width="600" height="400" alt="Description">
 
-## 6. 评论功能
-- 访问Taylor Swift音轨搜索结果中的第一首歌曲的评论区。
-- 展示现有评论并添加一条评论：“good!”，然后发表。
+### 6. Comment Function
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Comment%20page.GIF" width="600" height="400" alt="Description">
 
 ## 7. 机器人推荐歌曲功能
 - 输入 **prompt1**: "I get A+, I’m happy now"。
