@@ -38,10 +38,7 @@ export function playShuffle(state) {
 }
 
 export function playbackQueue(uri, device_id = null) {
-    // Initialize params with the URI
     const params = { uri: uri };  // Assuming uri needs to be in the body
-
-    // Add device_id to params if it's provided
     if (device_id) {
         params.device_id = device_id;  // Add device_id to params if it's provided
     }

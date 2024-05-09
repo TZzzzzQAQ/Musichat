@@ -20,10 +20,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {getPlaybackStateAPI} from "@/apis/spotifyPlayAPI.jsx";
 import {playRepeat, playShuffle} from '../../apis/spotifyPlayAPI';
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
-import { Popover } from "antd";
+import {Popover} from "antd";
 import TrackList from "@/components/TrackList.jsx";
-import { getUserQueue } from "@/apis/spotifyPlayAPI.jsx";
-
+import {getUserQueue} from "@/apis/spotifyPlayAPI.jsx";
 
 
 const iconColor = {color: "#74C0FC"};
@@ -49,44 +48,24 @@ const PlayBar = () => {
 
     const [repeat, setRepeat] = useState('off')
     const [shuffle, setShuffle] = useState('false')
-    
-
 
 
     const [queuedTracks, setQueuedTracks] = useState([]);
 
-    useEffect(() => {
-        const fetchUserQueue = async () => {
-          try {
-            const queueData = await getUserQueue();
-            setQueuedTracks(queueData.queue);
-            console.log(queueData.queue)
-          } catch (error) {
-            console.error('Error getting user queue:', error);
-          }
-        };
-      
-        fetchUserQueue();
-      }, []);
-      
+    async function fetchQueuedTracks() {
+        try {
+            const response = await getUserQueue();
+            console.log(response.queue)
+            setQueuedTracks(response.queue);
+        } catch (e) {
+            console.log(e)
+        }
 
-      function fetchQueuedTracks() {
-        getUserQueue().then(response => {
-            setQueuedTracks(response.data);
-        }).catch(error => {
-            console.error('Error fetching queued tracks:', error);
-        });
     }
 
     function handlePopoverClick() {
-        // 调用获取数据的函数
         fetchQueuedTracks();
     }
-
-    
-
-
-
 
     useEffect(() => {
         setIsPlaying(true);
@@ -204,8 +183,8 @@ const PlayBar = () => {
             console.error('Error setting repeat mode:', error);
         }
     }, 200, {leading: true, trailing: false});
-    
-    
+
+
     const toggleShuffle = debounce(async () => {
         let newshuffleState;
         switch (shuffle) {
@@ -331,32 +310,32 @@ const PlayBar = () => {
                         onClick={toggleRepeat}
                         spin={repeat !== 'off'}
                     />
-                    
+
                     <FontAwesomeIcon icon={faHeart} style={iconColor}/>
                     <Popover
-    title="Playlist"
-    trigger="click"
-    placement="topRight"
-    content={() => (
-        <div>
-            <h3>Queued Tracks</h3>
-            <ul>
-                {queuedTracks.map((track, index) => (
-                    <li key={index}>
-                        {track.name} - {track.artists[0].name}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )}
->
-    <FontAwesomeIcon icon={faList} style={iconColor} />
-</Popover>
+                        title="Playlist"
+                        trigger="click"
+                        placement="topRight"
+                        content={() => (
+                            <div>
+                                <h3>Queued Tracks</h3>
+                                <ul>
+                                    {queuedTracks?.map((track, index) => (
+                                        <li key={index}>
+                                            {track.name} - {track.artists[0].name}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    >
+                        <div onClick={handlePopoverClick}><FontAwesomeIcon icon={faList} style={iconColor}/></div>
+                    </Popover>
                     <FontAwesomeIcon icon={faVolumeOff} style={iconColor}/>
                     <div
                         className={'w-24 mb-2.5'}
                         onClick={volumeClickHandler}
-                        ref={volumeProgressBar}>                       
+                        ref={volumeProgressBar}>
                         <Progress
                             percent={volumePercent}
                             strokeColor={twoColors}
