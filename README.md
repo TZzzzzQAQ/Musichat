@@ -1,7 +1,6 @@
 # Musichat
-
 ## Description
-The Spotify Clone project is a web application that mimics the functionality of the Spotify music streaming service. It allows users to play music, search for songs, artists, and albums, login to their accounts, view their favorite and saved songs, and control playback features such as shuffle, repeat, volume adjustment, and skip functionality. The application is built using React for the frontend, Node.js for the backend, and MongoDB Atlas as the cloud database.
+Musichat is an advanced web application inspired by Spotify, which is used to provide a comprehensive music streaming service and enrich the user experience. Users can enjoy various features such as playing music, searching tracks, managing playlists, and interacting with community features. The application leverages the MERN stack (MongoDB, Express, React, Node.js) for a robust and scalable architecture.
 
 ## Features
 - **Music Playback:** Users can play, pause, skip to the next or previous track, and control playback features.
@@ -63,6 +62,7 @@ Follow these steps to set up the frontend part of the project:
    ```
    VITE_CLIENT_ID=<Your_Client_ID>
    VITE_CLIENT_SECRET=<Your_Client_Secret>
+   VITE_APP_API_URL=<Backen_URL>
    ```
 
 ### BackEnd Setup
