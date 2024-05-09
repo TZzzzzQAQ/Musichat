@@ -28,13 +28,15 @@ Musichat is an advanced web application inspired by Spotify, which is used to pr
 ### 6. Comment Function
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Comment%20page.GIF" width="600" height="400" alt="Description">
 
-## 7. 机器人推荐歌曲功能
-- 输入 **prompt1**: "I get A+, I’m happy now"。
-- 输入 **prompt2**: "Can you recommend a citypop type song to me"。
-- 机器人根据输入推荐歌曲。
+### 7. Robot Recommendation Song Function
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Group.GIF" width="600" height="400" alt="Description">
 
-## 8. 群聊功能
-- 使用应用内群聊功能进行交流。
+### 8. Group Chat Function
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Robot%20Chat.GIF" width="600" height="400" alt="Description">
+
+### 9. Other Function
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/another.GIF" width="600" height="400" alt="Description">
+
 
 ## Project Setup Instructions
 ### FrontEnd Setup
