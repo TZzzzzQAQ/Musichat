@@ -23,7 +23,7 @@ import {useSelector} from "react-redux";
 const {Header, Sider, Content, Footer} = Layout;
 
 const iconColor = {color: "#74C0FC"};
-// manage const var
+
 const item = [
     {
         key: '/home',

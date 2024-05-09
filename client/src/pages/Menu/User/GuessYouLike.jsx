@@ -26,7 +26,7 @@ const GuessYouLike = () => {
         <AuthRoute>
             <div className='overflow-y-auto h-full w-full flex flex-col items-center'>
                 <div className={"overflow-x-hidden h-full w-full"}>
-                    {playlistData.length>0 ? <TrackTable playListData={playlistData}/> : <Loading/>}
+                    {playlistData.length > 0 ? <TrackTable playListData={playlistData}/> : <Loading/>}
                 </div>
             </div>
         </AuthRoute>

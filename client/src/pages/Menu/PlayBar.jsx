@@ -21,7 +21,6 @@ import {getPlaybackStateAPI} from "@/apis/spotifyPlayAPI.jsx";
 import {playRepeat, playShuffle} from '../../apis/spotifyPlayAPI';
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
 import {Popover} from "antd";
-import TrackList from "@/components/TrackList.jsx";
 import {getUserQueue} from "@/apis/spotifyPlayAPI.jsx";
 
 

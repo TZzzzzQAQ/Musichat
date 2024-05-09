@@ -5,29 +5,29 @@ import AuthRoute from "@/components/AuthRoute.jsx";
 import {APP_API_URL} from "../../../config.js";
 
 const ChatWithBot = () => {
-    const [userInput, setUserInput] = useState(''); // State variable to hold user input
-    const [error, setError] = useState(''); // State variable to hold error messages
-    const [chatHistory, setChatHistory] = useState([]); // State variable to hold chat history
-    const [tracks, setTracks] = useState([]); // State variable to hold track information
-    const messagesEndRef = useRef(null); // Reference to the last message in the chat history
+    const [userInput, setUserInput] = useState('');
+    const [error, setError] = useState('');
+    const [chatHistory, setChatHistory] = useState([]);
+    const [tracks, setTracks] = useState([]);
+    const messagesEndRef = useRef(null);
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); // Automatically scroll to the bottom when chat history updates
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [chatHistory]);
     
-    let messages; // Variable to hold bot messages
+    let messages;
 
     // Function to handle user recommendation submission
     const handleRecommendation = async (event) => {
-        event.preventDefault(); // Prevent default form submission behavior
-        setUserInput(''); // Clear user input field
-        setChatHistory(prev => [...prev, { message: userInput, type: 'user' }]); // Add user message to chat history
+        event.preventDefault();
+        setUserInput('');
+        setChatHistory(prev => [...prev, { message: userInput, type: 'user' }]);
         try {
             const response = await fetch(`${APP_API_URL}recommend-music`, {
-                method: 'POST', // POST request method
+                method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json' // Set content type to JSON
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ userInput }) // Send user input as JSON in the request body
+                body: JSON.stringify({ userInput })
             });
 
             if (response.ok) {

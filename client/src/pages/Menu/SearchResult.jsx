@@ -1,4 +1,3 @@
-// Import required components and hooks
 import ImageCard from "@/components/ImageCard.jsx";
 import {useSelector} from "react-redux";
 import {NavLink, useLocation} from "react-router-dom";

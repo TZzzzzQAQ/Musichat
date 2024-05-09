@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import {searchAPI} from "@/apis/everyoneDataAPI.jsx";
 import ArtistComponent from "@/components/ArtistComponent.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faRotateRight} from '@fortawesome/free-solid-svg-icons';
 
 // Function to generate a random search term from the alphabet
 const getRandomSearchTerm = () => {
@@ -13,16 +13,16 @@ const getRandomSearchTerm = () => {
 
 // Component to display artists based on a random search term
 const ArtistPage = () => {
-    const [artists, setArtists] = useState([]); // State for storing artist data
-    const [randomArtists,setRandomArtists] = useState({ // State for storing search parameters, initialized once
-        q: getRandomSearchTerm(), // Random search term
-        type: 'artist', // Search type
-        market: 'US', // Market for the search
-        limit: 25 // Number of results to fetch
+    const [artists, setArtists] = useState([]);
+    const [randomArtists, setRandomArtists] = useState({
+        q: getRandomSearchTerm(),
+        type: 'artist',
+        market: 'NZ',
+        limit: 25
     });
 
     const fetchArtist = async () => {
-        setRandomArtists({ ...randomArtists, q: getRandomSearchTerm() }); // Update the search term with a random letter
+        setRandomArtists({...randomArtists, q: getRandomSearchTerm()}); // Update the search term with a random letter
         try {
             const response = await searchAPI(randomArtists); // Call the search API with random search parameters
             setArtists(response.artists.items); // Update state with artist data
@@ -31,16 +31,16 @@ const ArtistPage = () => {
         }
     };
 
-    useEffect(() => {    
+    useEffect(() => {
         fetchArtist(); // Trigger the fetch function
     }, []); // Empty dependency array means this effect runs only once on component mount
 
     return (
         <>
-            <FontAwesomeIcon icon={faRotateRight} size="xl" style={{ color: "#74C0FC", }} onClick={fetchArtist}/>
-            <ArtistComponent artists={artists} />
+            <FontAwesomeIcon icon={faRotateRight} size="xl" style={{color: "#74C0FC",}} onClick={fetchArtist}/>
+            <ArtistComponent artists={artists}/>
 
-            </>
+        </>
 
     );
 };

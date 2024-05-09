@@ -22,12 +22,13 @@ const AlbumDetails = () => {
         };
         fetchAlbum();
     }, [id]); // Dependency array with `id`, re-run the effect if `id` changes
-    
+
     // Render the album details and track table
     return (
         <div className='overflow-y-auto h-full flex flex-col items-center'>
             <h1 className='text-center pt-4 text-3xl font-poppins font-bold'>{album.name}</h1> {/* Display album name */}
-            <img src={album.images && album.images[0].url} alt={album.name} className='h-[200px]'/> {/* Display album cover image */}
+            <img src={album.images && album.images[0].url} alt={album.name}
+                 className='h-[200px]'/> {/* Display album cover image */}
             <TrackTable playListData={tracks}/> {/* Component to display list of tracks */}
         </div>
     );

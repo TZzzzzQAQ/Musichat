@@ -30,8 +30,7 @@ const TrackDetail = () => {
     const handleAddComment = async () => {
         try {
             const response = await postCommentAPI(id, newComment, userState.display_name, userState.id);
-            setComments([...comments, response]); // 更新评论列表
-            setNewComment(''); // 清空输入框
+            setComments([...comments, response]);
         } catch (error) {
             console.error('Error adding comment:', error);
         }
@@ -40,7 +39,7 @@ const TrackDetail = () => {
     const handleDeleteComment = async (commentId) => {
         try {
             await deleteCommentAPI(commentId);
-            setComments(comments.filter(comment => comment._id !== commentId)); // 更新列表
+            setComments(comments.filter(comment => comment._id !== commentId));
         } catch (error) {
             console.error('Error deleting comment:', error);
         }
