@@ -54,5 +54,20 @@ export function playbackQueue(uri, device_id = null) {
 
 
 
-
-
+export function getUserQueue() {
+    return requestSpotifyPlay({
+        url: '/queue', // Define the URL endpoint to get the user's playback queue  
+      method: 'GET', // Set the HTTP method to GET to retrieve data
+      
+    })
+      .then(response => {
+        // Data successfully retrieved
+        console.log("Data retrieved:", response);
+        return response; // Return the response for further processing
+      })
+      .catch(error => {
+        // Error occurred while retrieving data
+        console.error("Error retrieving data:", error);
+        throw error; // Rethrow the error for handling at the calling code
+      });
+  }
