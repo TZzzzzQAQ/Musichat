@@ -47,13 +47,22 @@ const TrackDetail = () => {
     };
 
     return (
-        <div className="flex">
+        <div className="flex  h-full">
             <div className="flex-1">
                 <h1 className="text-3xl mb-5 font-poppins font-bold">{data && data.name}</h1>
                 <img src={data && data.album.images[0].url} alt={data && data.album.name} className='h-[200px]'/>
             </div>
-            <div className="flex-1 p-5  rounded-lg shadow-md">
+            <div className="flex-1 p-5  rounded-lg shadow-md overflow-y-auto">
                 <h2 className="text-2xl mb-3 font-semibold">Comments</h2>
+                <div className="mt-5">
+                    <input
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        placeholder="Add a new comment"
+                        className="border p-2 w-full mb-2 rounded text-black"
+                    />
+                    <button onClick={handleAddComment} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 transition duration-150 ease-in-out">Add Comment</button>
+                </div>
                 <div className="space-y-4">
                     {comments.map(comment => (
                         <div key={comment._id} className="p-3  rounded-lg shadow-lg">
@@ -72,15 +81,7 @@ const TrackDetail = () => {
                         </div>
                     ))}
                 </div>
-                <div className="mt-5">
-                    <input
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        placeholder="Add a new comment"
-                        className="border p-2 w-full mb-2 rounded text-black"
-                    />
-                    <button onClick={handleAddComment} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 transition duration-150 ease-in-out">Add Comment</button>
-                </div>
+                
             </div>
         </div>
     );    
