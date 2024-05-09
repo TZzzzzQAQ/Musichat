@@ -91,7 +91,8 @@ const SearchForm = () => {
                     onSearch={onSearch}
                     size="large"
                     loading={isLoading}
-                    style={{width: '600px'}}
+                    style={{ width: '600px' }}
+                    id='searchInput'
                 />
                 <Select className={'w-24'} size={'large'} options={options}
                         onChange={handleSelectChange}
