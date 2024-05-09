@@ -5,8 +5,38 @@ import {setUserProfile} from "@/store/features/userSlice.jsx";
 import {useSpotifyAuth} from "@/hooks/useSpotifyAuth.jsx";
 import {sendUserDataAPI} from "@/apis/chatGroupAPI.jsx";
 import Setting from "@/pages/Menu/User/User.jsx";
+import {removeActiveDevice} from '@/utils/activeDevice.jsx';
+import {removeUserToken} from '@/utils/tokenForUser.jsx';
 
-const backgroundImageUrl = "https://i.ibb.co/cTxbCWy/spotify-k8mh.png";
+const backgroundImageUrl = "https://i.ibb.co/9gjBQFk/Spotify-Logo-RGB-Green.png";
+;
+
+const BackgroundImage = () => (
+    <div
+        className="absolute inset-0 bg-contain bg-center bg-no-repeat filter blur-[11px] z-[-1] overflow-hidden"
+        style={{backgroundImage: `url('${backgroundImageUrl}')`}}
+    />
+);
+
+const LoginHeader = ({onLogin}) => {
+    const [loginText, setLoginText] = useState("Login to Your Account");
+
+    const handleClick = () => {
+        setLoginText("Login in progress... ");
+        setTimeout(() => {
+            onLogin();
+        }, 1000);
+    };
+
+    return (
+        <h2
+            className="text-[40px] font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 cursor-pointer transition duration-300 ease-in-out hover:opacity-80"
+            onClick={handleClick}
+        >
+            {loginText}
+        </h2>
+    );
+};
 
 function Account() {
     const location = useLocation();
@@ -38,31 +68,31 @@ function Account() {
             console.error("Failed to fetch profile:", error);
         }
     };
+    const handleLogout = () => {
+        removeUserToken();
+        removeActiveDevice();
+        dispatch(setUserProfile({}));
+        window.location.href = '/Musichat/account';
+    };
 
     return (
-        <div className="h-full w-full font-poppins">
+        <div className="h-full">
             {Object.keys(userState).length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-full w-full ">
-                    <div
-                        className="w-full h-full"
-                        style={{
-                            backgroundImage: `url('${backgroundImageUrl}')`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat'
-                        }}
-                    />
-                        <button
-                            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline"
-                            onClick={handlerLogin}
-                        >
-                            Sign In
-                        </button>
+                <div className="relative flex flex-col items-center justify-center h-full overflow-hidden">
+                    <BackgroundImage/>
+                    <LoginHeader onLogin={handlerLogin}/>
+
                 </div>
             ) : (
                 <div className="flex flex-col items-center p-12">
                     <h2 className="text-6xl mb-5 bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-pink-500">Welcome, {userState.display_name}!</h2>
                     <Setting/>
+                    <button
+                        className="mt-6 px-6 py-3 bg-gradient-to-r from-purple-800 to-pink-500 text-white rounded-md shadow-md hover:bg-red-600 transition duration-300"
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </button>
                     <div className="flex items-center mt-12">
                         <div className="text-2xl">
                             <p className="mb-2.5 bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-pink-500">
@@ -80,7 +110,6 @@ function Account() {
                 </div>
             )}
         </div>
-
     );
 }
 

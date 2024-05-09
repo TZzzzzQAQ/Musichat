@@ -13,12 +13,12 @@ import {
     faHeart, faHouse,
     faList,
     faMagnifyingGlass, faMicrophoneLines,
-    faUser, faComments, faRobot
+    faUser, faComments, faRobot, faUserPlus, faIdBadge, faSquarePollHorizontal
 } from "@fortawesome/free-solid-svg-icons";
 import SearchForm from "@/components/SearchForm.jsx";
 import ToggleDark from "@/components/ToggleDark.jsx";
 import {debounce} from "lodash/function";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 const {Header, Sider, Content, Footer} = Layout;
 
@@ -37,17 +37,21 @@ const item = [
         children: [
             {
                 key: '/account',
-                icon: <FontAwesomeIcon icon={faUser} style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faIdBadge} style={iconColor}/>,
                 label: 'Account',
             },
             {
                 key: '/favourite',
                 icon: <FontAwesomeIcon icon={faHeart} style={iconColor}/>,
-                label: 'Favourite'
+                label: 'Guess You Like'
             }, {
                 key: '/playlist',
                 icon: <FontAwesomeIcon icon={faList} style={iconColor}/>,
                 label: 'Playlist'
+            }, {
+                key: '/yourFollow',
+                icon: <FontAwesomeIcon icon={faUserPlus} style={iconColor}/>,
+                label: 'Your Follow'
             }
         ]
     },
@@ -59,7 +63,7 @@ const item = [
             {
                 key: '/artist',
                 icon: <FontAwesomeIcon icon={faMicrophoneLines} style={iconColor}/>,
-                label: 'Artist'
+                label: 'RandomArtist'
             },
             {
                 key: '/newRelease',
@@ -68,7 +72,7 @@ const item = [
             },
             {
                 key: '/searchResult',
-                icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faSquarePollHorizontal} style={iconColor}/>,
                 label: 'SearchResult'
             }
         ]
@@ -114,7 +118,8 @@ const AppContainer = () => {
         if (dataFromRedux.profile?.images?.length > 1) {
             setUrl(dataFromRedux.profile.images[1].url);
         }
-    }, [dataFromRedux]); // 当 dataFromRedux 更新时触发
+    }, [dataFromRedux]);
+
     return (
         <Layout className={'bg-transparent rounded-2xl h-[45rem]'}>
             <Layout className={'bg-transparent rounded-2xl'}>
@@ -169,7 +174,6 @@ const AppContainer = () => {
                             }}
                             onClick={avatarClickHandler}
                         />
-
                     </Header>
                     <Content
                         style={{

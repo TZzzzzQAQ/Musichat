@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react';
-import {NavLink} from 'react-router-dom';
 import {getPlayListAPI, getPlaylistTracks} from '@/apis/userDataAPI.jsx';
 import AuthRoute from "@/components/AuthRoute.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -9,6 +8,7 @@ import {getActiveDevice} from "@/utils/activeDevice.jsx";
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
 import {useDispatch} from "react-redux";
 import Loading from "@/components/Loading/Loading.jsx";
+import {useNavigate} from 'react-router-dom';
 
 const iconColor = {color: "#00FFA7"};
 
@@ -53,31 +53,39 @@ const Playlist = () => {
             dispatch(setNowMusic(response));
         }, 1000);
     }
+
+    const navigate = useNavigate();
+
+    const handlePlayAndNavigate = (e, playlist) => {
+        e.preventDefault(); // Prevent the default navigation behavior
+        play(e, playlist.uri); // Play the track
+        navigate(`/playlist/${playlist.id}`); // Navigate to the playlist details page
+    };
+
     return (
         <AuthRoute>
             <div className='overflow-y-auto h-full w-full px-4 md:px-10'>
-                <div className='grid grid-cols-3 2xl:grid-cols-4 gap-4'>
-                    {playlists.length > 0 ? (
-                        playlists.map((playlist) => (
-                            <NavLink key={playlist.id} to={`/playlist/${playlist.id}`}>
+                {playlists.length >= 0 ?
+                    <div className='grid grid-cols-3 2xl:grid-cols-4 gap-4'>
+                        {playlists.map((playlist) => (
+                            <div key={playlist.id} onClick={(e) => handlePlayAndNavigate(e, playlist)}
+                                 className="cursor-pointer">
                                 <div
                                     className="bg-white rounded-lg p-5 hover:shadow-2xl hover:bg-cyan-400 transition duration-300 ease-in-out">
                                     <div className={'flex justify-between items-center '}>
                                         <h2 className='text-lg font-bold text-gray-700'>{playlist.name}</h2>
                                         <FontAwesomeIcon className={'text-3xl hover:shadow-2xl'} icon={faPlay}
-                                                         style={{...iconColor}}
-                                                         onClick={(e) => play(e, playlist.uri)}/>
+                                                         style={{...iconColor}} onClick={(e) => play(e, playlist.uri)}/>
                                     </div>
                                     <img src={playlist.images[0]?.url} alt={playlist.name}
                                          className="w-52 h-52 rounded-full mx-auto my-3 duration-300 ease-in-out hover:scale-110"/>
                                 </div>
-                            </NavLink>
-                        ))
-                    ) : <Loading/>}
-                </div>
+                            </div>
+                        ))}
+                    </div>
+                    : <Loading/>}
             </div>
         </AuthRoute>
     );
 };
-
 export default Playlist;

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import {Timestamp} from "mongodb";
 
 const MessageSchema = new mongoose.Schema({
     message: {
@@ -16,7 +15,11 @@ const MessageSchema = new mongoose.Schema({
     },
     time:{
         type: Date,
-        required: true
+        //required: true
+    },
+    img:{
+        type: String,
+        required:true
     }
 });
 

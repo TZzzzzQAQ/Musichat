@@ -1,7 +1,7 @@
 import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {visualizer} from 'rollup-plugin-visualizer';  // 使用具名导入
+import {visualizer} from 'rollup-plugin-visualizer';
 
 const __dirname = path.resolve();
 

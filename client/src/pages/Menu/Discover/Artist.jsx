@@ -1,47 +1,47 @@
 import {useEffect, useState} from 'react';
-import ImageCard from '@/components/ImageCard.jsx';
-import {NavLink} from 'react-router-dom';
 import {searchAPI} from "@/apis/everyoneDataAPI.jsx";
-import Loading from "@/components/Loading/Loading.jsx";
+import ArtistComponent from "@/components/ArtistComponent.jsx";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faRotateRight} from '@fortawesome/free-solid-svg-icons';
 
+// Function to generate a random search term from the alphabet
 const getRandomSearchTerm = () => {
     const randomTerms = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    const randomIndex = Math.floor(Math.random() * randomTerms.length);
-    return randomTerms[randomIndex];
+    const randomIndex = Math.floor(Math.random() * randomTerms.length); // Get a random index
+    return randomTerms[randomIndex]; // Return the letter at the random index
 };
 
+// Component to display artists based on a random search term
 const ArtistPage = () => {
     const [artists, setArtists] = useState([]);
     const [randomArtists, setRandomArtists] = useState({
         q: getRandomSearchTerm(),
         type: 'artist',
-        market: 'US',
+        market: 'NZ',
         limit: 25
-    })
+    });
+
+    const fetchArtist = async () => {
+        setRandomArtists({...randomArtists, q: getRandomSearchTerm()}); // Update the search term with a random letter
+        try {
+            const response = await searchAPI(randomArtists); // Call the search API with random search parameters
+            setArtists(response.artists.items); // Update state with artist data
+        } catch (error) {
+            console.error('Error fetching token:', error); // Log an error if the API call fails
+        }
+    };
+
     useEffect(() => {
-        const fetchArtist = async () => {
-            try {
-                const response = await searchAPI(randomArtists);
-                setArtists(response.artists.items);
-            } catch (error) {
-                console.error('Error fetching token:', error);
-            }
-        };
-        fetchArtist();
-    }, []);
+        fetchArtist(); // Trigger the fetch function
+    }, []); // Empty dependency array means this effect runs only once on component mount
 
     return (
-        <div className={'h-full'}>
-            {artists.length > 0 ?
-                <div className={'grid grid-cols-5 overflow-x-hidden h-full mb-8'}>
-                    {artists.map((artist) => (
-                        <NavLink to={`${artist.id}`} key={artist.id}>
-                            <ImageCard data={artist}/>
-                        </NavLink>
-                    ))}
-                </div> : <Loading></Loading>
-            }
-        </div>
+        <>
+            <FontAwesomeIcon icon={faRotateRight} size="xl" style={{color: "#74C0FC",}} onClick={fetchArtist}/>
+            <ArtistComponent artists={artists}/>
+
+        </>
+
     );
 };
 

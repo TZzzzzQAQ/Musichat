@@ -2,12 +2,17 @@ import AppContainer from "@/pages/AppContainer.jsx";
 import {ConfigProvider, theme} from "antd";
 import {useSelector} from "react-redux";
 import MobileOptimization from "@/components/MobileOptimization.jsx";
+import {useEffect} from "react";
+import {navigate} from "jsdom/lib/jsdom/living/window/navigation.js";
 
 const Layout = () => {
     const className = useSelector((state) => state.theme.backgroundTheme);
     const primary = useSelector(state => state.theme.playerColor);
     const isDaylight = useSelector(state => state.theme.isDaylight);
 
+    useEffect(() => {
+        navigate('/home', {replace: true})
+    }, [])
 
     const backgroundClass = isDaylight ? className : 'bg-darkbg';
 

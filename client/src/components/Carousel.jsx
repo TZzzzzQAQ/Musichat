@@ -1,12 +1,13 @@
+import Playlist from '../pages/Menu/User/Playlist';
 import {useEffect, useState} from 'react';
-import {Carousel} from 'antd';
-import axios from 'axios';
-import {getEveryoneToken} from "@/utils/index.jsx";
+import {getFeaturedPlaylistsAPI} from "@/apis/everyoneDataAPI.jsx";
+import {Carousel} from "antd";
 
 const contentStyle = {
-    height: '33rem',
-    width: '33rem',
+    margin: 0,
+    height: '24rem',
     color: '#fff',
+    lineHeight: '160px',
     textAlign: 'center',
     position: 'relative',
     overflow: 'hidden',
@@ -16,52 +17,46 @@ const contentStyle = {
 };
 
 const ContentCarousel = () => {
-    const [topTracks, setTopTracks] = useState([]);
-
+    const [featuredData, setFeaturedData] = useState([])
+    const [searchData] = useState({
+        limit:10
+    })
     useEffect(() => {
-        const fetchToken = async () => {
-            try {
-                const response = await axios.get('https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF', {
-                    headers: {
-                        Authorization: `Bearer ${getEveryoneToken()}`,
-                    },
-                });
-
-                const tracks = response.data.tracks.items.slice(0, 4).map((item) => ({
-                    id: item.track.id,
-                    name: item.track.name,
-                    artists: item.track.artists.map((artist) => artist.name).join(', '),
-                    image: item.track.album.images[0].url,
-                }));
-                setTopTracks(tracks);
-            } catch (error) {
-                console.error('Error fetching top tracks:', error);
-            }
-        };
-
-        fetchToken();
+        const fetchData = async () => {
+            const response = await getFeaturedPlaylistsAPI(searchData);
+            setFeaturedData(response.playlists.items)
+        }
+        fetchData()
     }, []);
 
     return (
-        <Carousel dotPosition={'left'} autoplay effect={'fade'}>
-            {topTracks.map((track) => (
-                <div key={track.id}>
-                    <div style={{...contentStyle, backgroundImage: `url(${track.image})`, backgroundSize: 'auto'}}>
-                        <div style={{
-                            background: 'rgba(0, 0, 0, 0.5)',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center'
-                        }}>
-                            <h2 className={'text-2xl font-poppins font-extrabold uppercase'}>{track.name}</h2>
-                            <p className={'text-xl font-poppins'}>{track.artists}</p>
+        <div className={'w-full h-full overflow-y-auto'}>
+            <Carousel arrows dotPosition="left" infinite={true} autoplay>
+                {featuredData.length > 0 && featuredData.map((item) => (
+                    <div key={item.id}>
+                        <div style={{...contentStyle, backgroundImage: `url(${item.images[0].url})`, backgroundSize: 'auto'}}>
+                            <div style={{
+                                background: 'rgba(0, 0, 0, 0.5)',
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center'
+                            }}>
+                                <h2 className={'text-2xl font-poppins font-extrabold uppercase'}>{item.name}</h2>
+                                <p className={'text-xl font-poppins'}>{item.artists}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
-        </Carousel>
+                ))}
+            </Carousel>
+
+            <div className={'font-poppins text-2xl font-extrabold'}>
+                Your Playlists
+            </div>
+            <Playlist/>
+        </div>
     );
 };
 
 export default ContentCarousel;
+  

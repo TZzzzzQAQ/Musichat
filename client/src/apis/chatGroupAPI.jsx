@@ -1,7 +1,7 @@
-import {requestChat} from "@/axios/requestChat.jsx";
+import {requestUser} from "@/axios/requestUser.jsx";
 
 export function sendUserDataAPI(data) {
-    return requestChat({
+    return requestUser({
         method: 'PUT',
         url: "/login",
         data

@@ -2,19 +2,27 @@ import io from 'socket.io-client';
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import AuthRoute from "@/components/AuthRoute.jsx";
+import {getMessageAPI} from "@/apis/messageAPI.jsx";
+import {useRef} from "react";
+import {APP_API_URL} from "@/../config.js";
 
+// Define the GroupChat component
 const GroupChat = () => {
+    // Define component states: socket connection, message text, chat history
     const [socket, setSocket] = useState(null);
     const [message, setMessage] = useState('');
     const [chat, setChat] = useState([]);
-    const dataFromRedux = useSelector(state => state.user);
+    // Access the user profile from the Redux store using useSelector
+    const userState = useSelector((state) => state.user.profile);
 
+    // Create a socket connection and close it when the component unmounts
     useEffect(() => {
-        const newSocket = io(`http://localhost:3000`);
+        const newSocket = io(`${APP_API_URL}`);
         setSocket(newSocket);
         return () => newSocket.close();
     }, [setSocket]);
 
+    // Listen to the socket's receiveMessage event to add received messages to the chat array
     useEffect(() => {
         if (socket) {
             socket.on('receiveMessage', (msg) => {
@@ -25,47 +33,90 @@ const GroupChat = () => {
         }
     }, [socket]);
 
+    // Fetch historical messages from the API and add them to the chat array when the component loads for the first time
+    useEffect(() => {
+        const fetch = async () => {
+            const response = await getMessageAPI();
+            setChat(() => {
+                return [...response];
+            })
+        }
+        fetch();
+    }, []);
+
+    // Define the function to send messages, use socket.emit to send the message, and clear the message input
     const sendMessage = () => {
-        if (socket) {
+        if (socket && message.trim()) {
             socket.emit('sendMessage', JSON.stringify({
-                display_name: dataFromRedux.profile.display_name,
+                display_name: userState.display_name,
                 message: message,
-                id:dataFromRedux.profile.id,
-                time:new Date().toISOString()
+                id: userState.id,
+                time: new Date().toISOString(),
+                img: userState.images[1].url
             }));
             setMessage('');
+
         }
     };
-
+    // Handle keyboard events, send the message when the Enter key is pressed
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    };
+    // Use useRef to create a reference for automatically scrolling to the bottom of the chat history
+    const messagesEndRef = useRef(null); // Reference to the last message in the chat history
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({behavior: "smooth"}); // Automatically scroll to the bottom when chat history updates
+    }, [chat]);
+    // JSX structure of the component, including the message display area and input area
     return (
         <AuthRoute>
-            <div className="h-full flex flex-col p-4">
-                <h1 className="text-2xl font-bold text-center text-gray-700 mb-4">Chat Room</h1>
-                <div className="flex flex-col flex-grow overflow-auto p-3 shadow">
+            <div className="h-full flex flex-col font-poppins">
+                <div className="flex-grow overflow-auto p-3 shadow-inner">
                     {chat.map((msg, index) => (
-                        <p key={index} className="text-gray-800 text-sm my-1">
-                            <span className="font-medium text-blue-500">{msg.display_name}:</span>
-                            {msg.message}
-                        </p>
+                        <div key={index}
+                             className={`mt-8 flex mb-4 text-base items-start ${msg.id === userState.id ? 'justify-end' : 'justify-start'}`}>
+                            <div
+                                className={`flex ${msg.id === userState.id ? 'flex-row-reverse' : 'flex-row'} items-center`}>
+                                <div
+                                    className={` flex-shrink-0 bg-gray-300 rounded-full w-12 h-12 ${msg.id === userState.id ? 'ml-3' : 'mr-3'}`}>
+                                    <span className="block w-full h-full rounded-full overflow-hidden">
+                                        <img src={msg.img} alt="avatar" className="w-full h-full object-cover"/>
+                                    </span>
+                                </div>
+                                <div className="flex-1 overflow-hidden">
+                                    <div>
+                                        <span className="font-bold text-gray-600 ">{msg.display_name}</span>
+                                        <span
+                                            className="text-gray-500 text-base ml-2">{new Date(msg.time).toLocaleTimeString()}</span>
+                                    </div>
+                                    <p className="text-black leading-normal">{msg.message}</p>
+                                </div>
+                            </div>
+                        </div>
                     ))}
+                    <div ref={messagesEndRef}/>
                 </div>
-                <div className="mt-4 flex">
-                    <input
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        type="text"
-                        placeholder="Type a message..."
-                        className="flex-grow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <button
-                        onClick={sendMessage}
-                        className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none"
-                    >
-                        Send
-                    </button>
+                <div className="p-4 w-full mx-auto bg-white shadow-xl rounded-lg">
+                    <div className="flex items-center">
+                        <input
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            type="text"
+                            placeholder="Type a message..."
+                            className="flex-grow p-2 border border-gray-300 rounded-l focus:outline-none text-black"
+                        />
+                        <button
+                            onClick={sendMessage}
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r"
+                        >
+                            Send
+                        </button>
+                    </div>
                 </div>
             </div>
-
         </AuthRoute>
     );
 };

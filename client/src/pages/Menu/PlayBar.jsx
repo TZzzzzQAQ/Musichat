@@ -2,13 +2,15 @@ import {useEffect, useRef, useState} from 'react';
 import {Avatar, Progress} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faArrowsRotate,
     faBackward,
     faForward,
     faList,
-    faPause, faPlay,
+    faPause,
+    faPlay,
+    faVolumeOff,
     faShuffle,
-    faVolumeOff
+    faSync,
+    faSyncAlt
 } from "@fortawesome/free-solid-svg-icons";
 import {faHeart} from "@fortawesome/free-regular-svg-icons"
 import {debounce} from "lodash/function";
@@ -16,7 +18,11 @@ import {formatTime, getUserToken} from "@/utils/index.jsx";
 import {setActiveDevice} from "@/utils/activeDevice.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {getPlaybackStateAPI} from "@/apis/spotifyPlayAPI.jsx";
+import {playRepeat, playShuffle} from '../../apis/spotifyPlayAPI';
 import {setNowMusic} from "@/store/features/musicSlice.jsx";
+import {Popover} from "antd";
+import {getUserQueue} from "@/apis/spotifyPlayAPI.jsx";
+
 
 const iconColor = {color: "#74C0FC"};
 const twoColors = {
@@ -28,6 +34,7 @@ const PlayBar = () => {
     const [volumePercent, setVolumePercent] = useState(50)
     const [isPlaying, setIsPlaying] = useState(false);
     const nowMusicFromRedux = useSelector(state => state.music.nowMusic);
+    const dataFromRedux = useSelector(state => state.user)
     const [player, setPlayer] = useState(undefined);
     const [nowTime, setNowTime] = useState(0)
     const [durationTime, setDurationTime] = useState(0)
@@ -38,6 +45,27 @@ const PlayBar = () => {
     const progressRef = useRef(null);
     const volumeProgressBar = useRef(null);
 
+    const [repeat, setRepeat] = useState('off')
+    const [shuffle, setShuffle] = useState('false')
+
+
+    const [queuedTracks, setQueuedTracks] = useState([]);
+
+    async function fetchQueuedTracks() {
+        try {
+            const response = await getUserQueue();
+            console.log(response.queue)
+            setQueuedTracks(response.queue);
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+
+    function handlePopoverClick() {
+        fetchQueuedTracks();
+    }
+
     useEffect(() => {
         setIsPlaying(true);
         if (nowMusicFromRedux?.item?.duration_ms) {
@@ -46,6 +74,36 @@ const PlayBar = () => {
         setNowTime(0);
     }, [nowMusicFromRedux]);
 
+    // init spotify
+    useEffect(() => {
+        if (dataFromRedux.profile) {
+            window.onSpotifyWebPlaybackSDKReady = () => {
+                const player = new window.Spotify.Player({
+                    name: 'Web Playback SDK',
+                    getOAuthToken: cb => {
+                        cb(getUserToken());
+                    },
+                    volume: 0.5
+                });
+                setPlayer(player);
+                player.addListener('ready', ({device_id}) => {
+                    setActiveDevice(device_id)
+                });
+                player.connect()
+                player.addListener('player_state_changed', async (state) => {
+                    if (!state) return;
+                    const {position} = state;
+                    if (position === 0) {
+                        setIsPlaying(false);
+                        const response = await getPlaybackStateAPI();
+                        dispatch(setNowMusic(response));
+                    }
+                });
+            };
+        }
+    }, []);
+
+    // init timer
     useEffect(() => {
         let intervalId;
         if (isPlaying) {
@@ -71,6 +129,7 @@ const PlayBar = () => {
         };
     }, [isPlaying, durationTime]);
 
+    // init volume progressbar
     useEffect(() => {
         if (volumeProgressBar.current) {
             const {width, left} = volumeProgressBar.current.getBoundingClientRect();
@@ -78,6 +137,7 @@ const PlayBar = () => {
         }
     }, []);
 
+    // init rotate avatar
     useEffect(() => {
         let intervalId;
         if (isPlaying) {
@@ -95,55 +155,95 @@ const PlayBar = () => {
         const newPercent = ((clickX - dimensionsVolume.left) / dimensionsVolume.width) * 100;
         setVolumePercent(() => newPercent);
         player.setVolume(newPercent / 100).then()
-    })
+    }, 200)
 
-    const play = async () => {
+
+    const toggleRepeat = debounce(async () => {
+        let newRepeatState;
+        switch (repeat) {
+            case 'off':
+                newRepeatState = 'context';
+                if (shuffle === 'true') {
+                    setShuffle('false');
+                    await playShuffle('false');
+                }
+                break;
+            case 'track':
+                newRepeatState = 'off';
+                break;
+            default:
+                newRepeatState = 'off';
+                break;
+        }
+        try {
+            await playRepeat(newRepeatState);
+            setRepeat(newRepeatState);
+        } catch (error) {
+            console.error('Error setting repeat mode:', error);
+        }
+    }, 200, {leading: true, trailing: false});
+
+
+    const toggleShuffle = debounce(async () => {
+        let newshuffleState;
+        switch (shuffle) {
+            case 'true':
+                newshuffleState = 'false';
+                break;
+            case 'false':
+                newshuffleState = 'true';
+                if (repeat !== 'off') {
+                    setRepeat('off');
+                    await playRepeat('off');
+                }
+                break;
+            default:
+                newshuffleState = 'false';
+                break;
+        }
+        try {
+            await playShuffle(newshuffleState);
+            setShuffle(newshuffleState);
+        } catch (error) {
+            console.error('Error setting repeat mode:', error);
+        }
+    }, 200, {leading: true, trailing: false});
+
+
+    const play = debounce(async () => {
         await player.togglePlay();
         setIsPlaying(prevState => !prevState)
-    };
-    const pause = async () => {
+    }, 200);
+    const pause = debounce(async () => {
         await player.togglePlay();
         setIsPlaying(prevState => !prevState)
-    };
-    const previousTrack = async () => {
+    }, 200);
+    const previousTrack = debounce(async () => {
         await player.previousTrack()
         setTimeout(async () => {
             const response = await getPlaybackStateAPI();
             dispatch(setNowMusic(response));
         }, 1000);
-    }
-    const nextTrack = async () => {
+    }, 200)
+    const nextTrack = debounce(async () => {
         await player.nextTrack()
         setTimeout(async () => {
             const response = await getPlaybackStateAPI();
             dispatch(setNowMusic(response));
         }, 1000);
-    }
-    const handleProgressClick = debounce((e) => {
+    }, 200)
+    const handleProgressClick = debounce(async (e) => {
         const progressBar = progressRef.current;
         const clickX = e.clientX - progressBar.getBoundingClientRect().left;
         const progressBarWidth = progressBar.clientWidth;
         const clickPercentage = clickX / progressBarWidth;
         const seekTime = clickPercentage * durationTime;
-        player.seek(seekTime);
+        console.log(seekTime)
+        console.log(durationTime)
+        await player.seek(seekTime)
         setNowTime(seekTime);
     }, 200);
-    useEffect(() => {
-        window.onSpotifyWebPlaybackSDKReady = () => {
-            const player = new window.Spotify.Player({
-                name: 'Web Playback SDK',
-                getOAuthToken: cb => {
-                    cb(getUserToken());
-                },
-                volume: 0.5
-            });
-            setPlayer(player);
-            player.addListener('ready', ({device_id}) => {
-                setActiveDevice(device_id)
-            });
-            player.connect();
-        };
-    }, []);
+
 
     return (
         <div className={'w-full h-full flex justify-between items-center font-poppins'}>
@@ -197,10 +297,39 @@ const PlayBar = () => {
             </div>
             <div className={'flex flex-row mr-4'}>
                 <div className={'flex justify-center items-center text-xl xl:text-2xl xl:gap-4 gap-2'}>
-                    <FontAwesomeIcon icon={faShuffle} style={{...iconColor, cursor: 'pointer'}}/>
-                    <FontAwesomeIcon icon={faArrowsRotate} style={{...iconColor, cursor: 'pointer'}}/>
+                    <FontAwesomeIcon
+                        icon={shuffle === 'true' ? faShuffle : faShuffle}
+                        style={{...iconColor, cursor: 'pointer'}}
+                        onClick={toggleShuffle}
+                        pulse={shuffle === 'true'}
+                    />
+                    <FontAwesomeIcon
+                        icon={repeat === 'context' ? faSyncAlt : repeat === 'track' ? faSync : faSync}
+                        style={{...iconColor, cursor: 'pointer'}}
+                        onClick={toggleRepeat}
+                        spin={repeat !== 'off'}
+                    />
+
                     <FontAwesomeIcon icon={faHeart} style={iconColor}/>
-                    <FontAwesomeIcon icon={faList} style={iconColor}/>
+                    <Popover
+                        title="Playlist"
+                        trigger="click"
+                        placement="topRight"
+                        content={() => (
+                            <div>
+                                <h3>Queued Tracks</h3>
+                                <ul>
+                                    {queuedTracks?.map((track, index) => (
+                                        <li key={index}>
+                                            {track.name} - {track.artists[0].name}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    >
+                        <div onClick={handlePopoverClick}><FontAwesomeIcon icon={faList} style={iconColor}/></div>
+                    </Popover>
                     <FontAwesomeIcon icon={faVolumeOff} style={iconColor}/>
                     <div
                         className={'w-24 mb-2.5'}

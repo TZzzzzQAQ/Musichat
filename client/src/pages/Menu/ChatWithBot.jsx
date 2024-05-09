@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import searchTrack from '../../apis/BotrecomAPI';
 import TrackTable from '../../components/TrackTable';
 import AuthRoute from "@/components/AuthRoute.jsx";
+import {APP_API_URL} from "../../../config.js";
 
 const ChatWithBot = () => {
     const [userInput, setUserInput] = useState('');
@@ -13,16 +14,15 @@ const ChatWithBot = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [chatHistory]);
     
-
-
     let messages;
 
+    // Function to handle user recommendation submission
     const handleRecommendation = async (event) => {
         event.preventDefault();
         setUserInput('');
         setChatHistory(prev => [...prev, { message: userInput, type: 'user' }]);
         try {
-            const response = await fetch('http://localhost:3000/recommend-music', {
+            const response = await fetch(`${APP_API_URL}recommend-music`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -31,25 +31,24 @@ const ChatWithBot = () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                messages = JSON.parse(data[0].content)
-                setChatHistory(prev => [...prev, { message: messages.Reason, type: 'bot' }]);
+                const data = await response.json(); // Parse response data as JSON
+                messages = JSON.parse(data[0].content); // Parse bot messages from response data
+                setChatHistory(prev => [...prev, { message: messages.Reason, type: 'bot' }]); // Add bot message to chat history
                 if (messages.Music) {
-                    setTracks(await searchTrack(messages.Track, messages.Artist)); // 或者将搜索结果展示在你的 UI 中
+                    setTracks(await searchTrack(messages.Track, messages.Artist)); // Search for tracks based on bot recommendations
                 }
 
-                setError('');
-                
+                setError(''); // Clear error message
             } else {
-                throw new Error('Failed to fetch recommendations');
+                throw new Error('Failed to fetch recommendations'); // Throw error if fetching recommendations fails
             }
         } catch (error) {
-            setError(error.message);
+            setError(error.message); // Set error message
         }
     };
 
     return (
-        <AuthRoute>
+        <AuthRoute> {/* Protected route for authentication */}
             <div className="h-full flex flex-col ">
                 <div className="flex-1 overflow-y-auto p-4 ">
                     {chatHistory.map((chat, index) => (
@@ -57,13 +56,13 @@ const ChatWithBot = () => {
                              className={`flex mt-2 ${chat.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                             <div
                                 className={`max-w-xs p-2 rounded-lg  ${chat.type === 'user' ? 'bg-green-300' : 'border-2 shadow-lg'}`}>
-                                {chat.message}
+                                {chat.message} {/* Display user or bot messages */}
                             </div>
 
                         </div>
 
                     ))}
-                    <div ref={messagesEndRef}/>
+                    <div ref={messagesEndRef}/> {/* Reference to the last message */}
                 </div>
 
 
@@ -72,20 +71,20 @@ const ChatWithBot = () => {
                         type="text"
                         value={userInput}
                         placeholder="Tell me about your music taste..."
-                        className="flex-1 px-4 py-2 border  rounded-l-md focus:outline-none focus:ring-2 focus:border-transparent"
-                        onChange={(e) => setUserInput(e.target.value)}
+                        className="flex-1 px-4 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:border-transparent text-black"
+                        onChange={(e) => setUserInput(e.target.value)} // Update user input state
                     />
                     <button type="submit"
                             className="ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50">
                         Send
                     </button>
                 </form>
-                {error && <div className="text-red-500 text-center">{error}</div>}
+                {error && <div className="text-red-500 text-center">{error}</div>} {/* Display error message if exists */}
 
-                <TrackTable playListData={tracks}/>
+                <TrackTable playListData={tracks}/> {/* Display track table */}
             </div>
         </AuthRoute>
     );
 };
 
-export default ChatWithBot;
+export default ChatWithBot; // Export the ChatWithBot component
