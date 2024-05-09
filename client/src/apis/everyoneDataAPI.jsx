@@ -36,3 +36,11 @@ export function getTrackDetailAPI(id) {
         method: 'GET'
     })
 }
+
+export function getFeaturedPlaylistsAPI(params) {
+    return requestSpotifyCommon({
+        method: 'GET',
+        url:'/browse/featured-playlists',
+        params
+    })
+}

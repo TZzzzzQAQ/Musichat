@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react';
-import {NavLink} from 'react-router-dom';
 import {getPlayListAPI, getPlaylistTracks} from '@/apis/userDataAPI.jsx';
 import AuthRoute from "@/components/AuthRoute.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

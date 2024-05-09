@@ -32,12 +32,6 @@ app.use('/comment', commentRoute)
 app.use('/message', messageRoute)
 
 app.use(errorHandlerMiddleWare)
-
-app.use(express.static(path.join(path.resolve(), 'public')));
-app.get('/', (req, res) => {
-    res.sendFile(path.join(path.resolve(), 'server', 'public', 'index.html'));
-});
-
 const httpServer = createServer(app);
 const io = new SocketServer(httpServer, {
     cors: {
@@ -69,8 +63,6 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('User disconnected');
     });
-
-
 });
 const PORT = process.env.PORT;
 httpServer.listen(PORT, () => console.log(`Server running on port ${PORT}`));
