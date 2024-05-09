@@ -34,7 +34,8 @@ Musichat is an advanced web application inspired by Spotify, which is used to pr
 ### 8. Group Chat Function
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Robot%20Chat.GIF" width="600" height="400" alt="Description">
 
-### 9. Another Function
+### 9. Other Function
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/another.GIF" width="600" height="400" alt="Description">
 
 
 ## Project Setup Instructions
