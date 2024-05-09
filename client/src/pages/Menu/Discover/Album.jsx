@@ -1,15 +1,19 @@
+// Import the useEffect and useState hooks from React, as well as other required components and functions
 import { useEffect, useState } from 'react';
 import ImageCard from '@/components/ImageCard.jsx';
 import { NavLink } from 'react-router-dom';
 import { getNewReleasesAPI } from "@/apis/everyoneDataAPI.jsx";
 
+// Define the PlaylistPage component
 const PlaylistPage = () => {
+    // Initialize the playlist state and search parameters state using the useState hook
     const [playlist, setPlaylist] = useState([]);
     const [searchParams, setSearchParams] = useState({
         type: 'Playlist',
         limit: 10,
         market: 'nz'
     })
+    // Use the useEffect hook to handle the API request to fetch new release playlists data
     useEffect(() => {
         const fetchPlaylists = async () => {
             try {
@@ -22,6 +26,7 @@ const PlaylistPage = () => {
         fetchPlaylists();
     }, [searchParams]);
 
+    // Define the function to handle changes in region selection, updating the search parameters state
     const handleRegionChange = (e) => {
         setSearchParams(prevState => {
             return {
@@ -31,6 +36,7 @@ const PlaylistPage = () => {
         })
     };
 
+    // JSX structure returned by the component
     return (
         <div className='overflow-y-auto h-full'>
             <h1 className="text-3xl font-poppins font-bold mb-4">New Releases</h1>
@@ -66,4 +72,5 @@ const PlaylistPage = () => {
     );
 };
 
+// Export the PlaylistPage component
 export default PlaylistPage;
