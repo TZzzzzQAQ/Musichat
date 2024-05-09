@@ -24,7 +24,7 @@ const ArtistDetail = () => {
     // Render the component, displaying the tracks in a TrackTable
     return (
         <div className='overflow-y-auto h-full flex flex-col items-center'>
-            <TrackTable playListData={tracks}/> // TrackTable component to display tracks
+            <TrackTable playListData={tracks}/>
         </div>
     );
 };

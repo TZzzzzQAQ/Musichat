@@ -22,7 +22,7 @@ const SearchResult = () => {
     // Component rendering based on available data
     return (
         <>
-            {someData.artists && <div className={''}>
+            {someData.artists && <div className={'grid grid-cols-5 overflow-x-hidden h-full'}>
                 {artistsItems.map((item) => (
                     <NavLink to={`/artist/${item.id}`} key={item.id} className='text-lg font-poppins no-underline '>
                     <ImageCard data={item} key={item.id}/>
