@@ -54,8 +54,7 @@ const PlayBar = () => {
     async function fetchQueuedTracks() {
         try {
             const response = await getUserQueue();
-            console.log(response.queue)
-            setQueuedTracks(response.queue);
+            setQueuedTracks([...new Set(response.queue)]);
         } catch (e) {
             console.log(e)
         }
@@ -312,15 +311,14 @@ const PlayBar = () => {
 
                     <FontAwesomeIcon icon={faHeart} style={iconColor}/>
                     <Popover
-                        title="Playlist"
                         trigger="click"
                         placement="topRight"
                         content={() => (
-                            <div>
-                                <h3>Queued Tracks</h3>
-                                <ul>
+                            <div className="p-4 w-64 h-48 overflow-auto">
+                                <h3 className="text-xl font-bold mb-2">Queued Tracks</h3>
+                                <ul className="list-disc pl-5">
                                     {queuedTracks?.map((track, index) => (
-                                        <li key={index}>
+                                        <li key={index} className="text-sm py-1">
                                             {track.name} - {track.artists[0].name}
                                         </li>
                                     ))}
@@ -328,7 +326,9 @@ const PlayBar = () => {
                             </div>
                         )}
                     >
-                        <div onClick={handlePopoverClick}><FontAwesomeIcon icon={faList} style={iconColor}/></div>
+                        <button onClick={handlePopoverClick}>
+                            <FontAwesomeIcon icon={faList} style={iconColor}/>
+                        </button>
                     </Popover>
                     <FontAwesomeIcon icon={faVolumeOff} style={iconColor}/>
                     <div

@@ -1,42 +1,65 @@
-# Musichat
-## Description
-Musichat is an advanced web application inspired by Spotify, which is used to provide a comprehensive music streaming service and enrich the user experience. Users can enjoy various features such as playing music, searching tracks, managing playlists, and interacting with community features. The application leverages the MERN stack (MongoDB, Express, React, Node.js) for a robust and scalable architecture.
+# Musichat: An Enhanced Music Streaming Experience
 
-## Features
-- **Music Playback:** Users can play, pause, skip to the next or previous track, and control playback features.
-- **Search Functionality:** Users can search for songs, artists, and albums.
-- **User Authentication:** Users can create accounts, login, and logout securely.
-- **View Saved Songs:** Users can view their saved songs and albums.
-- **Favorite Songs:** Users can view their favorite songs and albums.
-- **Playback Controls:** Users can control playback features such as shuffle, repeat, and volume adjustment.
-- **Responsive Design:** The application is designed to be responsive and accessible across various devices.
+## Overview
+Musichat is a cutting-edge web application inspired by platforms like Spotify. It offers a comprehensive music streaming service aimed at enhancing user engagement and interaction. Built on the MERN stack (MongoDB, Express, React, Node.js), Musichat provides a robust and scalable architecture that integrates seamlessly with advanced community features and personalized music streaming functionalities.
+
+## Core Features
+
+- **Music Playback**: Users can effortlessly play, pause, skip tracks, and navigate their music experience with intuitive playback controls.
+- **Search Functionality**: A powerful search engine allows users to quickly find songs, artists, and albums.
+- **User Authentication**: Secure login and registration features ensure that user data and preferences are safely managed.
+- **Playlist Management**: Users can create, edit, and manage custom playlists, tailoring their music experience to their tastes.
+- **Saved and Favorite Tracks**: Easy access to saved songs and favorite tracks helps users keep track of their preferred music and albums.
+
+## Expanded Features
+
+- **Community Interaction**: Engage with other users through a built-in online chat room, fostering a community of music lovers.
+- **Music Comments**: Share thoughts and engage in discussions about songs directly on the platform, enhancing the interactive experience.
+- **AI-Powered Music Suggestions**: Leveraging advanced AI technology, users can receive personalized song recommendations, improving their music discovery process.
+- **Artist Information via ChatGPT-4.0**: Unsure about an artist? Users can query ChatGPT-4.0 integrated within the platform to fetch detailed information about artists, including bio, discography, and more.
+- **Responsive Design**: The application is optimized for various devices, ensuring a seamless and accessible user experience across desktops, tablets, and smartphones.
+
+## Why Musichat?
+
+Musichat goes beyond traditional music streaming by offering features that allow users not only to listen to music but to interact with it and the community. Whether it's discussing the latest hits, creating playlists for every mood, or getting to know more about your favorite artists, Musichat offers a comprehensive platform that caters to all aspects of music enjoyment and exploration.
+
+Musichat is not just about listening to music—it's about experiencing it together. Join Musichat today and transform the way you engage with music and fellow music enthusiasts.
+
 ### 1. Log In
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Log%20in.GIF" width="600" height="400" alt="Description">
+- Log in with your spotify account and enjoy the webapp features (Premium membership required)
+<img src="/demonstration/Log%20in.GIF" width="600" height="400" alt="Description">
 
-### 2. Show Homepage
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Home%20Page.GIF" width="600" height="400" alt="Description">
+### 2. Homepage
+- The home page feature will show the album cover carousel of the recommended songs and your playlist
+<img src="/demonstration/Home Page.GIF" width="600" height="400" alt="Description">
 
 ### 3. Random ArtistPage
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Random%20artist%20page.GIF" width="600" height="400" alt="Description">
+- This page will randomly recommend you a group of artists, if you are interested, you can click on their home page to see their songs.
+<img src="/demonstration/Random%20artist%20page.GIF" width="600" height="400" alt="Description">
 
-### 4. Latest Album
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/latest%20album.GIF" width="600" height="400" alt="Description">
+### 4. New Release Albums
+- This page shows the latest albums
+<img src="/demonstration/latest%20album.GIF" width="600" height="400" alt="Description">
 
 ### 5. Search Function
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/search%20function.GIF" width="600" height="400" alt="Description">
+- The search bar can search for track, artist and album
+<img src="/demonstration/search%20function.GIF" width="600" height="400" alt="Description">
 
 ### 6. Comment Function
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Comment%20page.GIF" width="600" height="400" alt="Description">
+- This is an additional feature of the project, creating a better space for discussion and support of songs. After logging in, users will be allowed to comment on songs, and the comment content will be stored in the database for a long time. Users can also choose to delete their comments
+<img src="/demonstration/Comment%20page.GIF" width="600" height="400" alt="Description">
 
 ### 7. Robot Recommendation Song Function
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Group.GIF" width="600" height="400" alt="Description">
+- This is an additional function of the project, here the use of openai assistant api, users can tell the AI their mood, want to listen to the type of song, etc., AI will recommend a song, and then use spotify to search out this, users can listen directly
+<img src="/demonstration/Group.GIF" width="600" height="400" alt="Description">
 
 ### 8. Group Chat Function
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Robot%20Chat.GIF" width="600" height="400" alt="Description">
+- This is a special function, different users can share and discuss about music in a group chat, all the data is stored in the cloud database, can be viewed in real time
+<img src="/demonstration/Robot%20Chat.GIF" width="600" height="400" alt="Description">
 
 ### 9. Other Function
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/another.GIF" width="600" height="400" alt="Description">
-
+- More features look forward to your further exploration
+<img src="/demonstration/another.GIF" width="600" height="400" alt="Description">
 
 ## Project Setup Instructions
 ### FrontEnd Setup
