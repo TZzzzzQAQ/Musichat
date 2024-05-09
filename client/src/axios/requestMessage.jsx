@@ -1,7 +1,8 @@
 import axios from "axios";
+import {APP_API_URL} from "@/../config.js";
 
 const requestMessage = axios.create({
-    baseURL: 'http://localhost:3000/message',
+    baseURL: `${APP_API_URL}message`,
     timeout: 5000
 })
 

@@ -3,13 +3,15 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import musicRoutes from './Routes/assistant.route.js';
 import userRoute from "./Routes/user.route.js";
-import { createServer } from 'http';
-import { Server as SocketServer } from 'socket.io';
+import {createServer} from 'http';
+import {Server as SocketServer} from 'socket.io';
 import dotenv from 'dotenv';
 import {errorHandlerMiddleWare} from "./middleware/errorHandler.middleware.js";
 import Message from "./Modules/message.model.js";
 import commentRoute from './Routes/comment.route.js';
 import messageRoute from './Routes/message.route.js';
+import path from 'path';
+
 dotenv.config();
 
 mongoose.connect(process.env.MONGO_URI)
@@ -31,6 +33,11 @@ app.use('/message', messageRoute)
 
 app.use(errorHandlerMiddleWare)
 
+app.use(express.static(path.join(path.resolve(), 'public')));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(path.resolve(), 'server', 'public', 'index.html'));
+});
+
 const httpServer = createServer(app);
 const io = new SocketServer(httpServer, {
     cors: {
@@ -47,7 +54,7 @@ io.on('connection', (socket) => {
             const message = new Message({
                 display_name: messageData.display_name,
                 message: messageData.message,
-                id:messageData.id,
+                id: messageData.id,
                 time: messageData.time,
                 img: messageData.img
             });
@@ -65,5 +72,5 @@ io.on('connection', (socket) => {
 
 
 });
-const PORT=process.env.PORT;
+const PORT = process.env.PORT;
 httpServer.listen(PORT, () => console.log(`Server running on port ${PORT}`));

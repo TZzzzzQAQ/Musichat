@@ -54,6 +54,7 @@ const PlayBar = () => {
     // init spotify
     useEffect(() => {
         if (dataFromRedux.profile) {
+            console.log("no user data")
             window.onSpotifyWebPlaybackSDKReady = () => {
                 const player = new window.Spotify.Player({
                     name: 'Web Playback SDK',

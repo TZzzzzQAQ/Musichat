@@ -8,6 +8,7 @@ import AuthRoute from "@/components/AuthRoute.jsx";
 // Import getMessageAPI function to fetch message data
 import { getMessageAPI } from "@/apis/messageAPI.jsx";
 import { useRef } from "react";
+import {APP_API_URL} from "@/../config.js";
 
 
 // Define the GroupChat component
@@ -22,7 +23,7 @@ const GroupChat = () => {
 
     // Create a socket connection and close it when the component unmounts
     useEffect(() => {
-        const newSocket = io(`http://localhost:3000`);
+        const newSocket = io(`${APP_API_URL}`);
         setSocket(newSocket);
         return () => newSocket.close();
     }, [setSocket]);

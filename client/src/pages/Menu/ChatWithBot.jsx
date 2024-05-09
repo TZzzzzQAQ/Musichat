@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import searchTrack from '../../apis/BotrecomAPI'; // Importing the function to search for tracks from BotrecomAPI
 import TrackTable from '../../components/TrackTable'; // Importing the TrackTable component
-import AuthRoute from "@/components/AuthRoute.jsx"; // Importing the AuthRoute component for authentication
+import AuthRoute from "@/components/AuthRoute.jsx";
+import {APP_API_URL} from "../../../config.js"; // Importing the AuthRoute component for authentication
 
 const ChatWithBot = () => {
     const [userInput, setUserInput] = useState(''); // State variable to hold user input
@@ -21,7 +22,7 @@ const ChatWithBot = () => {
         setUserInput(''); // Clear user input field
         setChatHistory(prev => [...prev, { message: userInput, type: 'user' }]); // Add user message to chat history
         try {
-            const response = await fetch('http://localhost:3000/recommend-music', {
+            const response = await fetch(`${APP_API_URL}recommend-music`, {
                 method: 'POST', // POST request method
                 headers: {
                     'Content-Type': 'application/json' // Set content type to JSON
