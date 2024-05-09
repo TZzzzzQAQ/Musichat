@@ -22,7 +22,7 @@ export default {
                 'sunset-orange': 'linear-gradient(180deg, #ffe7ba, #d46b08)',
                 'calendula-gold': 'linear-gradient(180deg, #fff1b8, #d48806)',
                 'sunrise-yellow': 'linear-gradient(180deg, #ffffb8, #d4b106)',
-                'polar_green': 'linear-gradient(180deg, #d9f7be, #389e0d)',
+                'polar-green': 'linear-gradient(180deg, #d9f7be, #389e0d)',
                 'cyan': 'linear-gradient(180deg, #b5f5ec, #08979c)',
                 'daybreak-blue': 'linear-gradient(180deg, #bae0ff, #0958d9)',
                 'geek-blue': 'linear-gradient(180deg, #d6e4ff, #1d39c4)',
