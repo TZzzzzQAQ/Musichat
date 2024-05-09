@@ -25,9 +25,9 @@ const options = [
 const iconColor = {color: "#74C0FC"};
 
 const SearchForm = () => {
-    const [api, contextHolder] = notification.useNotification();
-    const [isLoading, setIsLoading] = useState(false);
-    const [offsetNumber, setOffsetNumber] = useState(0)
+    const [api, contextHolder] = notification.useNotification();// Initialize the notification context from antd library, for displaying notification messages
+    const [isLoading, setIsLoading] = useState(false);// State to track loading status, initially set to false
+    const [offsetNumber, setOffsetNumber] = useState(0)// State to track pagination offset, initially set to 0
     const [searchData, setSearchData] = useState({
         q: 'Taylor Swift',
         type: 'artist',
@@ -36,9 +36,9 @@ const SearchForm = () => {
         offset: offsetNumber
     })
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch();
-    const handleSelectChange = (value) => {
+    const navigate = useNavigate()// Hook to navigate programmatically
+    const dispatch = useDispatch();// Hook to access the Redux store's dispatch method
+    const handleSelectChange = (value) => { // Handler for changing the search type via a select dropdown
         setSearchData(prevState => {
             return {
                 ...prevState,
@@ -57,7 +57,7 @@ const SearchForm = () => {
     const onSearch = async (value) => {
         setIsLoading(true);
         let res;
-        if (value === '') {
+        if (value === '') { // If the search input is empty, show a notification
             api.open({
                 message: 'Warning',
                 description:
@@ -66,7 +66,7 @@ const SearchForm = () => {
                     <FontAwesomeIcon icon={faFaceFrown} style={iconColor}/>
                 ),
             });
-            setIsLoading(false);
+            setIsLoading(false);// Set loading state back to false
             return;
         }
         try {
