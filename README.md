@@ -19,9 +19,10 @@ The Spotify Clone project is a web application that mimics the functionality of 
 - Click on a **Playlist**，to enter and play music.
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Show%20homepage.GIF" width="600" height="400" alt="Description">
 
-### 3. 随机艺人页面
-- 点击 **随机视频** 页面。
-- 点击页面中的 **刷新符号**，每次操作后重新获取一组艺人。
+### 3. Random ArtistPage
+- Click on the **Random Artist** page。
+- Click the **refresh symbol**，on the page to re-acquire a set of artists after each operation.
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Random%20artist%20page.GIF" width="600" height="400" alt="Description">
 
 ### 4. 最新专辑
 - 点击 **最新专辑** 链接。
