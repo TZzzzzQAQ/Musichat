@@ -7,7 +7,7 @@ const ArtistComponent = ({artists}) => {
     const currentPath = location.pathname; // Get the current path
     return (
         <div className={'h-full'}>
-            {artists.length > 0 ?
+            {artists.length >= 0 ?
                 <div className={'grid grid-cols-5 overflow-x-hidden h-full mb-8'}>
                     {artists.map((artist) => (
                         <NavLink to={`${currentPath}/${artist.id}`} key={artist.id}>

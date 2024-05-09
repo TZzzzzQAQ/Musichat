@@ -65,7 +65,7 @@ const Playlist = () => {
     return (
         <AuthRoute>
             <div className='overflow-y-auto h-full w-full px-4 md:px-10'>
-                {playlists.length > 0 ?
+                {playlists.length >= 0 ?
                     <div className='grid grid-cols-3 2xl:grid-cols-4 gap-4'>
                         {playlists.map((playlist) => (
                             <div key={playlist.id} onClick={(e) => handlePlayAndNavigate(e, playlist)} className="cursor-pointer">

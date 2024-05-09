@@ -39,7 +39,7 @@ const AlbumPage = () => {
     // JSX structure returned by the component
     return (
         <div className='overflow-y-auto h-full'>
-            {albums.length > 0 ? (
+            {albums.length >= 0 ? (
                 <div className={'mb-8'}>
                     {albums.map((album) => (
                         <div className='flex' key={album.id}>
