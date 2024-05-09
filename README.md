@@ -82,7 +82,7 @@ Follow these steps to set up the backend part of the project:
 3. **Launch the Backend Application**
    Start the backend application by executing the `index.js` file with Node.js.
    ```bash
-   node index.js
+   npm start
    ```
 
    #### Setting Up Environment Variables for BackEnd
