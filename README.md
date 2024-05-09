@@ -15,25 +15,16 @@ The Spotify Clone project is a web application that mimics the functionality of 
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Log%20in.GIF" width="600" height="400" alt="Description">
 
 ### 2. Show Homepage
-- The homepage includes **Carousel** and **Playlist**。
-- Click on a **Playlist**，to enter and play music.
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Show%20homepage.GIF" width="600" height="400" alt="Description">
 
 ### 3. Random ArtistPage
-- Click on the **Random Artist** page。
-- Click the **refresh symbol**，on the page to re-acquire a set of artists after each operation.
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Random%20artist%20page.GIF" width="600" height="400" alt="Description">
 
 ### 4. Latest Album
-- Click on the **Latest Albums** link。
-- Scroll down to display multiple sets of albums.
-- Click **more** to enter the selected album details page.
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/latest%20album.GIF" width="600" height="400" alt="Description">
 
-### 5. 搜索功能
-- 搜索关键词 "Taylor Swift"，可选定搜索专辑（Album），艺人（Artist），或音轨（Track）。
-- 在音轨搜索结果中，点击一条音轨以触发音乐播放。
-- 调整音乐的 **声音大小** 和使用 **暂停** 功能。
+### 5. Search function
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/search%20function.GIF" width="600" height="400" alt="Description">
 
 ## 6. 评论功能
 - 访问Taylor Swift音轨搜索结果中的第一首歌曲的评论区。
