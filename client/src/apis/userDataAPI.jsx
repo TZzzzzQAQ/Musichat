@@ -41,7 +41,6 @@ export function getPlaylistTracks(playlist_id, params) {  // Defines a function 
 
 
 export function getPlaylistFromIDAPI(id) {  // Defines a function to fetch a playlist by its ID.
-    console.log('Playlist ID passed to getPlaylistFromIDAPI:', id);  // Logs the playlist ID to the console.
     return requestSpotifyLogin({  // Uses the Spotify login request handler.
         url: `playlists/${id}`,  // Sets the endpoint URL for fetching a specific playlist by ID.
         method: 'GET'  // Specifies the request method as GET.

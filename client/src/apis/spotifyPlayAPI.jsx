@@ -45,7 +45,6 @@ export function playbackQueue(uri, device_id = null) {
     if (device_id) {
         params.device_id = device_id;  // Add device_id to params if it's provided
     }
-    console.log(params);  // Log params to the console for debugging
     return requestSpotifyPlay({
         url: '/queue', // Define the URL endpoint to add to the playback queue
         method: 'POST',  // Set the HTTP method to POST to send data

@@ -34,11 +34,8 @@ const TrackList = ({data: {name, artists, duration_ms, uri,id}}) => {
       const handlePlusClick = async (event) => {
     event.stopPropagation(); // Prevent event bubbling
     try {
-        console.log("Adding to queue", uri); // Check URI
         const device = getActiveDevice(); // Ensure device is retrieved
-        console.log("Device ID:", device); // Log device ID
         await playbackQueue(uri, device);
-        console.log("Track added to queue"); // Confirm function was called
     } catch (err) {
         console.error("Error adding to queue:", err);
     }

@@ -211,8 +211,6 @@ const PlayBar = () => {
         const progressBarWidth = progressBar.clientWidth;
         const clickPercentage = clickX / progressBarWidth;
         const seekTime = clickPercentage * durationTime;
-        console.log(seekTime)
-        console.log(durationTime)
         await player.seek(seekTime)
         setNowTime(seekTime);
     }, 200);
