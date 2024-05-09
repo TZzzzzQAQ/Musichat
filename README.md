@@ -11,24 +11,24 @@ The Spotify Clone project is a web application that mimics the functionality of 
 - **Favorite Songs:** Users can view their favorite songs and albums.
 - **Playback Controls:** Users can control playback features such as shuffle, repeat, and volume adjustment.
 - **Responsive Design:** The application is designed to be responsive and accessible across various devices.
-## 1. 登录
+### 1. 登录
 - 访问 **Account** 页面。
 - 点击 **登录** 以获取并展示用户信息。
 
-## 2. 展示首页
+### 2. 展示首页
 - 首页包括 **轮播** 和 **Playlist**。
 - 点击某个 **Playlist**，进入并播放音乐。
 
-## 3. 随机艺人页面
+### 3. 随机艺人页面
 - 点击 **随机视频** 页面。
 - 点击页面中的 **刷新符号**，每次操作后重新获取一组艺人。
 
-## 4. 最新专辑
+### 4. 最新专辑
 - 点击 **最新专辑** 链接。
 - 下滑以展示多组专辑。
 - 点击 **more** 进入选定的专辑详情页面。
 
-## 5. 搜索功能
+### 5. 搜索功能
 - 搜索关键词 "Taylor Swift"，可选定搜索专辑（Album），艺人（Artist），或音轨（Track）。
 - 在音轨搜索结果中，点击一条音轨以触发音乐播放。
 - 调整音乐的 **声音大小** 和使用 **暂停** 功能。
