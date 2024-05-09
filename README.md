@@ -14,7 +14,7 @@ Musichat is an advanced web application inspired by Spotify, which is used to pr
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Log%20in.GIF" width="600" height="400" alt="Description">
 
 ### 2. Show Homepage
-<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Show%20homepage.GIF" width="600" height="400" alt="Description">
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Home%20Page.GIF" width="600" height="400" alt="Description">
 
 ### 3. Random ArtistPage
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Random%20artist%20page.GIF" width="600" height="400" alt="Description">
