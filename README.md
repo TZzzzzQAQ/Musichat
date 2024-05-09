@@ -24,10 +24,11 @@ The Spotify Clone project is a web application that mimics the functionality of 
 - Click the **refresh symbol**，on the page to re-acquire a set of artists after each operation.
 <img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Random%20artist%20page.GIF" width="600" height="400" alt="Description">
 
-### 4. 最新专辑
-- 点击 **最新专辑** 链接。
-- 下滑以展示多组专辑。
-- 点击 **more** 进入选定的专辑详情页面。
+### 4. Latest Album
+- Click on the **Latest Albums** link。
+- Scroll down to display multiple sets of albums.
+- Click **more** to enter the selected album details page.
+<img src="https://github.com/UOA-CS732-SE750-Students-2024/project-group-mystic-manatees/blob/FrontEnd/demonstration/Random%20artist%20page.GIF" width="600" height="400" alt="Description">
 
 ### 5. 搜索功能
 - 搜索关键词 "Taylor Swift"，可选定搜索专辑（Album），艺人（Artist），或音轨（Track）。
