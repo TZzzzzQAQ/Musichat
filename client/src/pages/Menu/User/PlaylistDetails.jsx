@@ -11,7 +11,6 @@ const Playlist = () => {
     useEffect(() => {
             const fetchPlaylist = async () => {
                 try {
-                    console.log('Playlist ID from URL:', id);
                     let response = await getPlaylistTracks(id);
                     response = response.items.flatMap(item => {
                         return item.track

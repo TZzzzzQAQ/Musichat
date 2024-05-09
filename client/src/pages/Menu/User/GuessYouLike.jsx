@@ -16,7 +16,6 @@ const GuessYouLike = () => {
             try {
                 const response = await getUserTopItems(searchParams);
                 setPlaylistData(response.items)
-                console.log(playlistData)
             } catch (error) {
                 console.error('Error fetching Top Items:', error);
             }
