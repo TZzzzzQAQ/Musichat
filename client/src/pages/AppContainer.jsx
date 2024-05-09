@@ -13,7 +13,7 @@ import {
     faHeart, faHouse,
     faList,
     faMagnifyingGlass, faMicrophoneLines,
-    faUser, faComments, faRobot
+    faUser, faComments, faRobot, faUserPlus, faIdBadge, faSquarePollHorizontal
 } from "@fortawesome/free-solid-svg-icons";
 import SearchForm from "@/components/SearchForm.jsx";
 import ToggleDark from "@/components/ToggleDark.jsx";
@@ -37,7 +37,7 @@ const item = [
         children: [
             {
                 key: '/account',
-                icon: <FontAwesomeIcon icon={faUser} style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faIdBadge} style={iconColor}/>,
                 label: 'Account',
             },
             {
@@ -50,7 +50,7 @@ const item = [
                 label: 'Playlist'
             }, {
                 key: '/yourFollow',
-                icon: <FontAwesomeIcon icon={faUser} style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faUserPlus} style={iconColor}/>,
                 label: 'Your Follow'
             }
         ]
@@ -72,7 +72,7 @@ const item = [
             },
             {
                 key: '/searchResult',
-                icon: <FontAwesomeIcon icon={faCompactDisc} style={iconColor}/>,
+                icon: <FontAwesomeIcon icon={faSquarePollHorizontal} style={iconColor}/>,
                 label: 'SearchResult'
             }
         ]

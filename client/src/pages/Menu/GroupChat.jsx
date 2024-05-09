@@ -6,7 +6,6 @@ import {getMessageAPI} from "@/apis/messageAPI.jsx";
 import {useRef} from "react";
 import {APP_API_URL} from "@/../config.js";
 
-
 // Define the GroupChat component
 const GroupChat = () => {
     // Define component states: socket connection, message text, chat history
@@ -15,7 +14,6 @@ const GroupChat = () => {
     const [chat, setChat] = useState([]);
     // Access the user profile from the Redux store using useSelector
     const userState = useSelector((state) => state.user.profile);
-
 
     // Create a socket connection and close it when the component unmounts
     useEffect(() => {
@@ -60,7 +58,6 @@ const GroupChat = () => {
 
         }
     };
-
     // Handle keyboard events, send the message when the Enter key is pressed
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -72,23 +69,19 @@ const GroupChat = () => {
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({behavior: "smooth"}); // Automatically scroll to the bottom when chat history updates
     }, [chat]);
-
     // JSX structure of the component, including the message display area and input area
     return (
         <AuthRoute>
-            <div className="h-full flex flex-col ">
+            <div className="h-full flex flex-col font-poppins">
                 <div className="flex-grow overflow-auto p-3 shadow-inner">
                     {chat.map((msg, index) => (
                         <div key={index}
-                             className={`flex mb-4 text-sm items-start ${msg.id === userState.id ? 'justify-end' : 'justify-start'}`}>
+                             className={`mt-8 flex mb-4 text-base items-start ${msg.id === userState.id ? 'justify-end' : 'justify-start'}`}>
                             <div
                                 className={`flex ${msg.id === userState.id ? 'flex-row-reverse' : 'flex-row'} items-center`}>
-
                                 <div
-                                    className={` flex-shrink-0 bg-gray-300 rounded-full w-8 h-8 ${msg.id === userState.id ? 'ml-3' : 'mr-3'}`}>
-                                    
+                                    className={` flex-shrink-0 bg-gray-300 rounded-full w-12 h-12 ${msg.id === userState.id ? 'ml-3' : 'mr-3'}`}>
                                     <span className="block w-full h-full rounded-full overflow-hidden">
-                                        
                                         <img src={msg.img} alt="avatar" className="w-full h-full object-cover"/>
                                     </span>
                                 </div>
@@ -96,17 +89,16 @@ const GroupChat = () => {
                                     <div>
                                         <span className="font-bold text-gray-600 ">{msg.display_name}</span>
                                         <span
-                                            className="text-gray-500 text-xs ml-2">{new Date(msg.time).toLocaleTimeString()}</span>
+                                            className="text-gray-500 text-base ml-2">{new Date(msg.time).toLocaleTimeString()}</span>
                                     </div>
                                     <p className="text-black leading-normal">{msg.message}</p>
                                 </div>
                             </div>
                         </div>
                     ))}
-
                     <div ref={messagesEndRef}/>
                 </div>
-                <div className="p-4 max-w-lg mx-auto bg-white shadow-lg rounded-lg">
+                <div className="p-4 w-full mx-auto bg-white shadow-xl rounded-lg">
                     <div className="flex items-center">
                         <input
                             value={message}

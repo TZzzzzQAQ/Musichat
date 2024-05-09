@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import searchTrack from '../../apis/BotrecomAPI'; // Importing the function to search for tracks from BotrecomAPI
-import TrackTable from '../../components/TrackTable'; // Importing the TrackTable component
+import searchTrack from '../../apis/BotrecomAPI';
+import TrackTable from '../../components/TrackTable';
 import AuthRoute from "@/components/AuthRoute.jsx";
-import {APP_API_URL} from "../../../config.js"; // Importing the AuthRoute component for authentication
+import {APP_API_URL} from "../../../config.js";
 
 const ChatWithBot = () => {
     const [userInput, setUserInput] = useState(''); // State variable to hold user input
