@@ -9,7 +9,7 @@ Musichat is an advanced web application inspired by Spotify, which is used to pr
 
 ### 2. Homepage
 - The home page feature will show the album cover carousel of the recommended songs and your playlist
-<img src="/demonstration/Show%20homepage.GIF" width="600" height="400" alt="Description">
+<img src="/demonstration/Home Page.GIF" width="600" height="400" alt="Description">
 
 ### 3. Random ArtistPage
 - This page will randomly recommend you a group of artists, if you are interested, you can click on their home page to see their songs.
