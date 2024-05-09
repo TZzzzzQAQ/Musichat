@@ -21,8 +21,8 @@ const SearchResult = () => {
 
     // Component rendering based on available data
     return (
-        <div>
-            {someData.artists && <div className={'grid grid-cols-5 overflow-x-hidden h-full'}>
+        <>
+            {someData.artists && <div className={''}>
                 {artistsItems.map((item) => (
                     <NavLink to={`/artist/${item.id}`} key={item.id} className='text-lg font-poppins no-underline '>
                     <ImageCard data={item} key={item.id}/>
@@ -40,7 +40,7 @@ const SearchResult = () => {
                 <TrackTable playListData={tracksItems}/>
             </div>}
             {!hasData && <div className="text-xl font-poppins text-center py-10 ">Search what you want!</div>}
-        </div>
+        </>
     );
 };
 
