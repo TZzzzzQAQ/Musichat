@@ -1,14 +1,14 @@
-import {useParams} from 'react-router-dom';
-import {useEffect, useState} from 'react';
-import {getTrackDetailAPI} from '@/apis/everyoneDataAPI.jsx';
-import {getCommentsAPI, postCommentAPI, deleteCommentAPI} from '@/apis/commentAPI.jsx';
-import {useDispatch, useSelector} from "react-redux";
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getTrackDetailAPI } from '@/apis/everyoneDataAPI.jsx';
+import { getCommentsAPI, postCommentAPI, deleteCommentAPI } from '@/apis/commentAPI.jsx';
+import { useDispatch, useSelector } from "react-redux";
 
 const TrackDetail = () => {
     const [data, setData] = useState(null);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
-    const {id} = useParams();
+    const { id } = useParams();
 
     const userState = useSelector((state) => state.user.profile);
     const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const TrackDetail = () => {
         <div className="flex  h-full">
             <div className="flex-1">
                 <h1 className="text-3xl mb-5 font-poppins font-bold">{data && data.name}</h1>
-                <img src={data && data.album.images[0].url} alt={data && data.album.name} className='h-[200px]'/>
+                <img src={data && data.album.images[0].url} alt={data && data.album.name} className='h-[200px]' />
             </div>
             <div className="flex-1 p-5  rounded-lg shadow-md overflow-y-auto">
                 <h2 className="text-2xl mb-3 font-semibold">Comments</h2>
@@ -71,20 +71,20 @@ const TrackDetail = () => {
                                 <span className="text-sm text-gray-600">{comment.time}</span>
                             </div>
                             <p className="text-gray-800 mt-1">{comment.comment}</p>
-                            
+
                             {comment.userId === userState.id && (
                                 <button onClick={() => handleDeleteComment(comment._id)}
-                                        className="bg-red-500 text-white p-2 mt-2 rounded hover:bg-red-700 transition duration-150 ease-in-out">
+                                    className="bg-red-500 text-white p-2 mt-2 rounded hover:bg-red-700 transition duration-150 ease-in-out">
                                     Delete
                                 </button>
                             )}
                         </div>
                     ))}
                 </div>
-                
+
             </div>
         </div>
-    );    
+    );
 };
 
 export default TrackDetail;
