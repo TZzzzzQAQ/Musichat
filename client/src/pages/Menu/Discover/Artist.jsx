@@ -39,7 +39,6 @@ const ArtistPage = () => {
         <>
             <FontAwesomeIcon icon={faRotateRight} size="xl" style={{color: "#74C0FC",}} onClick={fetchArtist}/>
             <ArtistComponent artists={artists}/>
-
         </>
 
     );

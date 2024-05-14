@@ -1,10 +1,10 @@
-import { useState, useCallback } from 'react';
-import { CLIENT_ID } from "@/../config.js";
-import { setUserToken } from "@/utils/index.jsx";
+import {useState, useCallback} from 'react';
+import {CLIENT_ID} from "@/../config.js";
+import {setUserToken} from "@/utils/index.jsx";
 import CryptoJS from 'crypto-js';
 
 // Redirect URI after authentication success
-const redirect_uri = 'http://localhost:5173/Musichat/account';
+const redirect_uri = `${window.location.origin}/Musichat/account`;
 
 // Required Spotify scopes as a single string separated by spaces
 const scope = "user-read-private " +
@@ -73,7 +73,7 @@ export const useSpotifyAuth = () => {
 
         const response = await fetch("https://accounts.spotify.com/api/token", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: params.toString()
         });
 
@@ -88,16 +88,16 @@ export const useSpotifyAuth = () => {
 
     // Fetches the user profile from Spotify using the access token
     const fetchProfile = useCallback(async (code) => {
-        const { access_token: accessToken } = await getAccessToken(code);
+        const {access_token: accessToken} = await getAccessToken(code);
         if (!accessToken) {
             throw new Error("Access token is not available.");
         }
         const response = await fetch("https://api.spotify.com/v1/me", {
             method: "GET",
-            headers: { Authorization: `Bearer ${accessToken}` }
+            headers: {Authorization: `Bearer ${accessToken}`}
         });
         return await response.json();
     }, [accessToken]);
 
-    return { fetchProfile, getAccessToken, redirectToAuthCodeFlow, accessToken, refreshToken };
+    return {fetchProfile, getAccessToken, redirectToAuthCodeFlow, accessToken, refreshToken};
 };
