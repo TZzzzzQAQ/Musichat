@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
-import searchTrack from '../../apis/BotrecomAPI';
+import {useState, useRef, useEffect} from 'react';
 import TrackTable from '../../components/TrackTable';
 import AuthRoute from "@/components/AuthRoute.jsx";
 import {APP_API_URL} from "../../../config.js";
+import {searchAPI} from "@/apis/everyoneDataAPI.jsx";
 
 const ChatWithBot = () => {
     const [userInput, setUserInput] = useState('');
@@ -11,61 +11,59 @@ const ChatWithBot = () => {
     const [tracks, setTracks] = useState([]);
     const messagesEndRef = useRef(null);
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        messagesEndRef.current?.scrollIntoView({behavior: "smooth"});
     }, [chatHistory]);
-    
-    let messages;
 
-    // Function to handle user recommendation submission
+    let messages;
     const handleRecommendation = async (event) => {
         event.preventDefault();
         setUserInput('');
-        setChatHistory(prev => [...prev, { message: userInput, type: 'user' }]);
+        setChatHistory(prev => [...prev, {message: userInput, type: 'user'}]);
         try {
             const response = await fetch(`${APP_API_URL}recommend-music`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ userInput })
+                body: JSON.stringify({userInput})
             });
-
             if (response.ok) {
-                const data = await response.json(); // Parse response data as JSON
-                messages = JSON.parse(data[0].content); // Parse bot messages from response data
-                setChatHistory(prev => [...prev, { message: messages.Reason, type: 'bot' }]); // Add bot message to chat history
+                const data = await response.json();
+                messages = JSON.parse(data[0].content);
+                setChatHistory(prev => [...prev, {message: messages.Reason, type: 'bot'}]);
                 if (messages.Music) {
-                    setTracks(await searchTrack(messages.Track, messages.Artist)); // Search for tracks based on bot recommendations
+                    let searchParams = {
+                        type: 'track',
+                        limit: 20,
+                        q: messages.Track
+                    }
+                    const response = await searchAPI(searchParams);
+                    setTracks(response.tracks.items);
                 }
-
                 setError(''); // Clear error message
             } else {
-                throw new Error('Failed to fetch recommendations'); // Throw error if fetching recommendations fails
+                throw new Error('Failed to fetch recommendations');
             }
         } catch (error) {
-            setError(error.message); // Set error message
+            setError(error.message);
         }
     };
 
     return (
-        <AuthRoute> {/* Protected route for authentication */}
-            <div className="h-full flex flex-col ">
-                <div className="flex-1 overflow-y-auto p-4 ">
+        <AuthRoute>
+            <div className="h-full flex flex-col overflow-y-auto">
+                <div className="flex-1  p-4 ">
                     {chatHistory.map((chat, index) => (
                         <div key={index}
                              className={`flex mt-2 ${chat.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                             <div
                                 className={`max-w-xs p-2 rounded-lg  ${chat.type === 'user' ? 'bg-green-300' : 'border-2 shadow-lg'}`}>
-                                {chat.message} {/* Display user or bot messages */}
+                                {chat.message}
                             </div>
-
                         </div>
-
                     ))}
-                    <div ref={messagesEndRef}/> {/* Reference to the last message */}
+                    <div ref={messagesEndRef}/>
                 </div>
-
-
                 <form onSubmit={handleRecommendation} className="flex items-center mb-4 p-4">
                     <input
                         type="text"
@@ -79,8 +77,6 @@ const ChatWithBot = () => {
                         Send
                     </button>
                 </form>
-                {error && <div className="text-red-500 text-center">{error}</div>} {/* Display error message if exists */}
-
                 <TrackTable playListData={tracks}/> {/* Display track table */}
             </div>
         </AuthRoute>
